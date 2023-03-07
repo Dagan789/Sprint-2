@@ -1,14 +1,273 @@
-<html lang="en">
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+        <script src="https://kit.fontawesome.com/8a80b728dc.js" crossorigin="anonymous"></script>
+        <title>OutfitPro</title>
+        
+    </head>
+  <body>
+     <!-- signup modal -->
+     <div class="modal" id="mymodal_signUp">
+        <div class="modal-background"></div>
+        <div class="modal-content has-background-white ">
+            <div class="has-background-grey-ter">
+                <div class="control has-text-right p-0 m-0">
+                    <button class="button is-light has-text-right" id="cancel_signUp"><i
+                            class="fa-solid fa-x has-text-black"></i></button>
+                </div>
+                <div class="title has-text-black pb-5 has-text-centered">Sign Up</div>
+            </div>
+            <form id="signup_form">
+                <!-- email -->
+                <div class="field pl-3 pr-3 pt-3">
+                    <label class="label has-text-black">Email:</label>
+                    <div class="control">
+                        <input class="input" type="email" id="signup_email" placeholder="badger@wisc.edu">
+                    </div>
+                </div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+                <!-- password -->
+                <div class="field pl-3 pr-3">
+                    <label class="label has-text-black mt-2">Password:</label>
+                    <div class="control">
+                        <input class="input" type="password" id="signup_password" placeholder="******">
+                    </div>
+                </div>
+                <!-- submit -->
+                <div class="field pl-3 pr-3">
+                    <div class="control pt-3">
+                        <button class="button is-dark">Submit</button>
+                    </div>
 
-<body>
+                </div>
+                <!-- div error -->
+                <div class="error has-text-danger has-text-centered">
 
-</body>
+                </div>
 
+            </form>
+        </div>
+    </div>
+
+    <!-- login modal -->
+    <div class="modal" id="mymodal_login">
+        <div class="modal-background" ></div>
+        <div class="modal-content has-background-white ">
+            <div class="has-background-grey-ter">
+                <div class="control has-text-right p-0 m-0">
+                    <button class="button is-light has-text-right" id="cancel_login"><i
+                            class="fa-solid fa-x has-text-black"></i></button>
+                </div>
+                <div class="title has-text-black pb-5 has-text-centered">Log In</div>
+            </div>
+            <form id="login_form">
+                <!-- email -->
+                <div class="field pl-3 pr-3 pt-3">
+                    <label class="label has-text-black">Email:</label>
+                    <div class="control">
+                        <input class="input" type="email" id="login_email" placeholder="badger@wisc.edu">
+                    </div>
+                </div>
+
+                <!-- password -->
+                <div class="field pl-3 pr-3">
+                    <label class="label has-text-black mt-2">Password:</label>
+                    <div class="control">
+                        <input class="input" type="password" id="login_password" placeholder="******">
+                    </div>
+                </div>
+                <!-- submit -->
+                <div class="field pl-3 pr-3">
+                    <div class="control pt-3">
+                        <button class="button is-dark">Submit</button>
+                    </div>
+
+                </div>
+                <!-- div error -->
+                <div class="error has-text-danger has-text-centered">
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!--Nav-->
+    <nav class="navbar is-withe" >
+     
+
+        <div class="navbar-menu is-active has-background-withe">
+            <div class="navbar-start has-text-centered ">
+
+                <a class="navbar-item ml-5 is-size-5 has-text-black" href="ai.html" id="home">
+                    Outfits
+                </a>
+                <a class="navbar-item ml-5 is-size-5 has-text-black" id="post_reviews">
+                    TBD
+                </a>
+                <a class="navbar-item ml-5 is-size-5 has-text-black" id="">
+                    TBD
+                </a>
+
+            </div>
+
+            <div class="navbar-end">
+                <div class="navbar-item p-1 mr-2">
+                    <div class="has-text-black is-size-5 has-text-centered" id="user_email">
+
+                    </div>
+                </div>
+                <div class="navbar-item p-1 has-text-centered">
+                    <a class="button is-light " id="signUp">
+                        <strong>Sign up</strong>
+                    </a></div>
+                <div class="navbar-item p-1  has-text-centered">
+                    <a class="button is-light" id="login">
+                        <strong>Log in</strong>
+                    </a></div>
+                <div class="navbar-item p-1 has-text-centered">
+                    <a class="button is-light " id="signout">
+                        <strong>Sign out</strong>
+                    </a></div>
+
+
+            </div>
+        </div>
+        </div>
+    </nav>
+    
+
+    <div class="section pt-0" id="wrapper" style="height:100%">
+      <div class="container">
+        <h1 class="title p-3 has-text-centered">OutfitPro</h1>
+        <div class="columns is-multiline">
+          <div class="column is-one-fifth">
+            <div class="card">
+              <div class="card-image">
+                <figure class="image is-3by3">
+                  <img src="https://static.zara.cn/photos///2023/V/0/2/p/4399/736/706/2/w/750/4399736706_6_1_1.jpg?ts=1674477396337" alt="Clothing Image">
+                </figure>
+              </div>
+              <div class="card-content">
+                <p class="title is-4">Clothing Item 1</p>
+                <p class="subtitle is-6">$50</p>
+                <div class="content">
+                  <p>Description of the clothing item goes here.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column is-one-fifth">
+            <div class="card">
+              <div class="card-image">
+                <figure class="image is-3by3">
+                  <img src="https://static.zara.cn/photos///2023/V/0/2/p/4399/736/706/2/w/750/4399736706_6_1_1.jpg?ts=1674477396337" alt="Clothing Image">
+                </figure>
+              </div>
+              <div class="card-content">
+                <p class="title is-4">Clothing Item 2</p>
+                <p class="subtitle is-6">$75</p>
+                <div class="content">
+                  <p>Description of the clothing item goes here.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column is-one-fifth">
+            <div class="card">
+              <div class="card-image">
+                <figure class="image is-3by3">
+                  <img src="https://static.zara.cn/photos///2023/V/0/2/p/4399/736/706/2/w/750/4399736706_6_1_1.jpg?ts=1674477396337" alt="Clothing Image">
+                </figure>
+              </div>
+              <div class="card-content">
+                <p class="title is-4">Clothing Item 3</p>
+                <p class="subtitle is-6">$100</p>
+                <div class="content">
+                  <p>Description of the clothing item goes here.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column is-one-fifth">
+            <div class="card">
+              <div class="card-image">
+                <figure class="image is-3by3">
+                  <img src="https://static.zara.cn/photos///2023/V/0/2/p/4399/736/706/2/w/750/4399736706_6_1_1.jpg?ts=1674477396337" alt="Clothing Image">
+                </figure>
+              </div>
+              <div class="card-content">
+                <p class="title is-4">Clothing Item 4</p>
+                <p class="subtitle is-6">$100</p>
+                <div class="content">
+                  <p>Description of the clothing item goes here.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column is-one-fifth">
+            <div class="card">
+              <div class="card-image">
+                <figure class="image is-3by3">
+                  <img src="https://static.zara.cn/photos///2023/V/0/2/p/4399/736/706/2/w/750/4399736706_6_1_1.jpg?ts=1674477396337" alt="Clothing Image">
+                </figure>
+              </div>
+              <div class="card-content">
+                <p class="title is-4">Clothing Item 5</p>
+                <p class="subtitle is-6">$100</p>
+                <div class="content">
+                  <p>Description of the clothing item goes here.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <footer class="footer p-0">
+        <div class="content has-text-centered has-background-white has-text-grey-light">
+            <p>Copyright &copy; 2023 OutfitPro
+
+        </div>
+    </footer>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-storage.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
+
+
+
+    <script>
+        // TODO
+        // Copy **only** your firebaseConfig from Google Firebae and add it below
+        const firebaseConfig = {
+            apiKey: "AIzaSyDaVjbIJtu0S4CRsfEAmzpguFbg8oUhMb0",
+            authDomain: "gaming-space-db.firebaseapp.com",
+            projectId: "gaming-space-db",
+            storageBucket: "gaming-space-db.appspot.com",
+            messagingSenderId: "98515870760",
+            appId: "1:98515870760:web:a94e3f30abd5782ff1811d",
+            measurementId: "G-NM4C1HLKLZ"
+        };
+
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        // define authentication variable
+        let auth = firebase.auth();
+        let db = firebase.firestore();
+    </script>
+    <script src="app.js"></script>
+  </body>
+  
 </html>
