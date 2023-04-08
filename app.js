@@ -98,13 +98,19 @@ login.addEventListener(`click`, () => {
   document.querySelector("#mymodal_login").classList.add("is-active");
 });
 
-// Survey button
+// User button
 r_e("user_button").addEventListener(`click`, () => {
   r_e("outfits").classList.add("is-hidden");
   r_e("users_page").classList.remove("is-hidden");
 });
 
+// Survey button
 r_e("survey_button").addEventListener(`click`, () => {
   r_e("outfits").classList.add("is-hidden");
   r_e("users_page").classList.add("is-hidden");
+  r_e("survey_page").classList.remove("is-hidden");
 });
+
+function updateBudgetLabel(value) {
+  document.getElementById("budget-label").textContent = "$" + value;
+}

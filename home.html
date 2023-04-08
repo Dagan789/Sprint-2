@@ -303,6 +303,78 @@
   </div>
 </div>
 
+<!--Survey Page-->
+<section class="section is-hidden" id="survey_page">
+  <div class="container">
+    <h1 class="title">Business Outfit Survey</h1>
+    <form>
+        <div class="field">
+            <label class="label">Preferred Clothing Gender</label>
+            <div class="control">
+                <label class="radio">
+                    <input type="radio" name="gender">
+                    Men's
+                </label>
+                <label class="radio">
+                    <input type="radio" name="gender">
+                    Women's
+                </label>
+                <label class="radio">
+                    <input type="radio" name="gender">
+                    Neutral
+                </label>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Favorite Business Colors</label>
+            <div class="control">
+                <div class="select">
+                    <select>
+                        <option>Please select</option>
+                        <option>Black</option>
+                        <option>Gray</option>
+                        <option>Navy Blue</option>
+                        <option>Charcoal</option>
+                        <option>Dark Brown</option>
+                        <option>Olive Green</option>
+                        <option>Burgundy</option>
+                        <option>Beige</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Budget Range</label>
+          <div class="control">
+              <input class="slider" step="50" min="0" max="1000" value="500" type="range" oninput="updateBudgetLabel(this.value);">
+              <span id="budget-label">$500</span>
+          </div>
+      </div>
+
+        <div class="field">
+            <label class="label">Preferred Style</label>
+            <div class="control">
+                <label class="radio">
+                    <input type="radio" name="style">
+                    Casual
+                </label>
+                <label class="radio">
+                    <input type="radio" name="style">
+                    Formal
+                </label>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <button class="button is-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+</section>
 
 
 
