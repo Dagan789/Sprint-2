@@ -104,4 +104,7 @@ r_e("user_button").addEventListener(`click`, () => {
   r_e("users_page").classList.remove("is-hidden");
 });
 
-r_e("user_email").addEventListener(`click`, () => {});
+r_e("survey_button").addEventListener(`click`, () => {
+  r_e("outfits").classList.add("is-hidden");
+  r_e("users_page").classList.add("is-hidden");
+});
