@@ -141,7 +141,7 @@
   <div class="section pt-0" id="wrapper" style="height:100%">
     <div class="container">
       <h1 class="title p-3 has-text-centered">Outfits</h1>
-      <div class="columns is-multiline" id ="outfits">
+      <div class="columns is-multiline" id="outfits">
         <div class="column is-one-fifth">
           <div class="card">
             <div class="card-image">
@@ -237,153 +237,197 @@
 
   </div>
 
-<!--Users Page-->
-<div class="section is-hidden" id = "users_page">
-  <div class="container">
+  <!--Users Page-->
+  <div class="section is-hidden" id="users_page">
+    <div class="container">
       <div class="columns">
-          <!-- POSTS :: center column  -->
-          <div class="column has-text-centered is-four-ninth" id="main">
-              <h1 id="main_msg" class="has-text-centered has-text-grey-dark has-text-weight-bold ">My
-                  Favorites</h1>
-              <div class="container" id="content">
-                  <h1 id="content_msg" class="has-text-centered has-text-info has-text-weight-bold">
+        <!-- FAVORITES :: left column  -->
+        <div class="column has-text-centered is-one-third" id="favorites">
+          <h1 id="main_msg" class="has-text-centered has-text-grey-dark has-text-weight-bold ">My
+            Favorites</h1>
+          <div class="container" id="content">
+            <h1 id="content_msg" class="has-text-centered has-text-info has-text-weight-bold">
+              <div class="column is-full">
+                <div class="card">
+                  <div class="card-image">
+                    <figure class="image is-3by3">
+                      <img
+                        src="https://static.zara.cn/photos///2023/V/0/2/p/4399/736/706/2/w/750/4399736706_6_1_1.jpg?ts=1674477396337"
+                        alt="Clothing Image">
+                    </figure>
+                  </div>
+                  <div class="card-content">
+                    <p class="title is-4">Clothing Item 1</p>
+                    <p class="subtitle is-6">$50</p>
+                    <div class="content">
+                      <p>Description of the clothing item goes here.</p>
+                    </div>
+                  </div>
+                </div>
               </div>
           </div>
-          <!-- Survey-->
-          
-          <!-- CREATE POST :: right column -->
-          <div class="column is-four-ninth" id="create_column">
-              <div class="card column">
-                  <p class="panel-heading has-text-centered my-4">Share an outfit!</p>
-                  <form id="form_topost">
-                      <div class="field_title">
-                          <label class="label has-text-centered">Clothing Item</label>
-                          <div class="control">
-                              <input class="input" type="text" id="clothing_name"> <!-- ID NAME PAY ATTENTION -->
-                          </div>
-                      </div>
-                      <div class="field_title">
-                          <label class="label has-text-centered mt-2">Price</label>
-                          <div class="control">
-                              <input class="input" type="text" id="price"> <!-- ID NAME PAY ATTENTION -->
-                          </div>
-                      </div>
-                      <div class="field_genre">
-                          <label class="label p-2 has-text-centered">Style:</label>
-                          <!-- HAVE TO CHANGE STYLES HERE EVENTUALLY -->
-                          <div class="select ml-6 media-right">
-                              <select class="select ml-6 pl-4 is-right" id="style_sel">
-                                  <option value="select">Select a Style: </option>
-                                  <option value="Business_Casual">Business Casual</option>
-                                  <option value="Formal">Formal</option>
-                              </select>
-                          </div>
-                      </div>
-                      <div class="field_image">
-                          <label class="label p-2 has-text-centered">Image:</label>
-                          <div class="control">
-                              <input class="input" type="file" id="album_img" placeholder="Choose Image">
-                          </div>
-                      </div>
-                      <div class="field_caption">
-                          <label class="label p-2 has-text-centered">Description</label>
-                          <textarea id="caption" class="textarea mt-2"
-                              placeholder="Please explain what your outfit is!" lines="12"></textarea>
-                      </div>
-                      <div class="field is-grouped">
-                          <div class="control">
-                              <button class="button ml-auto mt-3 p-auto is-center" id="submit_post">Submit</button>
-                          </div>
-                      </div>
-                      <!-- <button class="button mt-2">Submit</button> -->
-                  </form>
-              </div>
-          </div>
-      </div>
-  </div>
-</div>
+        </div>
 
-<!--Survey Page-->
-<section class="section is-hidden" id="survey_page">
-  <div class="container">
-    <h1 class="title">Business Outfit Survey</h1>
-    <form>
-        <div class="field">
-            <label class="label">Preferred Clothing Gender</label>
-            <div class="control">
-                <label class="radio">
-                    <input type="radio" name="gender">
-                    Men's
-                </label>
-                <label class="radio">
-                    <input type="radio" name="gender">
-                    Women's
-                </label>
-                <label class="radio">
-                    <input type="radio" name="gender">
-                    Neutral
-                </label>
+        <!-- UPLOAD OUTFITS IN MIDDLE COLUMN HERE -->
+        <div class="column has-text-centered is-one-third" id="uploads">
+          <div class="button is-centered" id="outfit_button">Upload an Outfit
+          </div>
+        </div>
+
+
+        <!-- POSTS :: right column -->
+        <div class="column has-text-centered is-one-third" id="posts">
+          <h1 id="main_msg" class="has-text-centered has-text-grey-dark has-text-weight-bold ">My Posts</h1>
+          <div class="container" id="content">
+            <h1 id="content_msg" class="has-text-centered has-text-info has-text-weight-bold">
+          </div>
+          <div class="column is-full">
+            <div class="card">
+              <div class="card-image">
+                <figure class="image is-3by3">
+                  <img
+                    src="https://static.zara.cn/photos///2023/V/0/2/p/4399/736/706/2/w/750/4399736706_6_1_1.jpg?ts=1674477396337"
+                    alt="Clothing Image">
+                </figure>
+              </div>
+              <div class="card-content">
+                <p class="title is-4">Clothing Item 1</p>
+                <p class="subtitle is-6">$50</p>
+                <div class="content">
+                  <p>Description of the clothing item goes here.</p>
+                </div>
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section is-hidden" id="upload_page">
+    <div class="column is-four-ninth" id="create_column">
+      <div class="card column">
+        <p class="panel-heading has-text-centered my-4">Share an outfit!</p>
+        <form id="form_topost">
+          <div class="field_title">
+            <label class="label has-text-centered">Clothing Item</label>
+            <div class="control">
+              <input class="input" type="text" id="clothing_name"> <!-- ID NAME PAY ATTENTION -->
+            </div>
+          </div>
+          <div class="field_title">
+            <label class="label has-text-centered mt-2">Price</label>
+            <div class="control">
+              <input class="input" type="text" id="price"> <!-- ID NAME PAY ATTENTION -->
+            </div>
+          </div>
+          <div class="field_genre">
+            <label class="label p-2 has-text-centered">Style:</label>
+            <!-- HAVE TO CHANGE STYLES HERE EVENTUALLY -->
+            <div class="select ml-6 media-right">
+              <select class="select ml-6 pl-4 is-right" id="style_sel">
+                <option value="select">Select a Style: </option>
+                <option value="Business_Casual">Business Casual</option>
+                <option value="Formal">Formal</option>
+              </select>
+            </div>
+          </div>
+          <div class="field_image">
+            <label class="label p-2 has-text-centered">Image:</label>
+            <div class="control">
+              <input class="input" type="file" id="album_img" placeholder="Choose Image">
+            </div>
+          </div>
+          <div class="field_caption">
+            <label class="label p-2 has-text-centered">Description</label>
+            <textarea id="caption" class="textarea mt-2" placeholder="Please explain what your outfit is!"
+              lines="12"></textarea>
+          </div>
+          <div class="field is-grouped">
+            <div class="control">
+              <button class="button ml-auto mt-3 p-auto is-center" id="submit_post">Submit</button>
+            </div>
+          </div>
+          <!-- <button class="button mt-2">Submit</button> -->
+        </form>
+      </div>
+    </div>
+  </section>
+
+
+  <!--Survey Page-->
+  <section class="section is-hidden" id="survey_page">
+    <div class="container">
+      <h1 class="title">Business Outfit Survey</h1>
+      <form>
+        <div class="field">
+          <label class="label">Preferred Clothing Gender</label>
+          <div class="control">
+            <label class="radio">
+              <input type="radio" name="gender">
+              Men's
+            </label>
+            <label class="radio">
+              <input type="radio" name="gender">
+              Women's
+            </label>
+            <label class="radio">
+              <input type="radio" name="gender">
+              Neutral
+            </label>
+          </div>
         </div>
 
         <div class="field">
-            <label class="label">Favorite Business Colors</label>
-            <div class="control">
-                <div class="select">
-                    <select>
-                        <option>Please select</option>
-                        <option>Black</option>
-                        <option>Gray</option>
-                        <option>Navy Blue</option>
-                        <option>Charcoal</option>
-                        <option>Dark Brown</option>
-                        <option>Olive Green</option>
-                        <option>Burgundy</option>
-                        <option>Beige</option>
-                    </select>
-                </div>
+          <label class="label">Favorite Business Colors</label>
+          <div class="control">
+            <div class="select">
+              <select>
+                <option>Please select</option>
+                <option>Black</option>
+                <option>Gray</option>
+                <option>Navy Blue</option>
+                <option>Charcoal</option>
+                <option>Dark Brown</option>
+                <option>Olive Green</option>
+                <option>Burgundy</option>
+                <option>Beige</option>
+              </select>
             </div>
+          </div>
         </div>
 
         <div class="field">
           <label class="label">Budget Range</label>
           <div class="control">
-              <input class="slider" step="50" min="0" max="1000" value="500" type="range" oninput="updateBudgetLabel(this.value);">
-              <span id="budget-label">$500</span>
+            <input class="slider" step="50" min="0" max="1000" value="500" type="range"
+              oninput="updateBudgetLabel(this.value);">
+            <span id="budget-label">$500</span>
           </div>
-      </div>
-
-        <div class="field">
-            <label class="label">Preferred Style</label>
-            <div class="control">
-                <label class="radio">
-                    <input type="radio" name="style">
-                    Casual
-                </label>
-                <label class="radio">
-                    <input type="radio" name="style">
-                    Formal
-                </label>
-            </div>
         </div>
 
         <div class="field">
-            <div class="control">
-                <button class="button is-primary">Submit</button>
-            </div>
+          <label class="label">Preferred Style</label>
+          <div class="control">
+            <label class="radio">
+              <input type="radio" name="style">
+              Casual
+            </label>
+            <label class="radio">
+              <input type="radio" name="style">
+              Formal
+            </label>
+          </div>
         </div>
-    </form>
-</div>
-</section>
 
-
-
-
-
-
-
-
-
+        <div class="field">
+          <div class="control">
+            <button class="button is-primary">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
 
 
   <footer class="footer p-0">
