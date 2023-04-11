@@ -104,6 +104,11 @@ r_e("user_button").addEventListener(`click`, () => {
   r_e("users_page").classList.remove("is-hidden");
 });
 
+//Upload outfit button
+r_e("outfit_button").addEventListener('click', () => { 
+  document.querySelector("").classList.add("is-active");
+});
+
 // Survey button
 r_e("survey_button").addEventListener(`click`, () => {
   r_e("outfits").classList.add("is-hidden");
