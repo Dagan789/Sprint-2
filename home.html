@@ -17,13 +17,14 @@
   <!-- signup modal -->
   <div class="modal" id="mymodal_signUp">
     <div class="modal-background"></div>
-    <div class="modal-content has-background-white ">
+    <div class="modal-content has-background-white">
       <div class="has-background-grey-ter">
         <div class="control has-text-right p-0 m-0">
           <button class="button is-light has-text-right" id="cancel_signUp"><i
               class="fa-solid fa-x has-text-black"></i></button>
         </div>
-        <div class="title has-text-black pb-5 has-text-centered" style="font-family: 'Trirong serif';font-size: 20px; ">Sign Up</div>
+        <div class="title has-text-black pb-5 has-text-centered" style="font-family: 'Trirong serif';font-size: 20px; ">
+          Sign Up</div>
       </div>
       <form id="signup_form">
         <!-- email -->
@@ -36,7 +37,8 @@
 
         <!-- password -->
         <div class="field pl-3 pr-3">
-          <label class="label has-text-black mt-2" style="font-family: 'Trirong serif';font-size: 20px; ">Password:</label>
+          <label class="label has-text-black mt-2"
+            style="font-family: 'Trirong serif';font-size: 20px; ">Password:</label>
           <div class="control">
             <input class="input" type="password" id="signup_password" placeholder="******">
           </div>
@@ -52,7 +54,6 @@
         <div class="error has-text-danger has-text-centered">
 
         </div>
-
       </form>
     </div>
   </div>
@@ -66,7 +67,8 @@
           <button class="button is-light has-text-right" id="cancel_login"><i
               class="fa-solid fa-x has-text-black"></i></button>
         </div>
-        <div class="title has-text-black pb-5 has-text-centered" style="font-family: 'Trirong serif';font-size: 20px; ">Log In</div>
+        <div class="title has-text-black pb-5 has-text-centered" style="font-family: 'Trirong serif';font-size: 20px; ">
+          Log In</div>
       </div>
       <form id="login_form">
         <!-- email -->
@@ -79,7 +81,8 @@
 
         <!-- password -->
         <div class="field pl-3 pr-3">
-          <label class="label has-text-black mt-2" style="font-family: 'Trirong serif';font-size: 20px; ">Password:</label>
+          <label class="label has-text-black mt-2"
+            style="font-family: 'Trirong serif';font-size: 20px; ">Password:</label>
           <div class="control">
             <input class="input" type="password" id="login_password" placeholder="******">
           </div>
@@ -95,84 +98,88 @@
         <div class="error has-text-danger has-text-centered">
 
         </div>
-
       </form>
     </div>
   </div>
 
-  <!--Nav-->
-  <nav class="navbar is-withe">
 
-    <div class="navbar-menu is-active has-background-withe">
+  <!--Nav-->
+  <nav class="content">
+    <div class="navbar-menu is-active">
       <div class="navbar-start has-text-centered ">
-        <a class="navbar-item ml-3 is-size-3 has-text-black" href="home.html" id="home" style="font-family: 'Trirong serif';font-size: 30px; ">
+        <a class="navbar-item ml-3 is-size-3 has-text-black" href="home.html" id="home"
+          style="font-family: 'Trirong serif';font-size: 30px; ">
           OutfitPro
       </div>
-
       <div class="navbar-end">
         <div class="navbar-item p-1 mr-2">
           <div class="has-text-black is-size-5 has-text-centered" id="user_email">
-
           </div>
         </div>
         <div class="navbar-item p-1 has-text-centered">
           <a class="button is-light " id="signUp" style="font-family: 'Trirong serif';font-size: 20px; ">
             <strong>Sign up</strong>
-          </a></div>
+          </a>
+        </div>
         <div class="navbar-item p-1  has-text-centered">
           <a class="button is-light" id="login" style="font-family: 'Trirong serif';font-size: 20px; ">
             <strong>Log in</strong>
-          </a></div>
+          </a>
+        </div>
         <div class="navbar-item p-1 has-text-centered">
           <a class="button is-light " id="signout" style="font-family: 'Trirong serif';font-size: 20px; ">
             <strong>Sign out</strong>
-          </a></div>
-
-
+          </a>
+        </div>
+        <!-- </div> -->
       </div>
-    </div>
-    </div>
   </nav>
-  <!--Two temp ugly buttons here, just make sure everything works well-->
+
+  <!-- <div class="content">
+    <h1>OutfitPro</h1>
+  </div> -->
+
+  <!-- Two temp ugly buttons here, just make sure everything works well -->
   <div class="button is-centered" id="user_button" style="font-family: 'Trirong serif';font-size: 20px; ">User
-  </div>
-  <div class="button is-centered" id="survey_button" style="font-family: 'Trirong serif';font-size: 20px; ">Take the Survey!
   </div>
 
   <div class="section pt-0" id="wrapper" style="height:100%">
     <div class="container">
-      <h1 class="title p-3 has-text-centered" id = "outfits_title" style="font-family: 'Trirong serif';font-size: 35px; ">Outfits</h1>
       <div class="columns is-multiline" id="outfits">
-        <div class="column is-one-fifth">
+        <div class="column is-half">
+          <figure class="image is-5by3">
+            <img src="OPHome.png" alt="Clothing Image">
+          </figure>
+        </div>
+        <div class="column is-half">
+          <div class="button is-centered" id="survey_button">Take the Survey!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="section pt-0" id="wrapper" style="height:100%">
+    <h1 class="title p-3 has-text-centered" id="outfits_title" style="font-family: 'Trirong serif';font-size: 35px; ">
+      Outfits</h1>
+    <div class="container">
+
+      <div class="columns is-multiline" id="outfits">
+        <div class="column is-half pink half">
           <div class="card">
-            <div class="card-image">
-              <figure class="image is-3by3">
-                <img
-                  src="https://static.zara.cn/photos///2023/V/0/2/p/4399/736/706/2/w/750/4399736706_6_1_1.jpg?ts=1674477396337"
-                  alt="Clothing Image">
-              </figure>
-            </div>
             <div class="card-content">
               <p class="title is-4">Clothing Item 1</p>
-              <p class="subtitle is-6">$50</p>
+              <p class="subtitle is-half">$50</p>
               <div class="content">
                 <p>Description of the clothing item goes here.</p>
               </div>
             </div>
           </div>
         </div>
-        <div class="column is-one-fifth">
+        <div class="column is-half green half">
           <div class="card">
-            <div class="card-image">
-              <figure class="image is-3by3">
-                <img
-                  src="https://static.zara.cn/photos///2023/V/0/2/p/4399/736/706/2/w/750/4399736706_6_1_1.jpg?ts=1674477396337"
-                  alt="Clothing Image">
-              </figure>
-            </div>
-            <div class="card-content">
+            <div class="card-content notebox">
               <p class="title is-4">Clothing Item 2</p>
-              <p class="subtitle is-6">$75</p>
+              <p class="subtitle is-half">$75</p>
               <div class="content">
                 <p>Description of the clothing item goes here.</p>
               </div>
@@ -191,7 +198,7 @@
             <div class="card-content">
               <p class="title is-4">Clothing Item 3</p>
               <p class="subtitle is-6">$100</p>
-              <div class="content">
+              <div class="content has-background-white">
                 <p>Description of the clothing item goes here.</p>
               </div>
             </div>
@@ -209,7 +216,7 @@
             <div class="card-content">
               <p class="title is-4">Clothing Item 4</p>
               <p class="subtitle is-6">$100</p>
-              <div class="content">
+              <div class="content has-background-white">
                 <p>Description of the clothing item goes here.</p>
               </div>
             </div>
@@ -227,7 +234,7 @@
             <div class="card-content">
               <p class="title is-4">Clothing Item 5</p>
               <p class="subtitle is-6">$100</p>
-              <div class="content">
+              <div class="content has-background-white">
                 <p>Description of the clothing item goes here.</p>
               </div>
             </div>
@@ -235,8 +242,7 @@
         </div>
       </div>
     </div>
-
-  </div>
+  </div> -->
 
   <!--Users Page-->
   <div class="section is-hidden" id="users_page">
@@ -260,7 +266,7 @@
                   <div class="card-content">
                     <p class="title is-4">Clothing Item 1</p>
                     <p class="subtitle is-6">$50</p>
-                    <div class="content">
+                    <div class="content has-background-white">
                       <p>Description of the clothing item goes here.</p>
                     </div>
                   </div>
@@ -271,12 +277,12 @@
 
         <!-- UPLOAD OUTFITS IN MIDDLE COLUMN HERE -->
         <div class="column has-text-centered is-one-third" id="favorites">
-        <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-          <div class="column has-text-centered is-one-third" id="uploads">
-            <div class="button is-centered" id="outfit_button" >Upload an Outfit</div>
+          <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+            <div class="column has-text-centered is-one-third" id="uploads">
+              <div class="button is-centered" id="outfit_button">Upload an Outfit</div>
+            </div>
           </div>
         </div>
-      </div>
 
 
         <!-- POSTS :: right column -->
@@ -297,7 +303,7 @@
               <div class="card-content">
                 <p class="title is-4">Clothing Item 2</p>
                 <p class="subtitle is-6">$50</p>
-                <div class="content">
+                <div class="content has-background-white">
                   <p>Description of the clothing item goes here.</p>
                 </div>
               </div>
@@ -307,7 +313,6 @@
       </div>
     </div>
   </div>
-
 
 
   <section class="section is-hidden" id="upload_page">
@@ -436,18 +441,11 @@
   </section>
 
 
-  <footer class="footer p-0">
-    <div class="content has-text-centered has-background-white has-text-grey-light">
+  <footer class="content">
+    <div class="content">
       <p>Copyright &copy; 2023 OutfitPro
-
     </div>
   </footer>
-
-
-
-
-
-
 
   <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
 
