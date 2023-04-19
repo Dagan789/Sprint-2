@@ -72,6 +72,7 @@ auth.onAuthStateChanged((user) => {
     r_e("signout").classList.add("is-hidden");
     r_e("signUp").classList.remove("is-hidden");
     r_e("login").classList.remove("is-hidden");
+    r_e("user_button").classList.add("is-hidden")
   }
 });
 
