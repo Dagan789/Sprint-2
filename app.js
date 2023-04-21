@@ -8,6 +8,16 @@ let login = document.querySelector(`#login`);
 function r_e(id) {
   return document.querySelector(`#${id}`);
 }
+function grabCheckbox() {
+  let category = document.getElementsByName("category");
+  let category_list = [];
+  for (let i = 0; i < category.length; i++) {
+    if (category[i].checked) {
+      category_list.push(category[i].value);
+    }
+  }
+  return category_list;
+}
 
 // sign up user
 r_e("signup_form").addEventListener("submit", (e) => {
@@ -72,7 +82,7 @@ auth.onAuthStateChanged((user) => {
     r_e("signout").classList.add("is-hidden");
     r_e("signUp").classList.remove("is-hidden");
     r_e("login").classList.remove("is-hidden");
-    r_e("user_button").classList.add("is-hidden")
+    r_e("user_button").classList.add("is-hidden");
   }
 });
 
@@ -102,13 +112,13 @@ login.addEventListener(`click`, () => {
 // User button
 r_e("user_button").addEventListener(`click`, () => {
   r_e("outfits").classList.add("is-hidden");
+  r_e("survey_page").classList.add("is-hidden");
   r_e("users_page").classList.remove("is-hidden");
   // r_e("outfits_title").classList.add("is-hidden")
-
 });
 
 //Upload outfit button
-r_e("outfit_button").addEventListener('click', () => { 
+r_e("outfit_button").addEventListener("click", () => {
   document.querySelector("").classList.add("is-active");
 });
 
@@ -117,10 +127,42 @@ r_e("survey_button").addEventListener(`click`, () => {
   r_e("outfits").classList.add("is-hidden");
   r_e("users_page").classList.add("is-hidden");
   r_e("survey_page").classList.remove("is-hidden");
-  r_e("outfits_title").classList.add("is-hidden")
-
+  // r_e("outfits_title").classList.add("is-hidden");
 });
 
 function updateBudgetLabel(value) {
   document.getElementById("budget-label").textContent = "$" + value;
 }
+
+// Survey Submit and Show Results:
+r_e("check_submit").addEventListener("click", () => {
+  db.collection("outfits")
+    .get()
+    .then((res) => {
+      let documents = res.docs;
+      let html = [];
+      documents.forEach((doc) => {
+        if (includes(doc.data().category, grabCheckbox())) {
+          html.push(`<div class="columns">
+      <div class="column has-text-centered is-5 "> <a onclick="load_data('games', 'name','${
+        doc.data().name
+      }')" ><img class="" src=${
+            doc.data().img_path
+          } width=80% height=80% alt="outfit images"></a></div>
+      <div  class="column is-7 has-text-centered has-text-white is-size-5">${
+        doc.data().name
+      }</div>
+      </div><hr>`);
+        }
+      });
+    });
+});
+
+db.collection("outfits")
+  .get()
+  .then((res) => {
+    let documents = res.docs;
+    documents.forEach((doc) => {
+      console.log(doc.data().name);
+    });
+  });

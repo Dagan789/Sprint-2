@@ -381,78 +381,94 @@
 
 
   <!--Survey Page-->
-  <section class="section is-hidden" id="survey_page">
+  <div class="section p-0 is-hidden" id="survey_page">
     <div class="container">
-      <h1 class="title">Business Outfit Survey</h1>
-      <form>
-        <div class="field">
-          <label class="label">Preferred Clothing Gender</label>
-          <div class="control">
-            <label class="radio">
-              <input type="radio" name="gender">
-              Men's
-            </label>
-            <label class="radio">
-              <input type="radio" name="gender">
-              Women's
-            </label>
-            <label class="radio">
-              <input type="radio" name="gender">
-              Neutral
-            </label>
-          </div>
+      <div class="columns is-multiline" style="height: 100vh">
+        <div class="column is-half">
+          <section class="section" >
+              <h1 class="title">Business Outfit Survey</h1>
+              <form>
+                <div class="field">
+                  <label class="label">Clothing Gender</label>
+                  <div class="control">
+                    <label class="radio">
+                      <input type="radio" name="category" value="men">
+                      Men's
+                    </label>
+                    <label class="radio">
+                      <input type="radio" name="category" value="women">
+                      Women's
+                    </label>
+                    <label class="radio">
+                      <input type="radio" name="category" value="neutral">
+                      Neutral
+                    </label>
+                  </div>
+                </div>
+        
+                <div class="field">
+                  <label class="label">Colors</label>
+                  <div class="control">
+                    <label class="checkbox">
+                      <input type="checkbox" name="category" value="black">
+                      Black
+                    </label>
+                    <label class="checkbox">
+                      <input type="checkbox" name="category" value="blue">
+                      Blue
+                    </label>
+                    <label class="checkbox">
+                      <input type="checkbox" name="category" value="grey">
+                      Grey
+                    </label>
+                    <label class="checkbox">
+                      <input type="checkbox" name="category" value="white">
+                      White
+                    </label>
+                  </div>
+                </div>
+        
+                <div class="field">
+                  <label class="label">Price Range</label>
+                  <div class="control">
+                    <input class="slider" step="50" min="0" max="1000" value="500" type="range"
+                      oninput="updateBudgetLabel(this.value);">
+                    <span id="budget-label">$500</span>
+                  </div>
+                </div>
+        
+                <div class="field">
+                  <label class="label">Style</label>
+                  <div class="control">
+                    <label class="checkbox">
+                      <input type="checkbox" name="category" value="casual">
+                      Casual
+                    </label>
+                    <label class="checkbox">
+                      <input type="checkbox" name="category" value="formal">
+                      Formal
+                    </label>
+                  </div>
+                </div>
+        
+                <div class="field">
+                  <div class="control">
+                    <button class="button is-primary" onclick="grabCheckbox" id="check_submit">Submit</button>
+                  </div>
+                </div>
+              </form>
+            
+          </section>
         </div>
-
-        <div class="field">
-          <label class="label">Favorite Business Colors</label>
-          <div class="control">
-            <div class="select">
-              <select>
-                <option>Please select</option>
-                <option>Black</option>
-                <option>Gray</option>
-                <option>Navy Blue</option>
-                <option>Charcoal</option>
-                <option>Dark Brown</option>
-                <option>Olive Green</option>
-                <option>Burgundy</option>
-                <option>Beige</option>
-              </select>
-            </div>
-          </div>
+        <div class="column is-half">
+         <section class="section" id="survey_results">
+          <p>test</p>
+         </section>
         </div>
-
-        <div class="field">
-          <label class="label">Budget Range</label>
-          <div class="control">
-            <input class="slider" step="50" min="0" max="1000" value="500" type="range"
-              oninput="updateBudgetLabel(this.value);">
-            <span id="budget-label">$500</span>
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="label">Preferred Style</label>
-          <div class="control">
-            <label class="radio">
-              <input type="radio" name="style">
-              Casual
-            </label>
-            <label class="radio">
-              <input type="radio" name="style">
-              Formal
-            </label>
-          </div>
-        </div>
-
-        <div class="field">
-          <div class="control">
-            <button class="button is-primary">Submit</button>
-          </div>
-        </div>
-      </form>
+      </div>
     </div>
-  </section>
+  </div>
+
 
 
   <footer class="content">
