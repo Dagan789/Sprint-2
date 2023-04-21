@@ -103,7 +103,7 @@ login.addEventListener(`click`, () => {
 r_e("user_button").addEventListener(`click`, () => {
   r_e("outfits").classList.add("is-hidden");
   r_e("users_page").classList.remove("is-hidden");
-  r_e("outfits_title").classList.add("is-hidden")
+  // r_e("outfits_title").classList.add("is-hidden")
 
 });
 

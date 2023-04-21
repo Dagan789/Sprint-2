@@ -22,8 +22,6 @@
     font-family: 'Trirong serif';
 }
   </style>
-  
-  
   <script src="https://kit.fontawesome.com/8a80b728dc.js" crossorigin="anonymous"></script>
   <title>OutfitPro</title>
 
@@ -126,12 +124,20 @@
         <a class="navbar-item ml-3 is-size-3 has-text-black" href="home.html" id="home"
           style="font-family: 'Trirong serif';font-size: 30px; ">
           OutfitPro
+        </a>
       </div>
       <div class="navbar-end">
         <div class="navbar-item p-1 mr-2">
           <div class="has-text-black is-size-5 has-text-centered" id="user_email">
           </div>
         </div>
+    
+          <div class="navbar-item p-1 has-text-centered">
+            <a class="button is-light " id="user_button" style="font-family: 'Trirong serif';font-size: 20px; ">
+              <strong>My Profile</strong>
+            </a>
+          </div>
+
         <div class="navbar-item p-1 has-text-centered">
           <a class="button is-light " id="signUp" style="font-family: 'Trirong serif';font-size: 20px; ">
             <strong>Sign up</strong>
@@ -151,24 +157,16 @@
       </div>
   </nav>
 
-  <!-- <div class="content">
-    <h1>OutfitPro</h1>
-  </div> -->
-
-  <!-- Two temp ugly buttons here, just make sure everything works well -->
-  <div class="button is-centered" id="user_button" style="font-family: 'Trirong serif';font-size: 20px; ">User
-  </div>
-
-  <div class="section pt-0" id="wrapper" style="height:100%">
+  <div class="section p-0" id="wrapper" >
     <div class="container">
-      <div class="columns is-multiline" id="outfits">
+      <div class="columns is-multiline" id="outfits" style="height: 100vh">
         <div class="column is-half">
           <figure class="image is-5by3">
             <img src="OPHome.png" alt="Clothing Image">
           </figure>
         </div>
         <div class="column is-half">
-          <div class="button is-centered" id="survey_button" style="font-family: 'Trirong serif';font-size: 20px;">Take the Survey!</div>
+          <div class="button " id="survey_button" style="font-family: 'Trirong serif';font-size: 20px;">Take the Survey!</div>
         </div>
       </div>
     </div>
