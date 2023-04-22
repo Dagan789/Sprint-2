@@ -324,60 +324,64 @@
             </div>
           </div>
         </div>
+
+        <!--Upload Page-->
+        <div class="section is-hidden" id="upload_page">
+          <div class="container is-right">
+            <div class="columns is-multiline has-text-centered is-one-third" style="height: 100vh">
+              <section class="section" >
+                <h1 class="title">Share an outfit!</h1>
+                <form id="form_topost">
+                  <div class="field_title">
+                    <label class="label has-text-centered">Clothing Item</label>
+                    <div class="control">
+                      <input class="input" type="text" id="clothing_name"> <!-- ID NAME PAY ATTENTION -->
+                    </div>
+                  </div>
+                  <div class="field_title">
+                    <label class="label has-text-centered mt-2">Price</label>
+                    <div class="control">
+                      <input class="input" type="text" id="price"> <!-- ID NAME PAY ATTENTION -->
+                    </div>
+                  </div>
+                  <div class="field_genre">
+                    <label class="label p-2 has-text-centered">Style:</label>
+                    <!-- HAVE TO CHANGE STYLES HERE EVENTUALLY -->
+                    <div class="select ml-6 is-center">
+                      <select class="select mr-2" id="style_sel">
+                        <option value="select">Select a Style: </option>
+                        <option value="Business_Casual">Business Casual</option>
+                        <option value="Formal">Formal</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="field_image">
+                    <label class="label p-2 has-text-centered">Image:</label>
+                    <div class="control">
+                      <input class="input" type="file" id="album_img" placeholder="Choose Image">
+                    </div>
+                  </div>
+                  <div class="field_caption">
+                    <div>
+                    <label class="label p-2 has-text-centered">Description</label>
+                    <textarea id="caption" class="textarea mt-2" placeholder="Please explain what your outfit is!"
+                      lines="12"></textarea>
+                    </div>
+                  </div>
+                  <div class="field is-grouped">
+                    <div class="control">
+                      <button class="button ml-6 mt-3 p-3 is-center" id="submit_post">Submit</button>
+                    </div>
+                  </div>
+                </form>
+                </section>
+            </div>
+          </div>
+        </div>
+      
       </div>
     </div>
   </div>
-
-
-  <section class="section is-hidden" id="upload_page">
-    <div class="column is-four-ninth" id="create_column">
-      <div class="card column">
-        <p class="panel-heading has-text-centered my-4">Share an outfit!</p>
-        <form id="form_topost">
-          <div class="field_title">
-            <label class="label has-text-centered">Clothing Item</label>
-            <div class="control">
-              <input class="input" type="text" id="clothing_name"> <!-- ID NAME PAY ATTENTION -->
-            </div>
-          </div>
-          <div class="field_title">
-            <label class="label has-text-centered mt-2">Price</label>
-            <div class="control">
-              <input class="input" type="text" id="price"> <!-- ID NAME PAY ATTENTION -->
-            </div>
-          </div>
-          <div class="field_genre">
-            <label class="label p-2 has-text-centered">Style:</label>
-            <!-- HAVE TO CHANGE STYLES HERE EVENTUALLY -->
-            <div class="select ml-6 media-right">
-              <select class="select ml-6 pl-4 is-right" id="style_sel">
-                <option value="select">Select a Style: </option>
-                <option value="Business_Casual">Business Casual</option>
-                <option value="Formal">Formal</option>
-              </select>
-            </div>
-          </div>
-          <div class="field_image">
-            <label class="label p-2 has-text-centered">Image:</label>
-            <div class="control">
-              <input class="input" type="file" id="album_img" placeholder="Choose Image">
-            </div>
-          </div>
-          <div class="field_caption">
-            <label class="label p-2 has-text-centered">Description</label>
-            <textarea id="caption" class="textarea mt-2" placeholder="Please explain what your outfit is!"
-              lines="12"></textarea>
-          </div>
-          <div class="field is-grouped">
-            <div class="control">
-              <button class="button ml-auto mt-3 p-auto is-center" id="submit_post">Submit</button>
-            </div>
-          </div>
-          <!-- <button class="button mt-2">Submit</button> -->
-        </form>
-      </div>
-    </div>
-  </section>
 
 
   <!--Survey Page-->

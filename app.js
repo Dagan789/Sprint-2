@@ -118,8 +118,12 @@ r_e("user_button").addEventListener(`click`, () => {
 });
 
 //Upload outfit button
-r_e("outfit_button").addEventListener("click", () => {
-  document.querySelector("").classList.add("is-active");
+r_e("outfit_button").addEventListener('click', () => {
+  //console.log("the outfit button works!")
+  //r_e("favorites").classList.add("is-hidden");
+  r_e("outfit_button").classList.add("is-hidden")
+  r_e("posts").classList.add("is-hidden");
+  r_e("upload_page").classList.remove("is-hidden");
 });
 
 // Survey button
