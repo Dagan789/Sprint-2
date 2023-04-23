@@ -161,9 +161,9 @@
     <div class="container">
       <div class="columns is-multiline" id="outfits" style="height: 100vh">
         <div class="column is-half">
-          <figure class="image is-5by3">
-            <img src="OPHome.png" alt="Clothing Image">
-          </figure>
+          <figure class="image" id="image-container">
+            <img src="1.png" alt="image" style="width: 50%; height: 50%">
+        </figure>
         </div>
         <div class="column is-half">
           <div class="button " id="survey_button" style="font-family: 'Trirong serif';font-size: 20px;">Take the Survey!</div>
@@ -385,10 +385,10 @@
 
 
   <!--Survey Page-->
-
-    <div class="container p-0 is-hidden" id="survey_page">
+<div class="section is-hidden" id="survey_page">
+    <div class="container p-0 " >
       <div class="columns is-multiline" style="height: 100vh">
-        <div class="column is-half">
+        <div class="column" >
          
               <h1 class="title">Business Outfit Survey</h1>
               <form>
@@ -464,13 +464,14 @@
             
          
         </div>
-        <div class="column is-half">
-         <section class="section" id="survey_results">
-          <p>test</p>
-         </section>
+        <div class="column" >
+          <div class="columns is-multiline" id="survey_results">
+       
+          </div>
         </div>
       </div>
     </div>
+  </div>
 
 
 
