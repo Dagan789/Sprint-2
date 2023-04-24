@@ -358,13 +358,13 @@
                   <div class="field_image">
                     <label class="label p-2 has-text-centered">Image:</label>
                     <div class="control">
-                      <input class="input" type="file" id="album_img" placeholder="Choose Image">
+                      <input class="input" type="file" id="outfit_img" placeholder="Choose Image">
                     </div>
                   </div>
                   <div class="field_caption">
                     <div>
                     <label class="label p-2 has-text-centered">Description</label>
-                    <textarea id="caption" class="textarea mt-2" placeholder="Please explain what your outfit is!"
+                    <textarea id="description" class="textarea mt-2" placeholder="Please explain what your outfit is!"
                       lines="12"></textarea>
                     </div>
                   </div>
@@ -515,6 +515,8 @@
     // define authentication variable
     let auth = firebase.auth();
     let db = firebase.firestore();
+    //add new reference for storage 
+    let ref = firebase.storage().ref();
   </script>
   <script src="app.js"></script>
 </body>

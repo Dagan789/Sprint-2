@@ -19,6 +19,69 @@ function grabCheckbox() {
   }
   return category_list;
 }
+
+//function to post outfit 
+function upload_post(coll, field, val) {
+  //html code for each post
+  let html = '';
+
+  let certain_posts = "";
+
+  //uploads only posts specified by given fields
+  if (field && val) {
+      certain_posts = db.collection(coll).where(field, '==', val);
+  } else{
+      certain_posts = db.collection(coll);
+  }
+  
+  certain_posts.get().then(response => { 
+      let posts = response.docs;
+      if (posts.length == 0) {
+          content.innerHTML = "No posts currently available";
+          return;
+      }
+      // loop through each post
+      posts.forEach(post => {
+          if (auth.currentUser.email == post.data().user_email) {
+              html += `
+              <div class="box">
+                                  <h1 class="has-background-info-light p-1 title">${post.data().item} <button class="delete is-medium is-pulled-right is-danger" onclick="del_post('posts', '${post.id}')">X</button> </h1>
+                                  <span class="is-size-5">Style: ${post.data().style}</span>
+                                  <p class="m-3"> <img height="70" src="${post.data().image}" /> </p>
+                                  <p class="is-size-7">Price: ${post.data().price}</p>
+                                  <h2 class = "is-size-4 p-3">${post.data().description}</h2>
+              </div> `
+          } else{
+              html += `
+              <div class="box">
+                                  <h1 class="has-background-info-light p-1 title">${post.data().item}</h1>
+                                  <span class="is-size-5">Style: ${post.data().style}</span>
+                                  <p class="m-3"> <img height="70" src="${post.data().image}" /> </p>
+                                  <p class="is-size-7">Price: ${post.data().price}</p>
+                                  <h2 class = "is-size-4 p-3">${post.data().description}</h2>
+              </div> `
+          }
+          });
+  
+  //element('posts').classList.remove('is-hidden');
+
+  
+  // show on the content div
+      r_e('posts').innerHTML = html;
+
+  });
+  
+
+}
+
+//function to delete posts
+function del_post(coll, id){
+  db.collection(coll).doc(id).delete().then(() => {
+      // load all posts
+      upload_post('posts');
+    })
+}
+
 // homepage image auto switch
 const images = ["1.png", "2.png"];  // needs to connect with firebase
 const imageContainer = document.getElementById("image-container");
@@ -138,6 +201,58 @@ r_e("outfit_button").addEventListener("click", () => {
   r_e("posts").classList.add("is-hidden");
   r_e("upload_page").classList.remove("is-hidden");
 });
+
+function save_data(coll_name, obj) {
+  db.collection(coll_name).add(obj).then(() => {
+
+    // reset the form
+    r_e('form_topost').reset();
+
+  })
+  
+}
+
+//Share an outfit
+r_e('form_topost').addEventListener('submit', (e) => {
+
+  e.preventDefault();
+
+  let description = r_e('description').value;
+  let file = document.querySelector('#outfit_img').files[0];
+
+  //setting distinct name for each image using the date
+  let image = new Date() + "_" + file.name;
+
+  const task = ref.child(image).put(file);
+
+  task
+      .then(snapshot => snapshot.ref.getDownloadURL())
+      .then(file => {
+          //url of the image is ready now
+          //wrapping objecting before sending to Firebase
+          let userPost = {
+              item: r_e('clothing_name').value,
+              price: r_e('price').value,
+              style: r_e('style_sel').value,
+              description: description, 
+              user_email: auth.currentUser.email,
+              image: file
+          }
+
+          console.log("before save data")
+          //send new object to firebase 
+
+          save_data('posts', userPost)
+
+          //element('content').innerHTML = `<progress class="progress is-large is-info" max="100">45%</progress>`
+          
+          setTimeout(() => {
+              upload_post('posts')
+          }, 1500)
+          
+      })
+});
+
 
 // Survey button
 r_e("survey_button").addEventListener(`click`, () => {
