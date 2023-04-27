@@ -9,18 +9,18 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">
   <style>
     body {
-    height: 100%;
-    background: linear-gradient(90deg, #C4B3A9 50%, #97978F 50%);
-}
+      height: 100%;
+      background: linear-gradient(90deg, #C4B3A9 50%, #97978F 50%);
+    }
 
-.content {
-    position: relative;
-    z-index: 2;
-    padding: 30px;
-    text-align: center;
-    font-weight: bold;
-    font-family: 'Trirong serif';
-}
+    .content {
+      position: relative;
+      z-index: 2;
+      padding: 30px;
+      text-align: center;
+      font-weight: bold;
+      font-family: 'Trirong serif';
+    }
   </style>
   <script src="https://kit.fontawesome.com/8a80b728dc.js" crossorigin="anonymous"></script>
   <title>OutfitPro</title>
@@ -104,7 +104,7 @@
         <!-- submit -->
         <div class="field pl-3 pr-3">
           <div class="control pt-3">
-            <button class="button is-dark" style="font-family: 'Trirong serif';font-size: 20px; ">Submit</button>
+            <button class="button is-dark" style="font-family: 'Trirong serif'; font-size: 20px; ">Submit</button>
           </div>
 
         </div>
@@ -131,12 +131,12 @@
           <div class="has-text-black is-size-5 has-text-centered" id="user_email">
           </div>
         </div>
-    
-          <div class="navbar-item p-1 has-text-centered">
-            <a class="button is-light " id="user_button" style="font-family: 'Trirong serif';font-size: 20px; ">
-              <strong>My Profile</strong>
-            </a>
-          </div>
+
+        <div class="navbar-item p-1 has-text-centered">
+          <a class="button is-light " id="user_button" style="font-family: 'Trirong serif';font-size: 20px; ">
+            <strong>My Profile</strong>
+          </a>
+        </div>
 
         <div class="navbar-item p-1 has-text-centered">
           <a class="button is-light " id="signUp" style="font-family: 'Trirong serif';font-size: 20px; ">
@@ -157,16 +157,17 @@
       </div>
   </nav>
 
-  <div class="section p-0" id="wrapper" >
+  <div class="section p-0" id="wrapper">
     <div class="container">
       <div class="columns is-multiline" id="outfits" style="height: 100vh">
         <div class="column is-half">
           <figure class="image" id="image-container">
             <img src="OPHome.png" alt="image" style="width: 50%; height: 50%">
-        </figure>
+          </figure>
         </div>
         <div class="column is-half">
-          <div class="button " id="survey_button" style="font-family: 'Trirong serif';font-size: 20px;">Take the Survey!</div>
+          <div class="button " id="survey_button" style="font-family: 'Trirong serif';font-size: 20px;">Take the Survey!
+          </div>
         </div>
       </div>
     </div>
@@ -293,7 +294,8 @@
         <div class="column has-text-centered is-one-third" id="favorites">
           <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
             <div class="column has-text-centered is-one-third" id="uploads">
-              <div class="button is-centered" id="outfit_button">Upload an Outfit</div>
+              <div class="button is-centered" id="outfit_button" style="font-family: 'Trirong serif';">Upload an Outfit
+              </div>
             </div>
           </div>
         </div>
@@ -329,9 +331,9 @@
         <div class="section is-hidden" id="upload_page">
           <div class="container is-right">
             <div class="columns is-multiline has-text-centered is-one-third" style="height: 100vh">
-              <section class="section" >
-                <h1 class="title">Share an outfit!</h1>
-                <form id="form_topost">
+              <section class="section">
+                <h1 class="title" style="font-family: 'Trirong serif';">Share an outfit!</h1>
+                <form id="form_topost" style="font-family: 'Trirong serif';">
                   <div class="field_title">
                     <label class="label has-text-centered">Clothing Item</label>
                     <div class="control">
@@ -353,7 +355,7 @@
                   <div class="field_gender">
                     <label class="label p-2 has-text-centered">Clothing Gender:</label>
                     <!-- HAVE TO CHANGE STYLES HERE EVENTUALLY -->
-                    
+
                     <div class="select ml-6 is-center">
                       <select class="select mr-2" id="gender_sel">
                         <option value="null">Select a Clothing Gender: </option>
@@ -366,7 +368,7 @@
                   </div>
                   <div class="field_color">
                     <label class="label p-2 has-text-centered">Color:</label>
-                 
+
                     <div class="select ml-6 is-center">
                       <select class="select mr-2" id="color_sel">
                         <option value="null">Select a Color: </option>
@@ -381,7 +383,7 @@
                   <div class="field_genre">
                     <label class="label p-2 has-text-centered">Style:</label>
                     <!-- HAVE TO CHANGE STYLES HERE EVENTUALLY -->
-                    
+
                     <div class="select ml-6 is-center">
                       <select class="select mr-2" id="style_sel">
                         <option value="null">Select a Style: </option>
@@ -404,22 +406,22 @@
                   </div>
                   <div class="field_caption">
                     <div>
-                    <label class="label p-2 has-text-centered">Description</label>
-                    <textarea id="description" class="textarea mt-2" placeholder="Please explain what your outfit is!"
-                      lines="12"></textarea>
+                      <label class="label p-2 has-text-centered">Description</label>
+                      <textarea id="description" class="textarea mt-2" placeholder="Please explain what your outfit is!"
+                        lines="12"></textarea>
                     </div>
                   </div>
                   <div class="field is-grouped">
                     <div class="control">
-                      <button class="button ml-6 mt-3 p-3 is-center" id="submit_post">Submit</button>
+                      <button class="button ml-6 mt-3 p-3 is-center is-light" id="submit_post">Submit</button>
                     </div>
                   </div>
                 </form>
-                </section>
+              </section>
             </div>
           </div>
         </div>
-      
+
       </div>
     </div>
   </div>
@@ -427,13 +429,13 @@
 
   <!--Survey Page-->
   <div class="section is-hidden p-0" id="survey_page">
-    <div class="container" >
+    <div class="container">
       <div class="columns" style="height: 100vh">
         <div class="column">
-          <h1 class="title">Business Outfit Survey</h1>
-          <form  id = 'survey_form'>
+          <h1 class="title" style="font-family: 'Trirong serif';">Business Outfit Survey</h1>
+          <form id='survey_form' style="font-family: 'Trirong serif';">
             <div class="field">
-              <label class="label p-2 ">Colthing Gender:</label>
+              <label class="label p-2 ">Clothing Gender:</label>
               <div class="select ml-6 is-center">
                 <select class="select mr-2" id="gender_survey">
                   <option value='null'>Select a Colthing Gender: </option>
@@ -444,10 +446,10 @@
                 </select>
               </div>
             </div>
-    
+
             <div class="field">
               <label class="label p-2 ">Color:</label>
-              
+
               <div class="select ml-6 is-center">
                 <select class="select mr-2" id="color_survey">
                   <option value='null'>Select a Color: </option>
@@ -457,9 +459,9 @@
                   <option value="white">White</option>
                   <option value="khaki">Khaki</option>
                 </select>
+              </div>
             </div>
-          </div>
-    
+
             <div class="field">
               <label class="label">Price Range</label>
               <div class="control">
@@ -468,11 +470,11 @@
                 <span id="budget-label">$500</span>
               </div>
             </div>
-    
+
             <div class="field">
               <label class="label p-2">Style:</label>
-            
-              
+
+
               <div class="select ml-6 is-center">
                 <select class="select mr-2" id="style_survey">
                   <option value='null'>Select a Style: </option>
@@ -481,18 +483,18 @@
                 </select>
               </div>
             </div>
-    
+
             <div class="field">
               <div class="control">
-                <button class="button is-primary" onclick="grabCheckbox" id="check_submit">Submit</button>
+                <button class="button is-light" onclick="grabCheckbox" id="check_submit">Submit</button>
               </div>
             </div>
-          
-        </form>
-      </div>
+
+          </form>
+        </div>
         <div class="column">
           <div class="columns">
-            <div class = section id="survey_results"></div>
+            <div class=section id="survey_results"></div>
           </div>
 
         </div>
@@ -571,13 +573,13 @@
     </div>
   </div>
 
-  
+
 
 
   <footer class="content">
     <div class="content">
-      <a href="http://www.facebook.com"><i class="fa-brands fa-facebook-f fa-2x p-2" style = "color: black"></i></a>
-      <a href="http://www.twitter.com"><i class="fa-brands fa-twitter fa-2x p-2" style = "color: black"></i></a> <br>
+      <a href="http://www.facebook.com"><i class="fa-brands fa-facebook-f fa-2x p-2" style="color: black"></i></a>
+      <a href="http://www.twitter.com"><i class="fa-brands fa-twitter fa-2x p-2" style="color: black"></i></a> <br>
       <a href="mailto: OutfitPro@gmail.com" class="has-text-dark">OutfitPro@gmail.com</a> <br>
       <a class="has-text-dark">Copyright &copy; 2023 OutfitPro</a>
     </div>
