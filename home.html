@@ -339,19 +339,54 @@
                     </div>
                   </div>
                   <div class="field_title">
+                    <label class="label has-text-centered">Brand</label>
+                    <div class="control">
+                      <input class="input" type="text" id="brand_name"> <!-- ID NAME PAY ATTENTION -->
+                    </div>
+                  </div>
+                  <div class="field_title">
                     <label class="label has-text-centered mt-2">Price</label>
                     <div class="control">
                       <input class="input" type="text" id="price"> <!-- ID NAME PAY ATTENTION -->
                     </div>
                   </div>
+                  <div class="field_gender">
+                    <label class="label p-2 has-text-centered">Clothing Gender:</label>
+                    <!-- HAVE TO CHANGE STYLES HERE EVENTUALLY -->
+                    
+                    <div class="select ml-6 is-center">
+                      <select class="select mr-2" id="gender_sel">
+                        <option value="null">Select a Clothing Gender: </option>
+                        <option value="men">Men's</option>
+                        <option value="women">Women's</option>
+                        <option value="netural">Netural</option>
+
+                      </select>
+                    </div>
+                  </div>
+                  <div class="field_color">
+                    <label class="label p-2 has-text-centered">Color:</label>
+                 
+                    <div class="select ml-6 is-center">
+                      <select class="select mr-2" id="color_sel">
+                        <option value="null">Select a Color: </option>
+                        <option value="blue">Blue</option>
+                        <option value="black">Black</option>
+                        <option value="grey">Grey</option>
+                        <option value="white">White</option>
+                        <option value="khaki">Khaki</option>
+                      </select>
+                    </div>
+                  </div>
                   <div class="field_genre">
                     <label class="label p-2 has-text-centered">Style:</label>
                     <!-- HAVE TO CHANGE STYLES HERE EVENTUALLY -->
+                    
                     <div class="select ml-6 is-center">
                       <select class="select mr-2" id="style_sel">
-                        <option value="select">Select a Style: </option>
-                        <option value="Business_Casual">Business Casual</option>
-                        <option value="Formal">Formal</option>
+                        <option value="null">Select a Style: </option>
+                        <option value="casual">Business Casual</option>
+                        <option value="formal">Formal</option>
                       </select>
                     </div>
                   </div>
@@ -359,6 +394,12 @@
                     <label class="label p-2 has-text-centered">Image:</label>
                     <div class="control">
                       <input class="input" type="file" id="outfit_img" placeholder="Choose Image">
+                    </div>
+                  </div>
+                  <div class="field_url">
+                    <label class="label has-text-centered mt-2">URL</label>
+                    <div class="control">
+                      <input class="input" type="text" id="outfits_url"> <!-- ID NAME PAY ATTENTION -->
                     </div>
                   </div>
                   <div class="field_caption">
@@ -385,51 +426,109 @@
 
 
   <!--Survey Page-->
-<div class="section is-hidden" id="survey_page">
-    <div class="container p-0 " >
-      <div class="columns is-multiline" style="height: 100vh">
-        <div class="column" >
-         
+  <div class="section is-hidden p-0" id="survey_page">
+    <div class="container" >
+      <div class="columns" style="height: 100vh">
+        <div class="column">
+          <h1 class="title">Business Outfit Survey</h1>
+          <form  id = 'survey_form'>
+            <div class="field">
+              <label class="label p-2 ">Colthing Gender:</label>
+              <div class="select ml-6 is-center">
+                <select class="select mr-2" id="gender_survey">
+                  <option value='null'>Select a Colthing Gender: </option>
+                  <option value="men">Men's</option>
+                  <option value="women">Women's</option>
+                  <option value="netural">Netural</option>
+
+                </select>
+              </div>
+            </div>
+    
+            <div class="field">
+              <label class="label p-2 ">Color:</label>
+              
+              <div class="select ml-6 is-center">
+                <select class="select mr-2" id="color_survey">
+                  <option value='null'>Select a Color: </option>
+                  <option value="blue">Blue</option>
+                  <option value="black">Black</option>
+                  <option value="grey">Grey</option>
+                  <option value="white">White</option>
+                  <option value="khaki">Khaki</option>
+                </select>
+            </div>
+          </div>
+    
+            <div class="field">
+              <label class="label">Price Range</label>
+              <div class="control">
+                <input class="slider" step="50" min="0" max="1000" value="500" type="range"
+                  oninput="updateBudgetLabel(this.value);">
+                <span id="budget-label">$500</span>
+              </div>
+            </div>
+    
+            <div class="field">
+              <label class="label p-2">Style:</label>
+            
+              
+              <div class="select ml-6 is-center">
+                <select class="select mr-2" id="style_survey">
+                  <option value='null'>Select a Style: </option>
+                  <option value="casual">Business Casual</option>
+                  <option value="formal">Formal</option>
+                </select>
+              </div>
+            </div>
+    
+            <div class="field">
+              <div class="control">
+                <button class="button is-primary" onclick="grabCheckbox" id="check_submit">Submit</button>
+              </div>
+            </div>
+          
+        </form>
+      </div>
+        <div class="column">
+          <div class="columns">
+            <div class = section id="survey_results">surey</div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- <div class="columns is-multiline" style="height: 100vh">
+        <div class="column is-half" >
+         <div class="form">
               <h1 class="title">Business Outfit Survey</h1>
-              <form>
+              <form id = 'survey_form'>
                 <div class="field">
-                  <label class="label">Clothing Gender</label>
-                  <div class="control">
-                    <label class="radio">
-                      <input type="radio" name="category" value="men">
-                      Men's
-                    </label>
-                    <label class="radio">
-                      <input type="radio" name="category" value="women">
-                      Women's
-                    </label>
-                    <label class="radio">
-                      <input type="radio" name="category" value="neutral">
-                      Neutral
-                    </label>
+                  <label class="label p-2 ">Colthing Gender:</label>
+                  <div class="select ml-6 is-center">
+                    <select class="select mr-2" id="gender_survey">
+                      <option value='null'>Select a Colthing Gender: </option>
+                      <option value="men">Men's</option>
+                      <option value="women">Women's</option>
+                      <option value="netural">Netural</option>
+
+                    </select>
                   </div>
                 </div>
         
                 <div class="field">
-                  <label class="label">Colors</label>
-                  <div class="control">
-                    <label class="checkbox">
-                      <input type="checkbox" name="category" value="black">
-                      Black
-                    </label>
-                    <label class="checkbox">
-                      <input type="checkbox" name="category" value="blue">
-                      Blue
-                    </label>
-                    <label class="checkbox">
-                      <input type="checkbox" name="category" value="grey">
-                      Grey
-                    </label>
-                    <label class="checkbox">
-                      <input type="checkbox" name="category" value="white">
-                      White
-                    </label>
-                  </div>
+                  <label class="label p-2 ">Color:</label>
+                  
+                  <div class="select ml-6 is-center">
+                    <select class="select mr-2" id="color_survey">
+                      <option value='null'>Select a Color: </option>
+                      <option value="blue">Blue</option>
+                      <option value="black">Black</option>
+                      <option value="grey">Grey</option>
+                      <option value="white">White</option>
+                      <option value="khaki">Khaki</option>
+                    </select>
                 </div>
         
                 <div class="field">
@@ -442,16 +541,15 @@
                 </div>
         
                 <div class="field">
-                  <label class="label">Style</label>
-                  <div class="control">
-                    <label class="checkbox">
-                      <input type="checkbox" name="category" value="casual">
-                      Casual
-                    </label>
-                    <label class="checkbox">
-                      <input type="checkbox" name="category" value="formal">
-                      Formal
-                    </label>
+                  <label class="label p-2">Style:</label>
+                
+                  
+                  <div class="select ml-6 is-center">
+                    <select class="select mr-2" id="style_survey">
+                      <option value='null'>Select a Style: </option>
+                      <option value="casual">Business Casual</option>
+                      <option value="formal">Formal</option>
+                    </select>
                   </div>
                 </div>
         
@@ -462,17 +560,18 @@
                 </div>
               </form>
             
-         
+            </div>
         </div>
-        <div class="column" >
-          <div class="columns is-multiline" id="survey_results">
-       
+        <div class="column is-half" >
+          <div class="columns is-multiline" >
+            <div class = section id="survey_results">surey</div>
           </div>
         </div>
-      </div>
+      </div>  -->
     </div>
   </div>
 
+  
 
 
   <footer class="content">

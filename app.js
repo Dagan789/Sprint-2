@@ -8,6 +8,18 @@ let login = document.querySelector(`#login`);
 function r_e(id) {
   return document.querySelector(`#${id}`);
 }
+const formatDate = (date) => {
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const day = date.getDate().toString().padStart(2, "0");
+  const hour = date.getHours().toString().padStart(2, "0");
+  const minute = date.getMinutes().toString().padStart(2, "0");
+  const second = date.getSeconds().toString().padStart(2, "0");
+  const millis = date.getMilliseconds().toString().padStart(3, "0");
+
+  return `${year}${month}${day}_${hour}${minute}${second}_${millis}`;
+};
+
 // get value from survey
 function grabCheckbox() {
   let category = document.getElementsByName("category");
@@ -20,80 +32,108 @@ function grabCheckbox() {
   return category_list;
 }
 
-//function to post outfit 
+//function to post outfit
 function upload_post(coll, field, val) {
   //html code for each post
-  let html = '';
+  let html = "";
 
   let certain_posts = "";
 
   //uploads only posts specified by given fields
   if (field && val) {
-      certain_posts = db.collection(coll).where(field, '==', val);
-  } else{
-      certain_posts = db.collection(coll);
+    certain_posts = db.collection(coll).where(field, "==", val);
+  } else {
+    certain_posts = db.collection(coll);
   }
-  
-  certain_posts.get().then(response => { 
-      let posts = response.docs;
-      if (posts.length == 0) {
-          content.innerHTML = "No posts currently available";
-          return;
+
+  certain_posts.get().then((response) => {
+    let posts = response.docs;
+    if (posts.length == 0) {
+      content.innerHTML = "No posts currently available";
+      return;
+    }
+    // loop through each post
+    posts.forEach((post) => {
+      if (auth.currentUser.email == post.data().user_email) {
+        html += `
+              <div class="box">
+                                  <h1 class="has-background-info-light p-1 title">${
+                                    post.data().item
+                                  } <button class="delete is-medium is-pulled-right is-danger" onclick="del_post('posts', '${
+          post.id
+        }')">X</button> </h1>
+                                  <span class="is-size-5">Style: ${
+                                    post.data().style
+                                  }</span>
+                                  <p class="m-3"> <img height="70" src="${
+                                    post.data().image
+                                  }" /> </p>
+                                  <p class="is-size-7">Price: ${
+                                    post.data().price
+                                  }</p>
+                                  <h2 class = "is-size-4 p-3">${
+                                    post.data().description
+                                  }</h2>
+              </div> `;
+      } else {
+        html += `
+              <div class="box">
+                                  <h1 class="has-background-info-light p-1 title">${
+                                    post.data().item
+                                  }</h1>
+                                  <span class="is-size-5">Style: ${
+                                    post.data().style
+                                  }</span>
+                                  <p class="m-3"> <img height="70" src="${
+                                    post.data().image
+                                  }" /> </p>
+                                  <p class="is-size-7">Price: ${
+                                    post.data().price
+                                  }</p>
+                                  <h2 class = "is-size-4 p-3">${
+                                    post.data().description
+                                  }</h2>
+              </div> `;
       }
-      // loop through each post
-      posts.forEach(post => {
-          if (auth.currentUser.email == post.data().user_email) {
-              html += `
-              <div class="box">
-                                  <h1 class="has-background-info-light p-1 title">${post.data().item} <button class="delete is-medium is-pulled-right is-danger" onclick="del_post('posts', '${post.id}')">X</button> </h1>
-                                  <span class="is-size-5">Style: ${post.data().style}</span>
-                                  <p class="m-3"> <img height="70" src="${post.data().image}" /> </p>
-                                  <p class="is-size-7">Price: ${post.data().price}</p>
-                                  <h2 class = "is-size-4 p-3">${post.data().description}</h2>
-              </div> `
-          } else{
-              html += `
-              <div class="box">
-                                  <h1 class="has-background-info-light p-1 title">${post.data().item}</h1>
-                                  <span class="is-size-5">Style: ${post.data().style}</span>
-                                  <p class="m-3"> <img height="70" src="${post.data().image}" /> </p>
-                                  <p class="is-size-7">Price: ${post.data().price}</p>
-                                  <h2 class = "is-size-4 p-3">${post.data().description}</h2>
-              </div> `
-          }
-          });
-  
-  //element('posts').classList.remove('is-hidden');
+    });
 
-  
-  // show on the content div
-      r_e('posts').innerHTML = html;
+    //element('posts').classList.remove('is-hidden');
 
+    // show on the content div
+    r_e("posts").innerHTML = html;
   });
-  
-
 }
 
 //function to delete posts
-function del_post(coll, id){
-  db.collection(coll).doc(id).delete().then(() => {
+function del_post(coll, id) {
+  db.collection(coll)
+    .doc(id)
+    .delete()
+    .then(() => {
       // load all posts
-      upload_post('posts');
-    })
+      upload_post("posts");
+    });
 }
 
 // homepage image auto switch
-const images = ["1.png", "2.png"];  // needs to connect with firebase
+const images = [];
+db.collection("posts")
+  .get()
+  .then((res) => {
+    let documents = res.docs;
+    documents.forEach((doc) => {
+      images.push(doc.data().image);
+    });
+  });
 const imageContainer = document.getElementById("image-container");
 let imageIndex = 0;
-  function changeImage() {
-    imageIndex = (imageIndex + 1) % images.length;
-    imageContainer.innerHTML = `<img src="${images[imageIndex]} " style="width: 50%; height: 50%" alt="image${
-      imageIndex + 1
-    }">`;
-  }
+function changeImage() {
+  imageIndex = (imageIndex + 1) % images.length;
+  imageContainer.innerHTML = `<img src="${
+    images[imageIndex]
+  } " style="width: 50%; height: 50%" alt="image${imageIndex + 1}">`;
+}
 setInterval(changeImage, 3000);
-
 
 // sign up user
 r_e("signup_form").addEventListener("submit", (e) => {
@@ -203,56 +243,56 @@ r_e("outfit_button").addEventListener("click", () => {
 });
 
 function save_data(coll_name, obj) {
-  db.collection(coll_name).add(obj).then(() => {
-
-    // reset the form
-    r_e('form_topost').reset();
-
-  })
-  
+  db.collection(coll_name)
+    .add(obj)
+    .then(() => {
+      // reset the form
+      r_e("form_topost").reset();
+    });
 }
 
 //Share an outfit
-r_e('form_topost').addEventListener('submit', (e) => {
-
+r_e("form_topost").addEventListener("submit", (e) => {
   e.preventDefault();
 
-  let description = r_e('description').value;
-  let file = document.querySelector('#outfit_img').files[0];
+  let file = r_e("outfit_img").files[0];
 
   //setting distinct name for each image using the date
-  let image = new Date() + "_" + file.name;
+  let image = formatDate(new Date()) + "_" + file.name;
 
   const task = ref.child(image).put(file);
 
   task
-      .then(snapshot => snapshot.ref.getDownloadURL())
-      .then(file => {
-          //url of the image is ready now
-          //wrapping objecting before sending to Firebase
-          let userPost = {
-              item: r_e('clothing_name').value,
-              price: r_e('price').value,
-              style: r_e('style_sel').value,
-              description: description, 
-              user_email: auth.currentUser.email,
-              image: file
-          }
+    .then((snapshot) => snapshot.ref.getDownloadURL())
+    .then((file) => {
+      //url of the image is ready now
+      //wrapping objecting before sending to Firebase
+      let userPost = {
+        item: r_e("clothing_name").value,
+        price: r_e("price").value,
+        brand: r_e("brand_name").value,
+        category: [
+          r_e("gender_sel").value,
+          r_e("style_sel").value,
+          r_e("color_sel").value,
+        ],
+        description: r_e("description").value,
+        user_email: auth.currentUser.email,
+        image: file,
+        url: r_e("outfits_url").value,
+      };
 
-          console.log("before save data")
-          //send new object to firebase 
+      //send new object to firebase
 
-          save_data('posts', userPost)
+      save_data("posts", userPost);
 
-          //element('content').innerHTML = `<progress class="progress is-large is-info" max="100">45%</progress>`
-          
-          setTimeout(() => {
-              upload_post('posts')
-          }, 1500)
-          
-      })
+      //element('content').innerHTML = `<progress class="progress is-large is-info" max="100">45%</progress>`
+
+      setTimeout(() => {
+        upload_post("posts");
+      }, 1500);
+    });
 });
-
 
 // Survey button
 r_e("survey_button").addEventListener(`click`, () => {
@@ -265,36 +305,43 @@ r_e("survey_button").addEventListener(`click`, () => {
 function updateBudgetLabel(value) {
   document.getElementById("budget-label").textContent = "$" + value;
 }
+
 function includes(arr1, arr2) {
-  return arr2.every((val) => arr1.includes(val));
+  return arr2.every((val) => val === "null" || arr1.includes(val));
 }
 
 // Survey Submit and Show Results:
-r_e("check_submit").addEventListener("click", (event) => {
+r_e("survey_form").addEventListener("submit", (event) => {
   event.preventDefault();
   let html = [];
-  db.collection("outfits")
+  let filter = [
+    r_e("gender_survey").value,
+    r_e("color_survey").value,
+    r_e("style_survey").value,
+  ];
+
+  db.collection("posts")
     .get()
     .then((res) => {
       let documents = res.docs;
-      let html = [];
       documents.forEach((doc) => {
-        if (includes(doc.data().category, grabCheckbox())) {
+        console.log(includes(doc.data().category, filter));
+        if (includes(doc.data().category, filter)) {
           html.push(`
           <div class="column " >
             <div class="card" >
               <div class="card-image">
                 <figure class="image " style="width: 100%; height: 50%; overflow: hidden;">
-                  <img 
-                    src='${doc.data().img_path}' 
+                  <img
+                    src='${doc.data().image}'
                     style="width: 100%; height: 100%; object-fit: cover;"
                     alt="Clothing Image">
                 </figure>
               </div>
               <div class="card-content ">
                 <p class="title is-4">${doc.data().brand}</p>
-                <p class="subtitle is-4">${doc.data().name}</p>
-                <p class="is-6">${doc.data().price}</p>
+                <p class="subtitle is-4">${doc.data().item}</p>
+                <p class="is-6">${doc.data().price} USD</p>
                 <div class="content has-text-left p-0">
                   <p>${doc.data().description}</p>
                   <a href='${doc.data().url}'>More Information</a>
@@ -303,10 +350,10 @@ r_e("check_submit").addEventListener("click", (event) => {
             </div>
           </div>
         `);
+        }
 
-          if (html.length > 0) {
-            r_e("survey_results").innerHTML = html;
-          }
+        if (html.length > 0) {
+          r_e("survey_results").innerHTML = html;
         } else {
           r_e(
             "survey_results"
@@ -314,4 +361,5 @@ r_e("check_submit").addEventListener("click", (event) => {
         }
       });
     });
+  console.log(filter);
 });
