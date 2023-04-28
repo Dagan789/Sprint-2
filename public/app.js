@@ -242,7 +242,6 @@ r_e("outfit_button").addEventListener("click", () => {
   r_e("outfit_button").classList.add("is-hidden");
   r_e("posts").classList.add("is-hidden");
   r_e("upload_page").classList.remove("is-hidden");
-
 });
 
 function save_data(coll_name, obj) {
@@ -322,6 +321,7 @@ r_e("survey_form").addEventListener("submit", (event) => {
     r_e("color_survey").value,
     r_e("style_survey").value,
   ];
+  let price = r_e("price_survey").value;
 
   db.collection("posts")
     .get()
@@ -329,9 +329,12 @@ r_e("survey_form").addEventListener("submit", (event) => {
       let documents = res.docs;
       documents.forEach((doc) => {
         console.log(includes(doc.data().category, filter));
-        if (includes(doc.data().category, filter)) {
+        if (
+          includes(doc.data().category, filter) &&
+          parseFloat(doc.data().price) >= price
+        ) {
           html.push(`
-          <div class="column " >
+          
             <div class="card" >
               <div class="card-image">
                 <figure class="image " style="width: 100%; height: 50%; overflow: hidden;">
@@ -351,7 +354,7 @@ r_e("survey_form").addEventListener("submit", (event) => {
                 </div>
               </div>
             </div>
-          </div>
+          
         `);
         }
 
