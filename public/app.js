@@ -116,24 +116,26 @@ function del_post(coll, id) {
 }
 
 // homepage image auto switch
-const images = [];
-db.collection("posts")
-  .get()
-  .then((res) => {
-    let documents = res.docs;
-    documents.forEach((doc) => {
-      images.push(doc.data().image);
-    });
-  });
-const imageContainer = document.getElementById("image-container");
-let imageIndex = 0;
-function changeImage() {
-  imageIndex = (imageIndex + 1) % images.length;
-  imageContainer.innerHTML = `<img src="${
-    images[imageIndex]
-  } " style="width: 50%; height: 50%" alt="image${imageIndex + 1}">`;
+let images = document.getElementsByTagName("img");
+let currentIndex = 0;
+
+function prevImage() {
+  images[currentIndex].style.display = "none";
+  currentIndex--;
+  if (currentIndex < 0) {
+    currentIndex = images.length - 1;
+  }
+  images[currentIndex].style.display = "block";
 }
-setInterval(changeImage, 3000);
+
+function nextImage() {
+  images[currentIndex].style.display = "none";
+  currentIndex++;
+  if (currentIndex > images.length - 1) {
+    currentIndex = 0;
+  }
+  images[currentIndex].style.display = "block";
+}
 
 // sign up user
 r_e("signup_form").addEventListener("submit", (e) => {
@@ -333,29 +335,25 @@ r_e("survey_form").addEventListener("submit", (event) => {
           includes(doc.data().category, filter) &&
           parseFloat(doc.data().price) >= price
         ) {
-          html.push(`
-          
-            <div class="card" >
-              <div class="card-image">
-                <figure class="image " style="width: 100%; height: 50%; overflow: hidden;">
-                  <img
-                    src='${doc.data().image}'
-                    style="width: 100%; height: 100%; object-fit: cover;"
-                    alt="Clothing Image">
-                </figure>
-              </div>
-              <div class="card-content ">
-                <p class="title is-4">${doc.data().brand}</p>
-                <p class="subtitle is-4">${doc.data().item}</p>
-                <p class="is-6">${doc.data().price} USD</p>
-                <div class="content has-text-left p-0">
-                  <p>${doc.data().description}</p>
-                  <a href='${doc.data().url}'>More Information</a>
-                </div>
-              </div>
+          html += ` <div class="columns">
+            <div class ="column is-3" >
+            <img
+    src='${doc.data().image}'
+    style="width: 90%; height: 90%; class="fixed-size-img";"
+    alt="Clothing Image">
+            </div>
+            <div class ="column is-9">
+            <p class="title is-4">${doc.data().brand}</p>
+    <p class="subtitle is-4">${doc.data().item}</p>
+    <p class="is-6 mb-2 is-size-5">${doc.data().price} USD</p>
+    <div class="content has-text-left p-0">
+      <p>${doc.data().description}</p>
+      <a href='${doc.data().url}'>More Information</a>
+    </div>
+
             </div>
           
-        `);
+            </div> <hr>`;
         }
 
         if (html.length > 0) {
@@ -367,5 +365,7 @@ r_e("survey_form").addEventListener("submit", (event) => {
         }
       });
     });
-  console.log(filter);
 });
+
+
+
