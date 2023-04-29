@@ -420,19 +420,19 @@
        
       </div>
      <!-- #################### Survey Page ############################# -->
-     <div class="columns is-hidden" id="survey_page" style="height: 100vh;  padding-left: 10px;">
-          <div class="column is-4 p-6" >
+     <div class="columns is-hidden" id="survey_page" style="height: 100vh;  padding-left: 30px;">
+          <div class="columns is-multiline has-text-centered is-one-third" >
      
-            <form id='survey_form' style="font-family: 'Trirong serif'; border: 3px solid black; border-radius: 10px; ">
-              <div style = "padding : 20px">
+            <form id='survey_form' style="font-family: 'Trirong serif';">
+              <div style = "padding : 20px; border: 3px solid black; border-radius: 10px; ">
               <div class="field is-grouped">
                 <h1 class="title" style="font-family: 'Trirong serif';">Business Outfit Survey</h1>
               </div>
               <div class="field">
                 <label class="label p-2 ">Clothing Gender:</label>
-                <div class="select ml-6 is-center">
-                  <select class="select mr-2" id="gender_survey">
-                    <option value='null'>Select: </option>
+                <div class="select is-center">
+                  <select class="select" id="gender_survey">
+                    <option value='null'>Select a Gender: </option>
                     <option value="men">Men's</option>
                     <option value="women">Women's</option>
                     <option value="netural">Neutral</option>
@@ -444,8 +444,8 @@
               <div class="field">
                 <label class="label p-2 ">Color:</label>
   
-                <div class="select ml-6 is-center">
-                  <select class="select mr-2" id="color_survey">
+                <div class="select is-center">
+                  <select class="select" id="color_survey">
                     <option value='null'>Select a Color: </option>
                     <option value="blue">Blue</option>
                     <option value="black">Black</option>
@@ -469,8 +469,8 @@
                 <label class="label p-2">Style:</label>
   
   
-                <div class="select ml-6 is-center">
-                  <select class="select mr-2" id="style_survey">
+                <div class="select is-center">
+                  <select class="select" id="style_survey">
                     <option value='null'>Select a Style: </option>
                     <option value="casual">Business Casual</option>
                     <option value="formal">Formal</option>
@@ -486,12 +486,10 @@
             </div>
             </form>
           </div>
-          <div class="column is-6 p-0" style="height: 100%">
+          <div class="column is-5" style="height: 100%; padding-left: 105px;">
             <div id="survey_results"></div>
           </div>
-          <div class="column is-2 p-0" style="height: 100%">
-           
-          </div>
+          
      
           
         
