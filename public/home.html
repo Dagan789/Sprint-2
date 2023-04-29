@@ -53,6 +53,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            
         }
 
         button {
@@ -65,9 +66,14 @@
             color: black;
             margin: 0 10px;
         }
+        surveyBorder{
 
+  border: 2px solid black;
+
+        }
         button:hover {
             background-color: #e8e8e8;
+            
         }
 
         .prev, .next {
@@ -94,7 +100,6 @@
   object-fit: contain;
   object-position: center;
 }
-
   </style>
   <script src="https://kit.fontawesome.com/8a80b728dc.js" crossorigin="anonymous"></script>
   <title>OutfitPro</title>
@@ -415,12 +420,14 @@
        
       </div>
      <!-- #################### Survey Page ############################# -->
-     <div class="columns is-hidden" id="survey_page" style="height: 100vh">
-          <div class="column is-4 p-6">
-            <div class="field is-grouped">
-            <h1 class="title" style="font-family: 'Trirong serif';">Business Outfit Survey</h1>
-          </div>
-            <form id='survey_form' style="font-family: 'Trirong serif';">
+     <div class="columns is-hidden" id="survey_page" style="height: 100vh;  padding-left: 10px;">
+          <div class="column is-4 p-6" >
+     
+            <form id='survey_form' style="font-family: 'Trirong serif'; border: 3px solid black; border-radius: 10px; ">
+              <div style = "padding : 20px">
+              <div class="field is-grouped">
+                <h1 class="title" style="font-family: 'Trirong serif';">Business Outfit Survey</h1>
+              </div>
               <div class="field">
                 <label class="label p-2 ">Clothing Gender:</label>
                 <div class="select ml-6 is-center">
@@ -450,9 +457,9 @@
               </div>
   
               <div class="field">
-                <label class="label">Price Range</label>
-                <div class="control">
-                  <input class="slider" step="50" min="0" max="1000" value="500" type="range"
+                <label class="label ">Price Range</label>
+                <div class="control is-center">
+                  <input class="slider " step="50" min="0" max="1000" value="500" type="range"
                   id="price_survey" oninput="updateBudgetLabel(this.value);">
                   <span id="budget-label">$500</span>
                 </div>
@@ -476,7 +483,7 @@
                   <button class="button is-light" onclick="grabCheckbox" id="check_submit">Submit</button>
                 </div>
               </div>
-  
+            </div>
             </form>
           </div>
           <div class="column is-6 p-0" style="height: 100%">
