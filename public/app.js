@@ -290,8 +290,6 @@ r_e("form_topost").addEventListener("submit", (e) => {
 
       save_data("posts", userPost);
 
-      //element('content').innerHTML = `<progress class="progress is-large is-info" max="100">45%</progress>`
-
       setTimeout(() => {
         upload_post("posts");
       }, 1500);
@@ -315,6 +313,10 @@ function updateBudgetLabel(value) {
 function includes(arr1, arr2) {
   return arr2.every((val) => val === "null" || arr1.includes(val));
 }
+
+/*r_e("favorite_btn").addEventListener("click", () => {
+  r_e("favorite_btn").innerHTML = "<button id = " + "favorite_btn" + "style='font-size:20px color: red'> Favorited <i class="+ 'fa fa-heart'+ "> + </i></button>";
+});*/
 
 // Survey Submit and Show Results:
 r_e("survey_form").addEventListener("submit", (event) => {
@@ -341,7 +343,7 @@ r_e("survey_form").addEventListener("submit", (event) => {
             <div class ="column is-3" >
             <img
     src='${doc.data().image}'
-    style="width: 90%; height: 90%; class="fixed-size-img";"
+    style="width: 100%; height: 100%; class="fixed-size-img";"
     alt="Clothing Image">
             </div>
             <div class ="column is-9">
@@ -350,7 +352,8 @@ r_e("survey_form").addEventListener("submit", (event) => {
     <p class="is-6 mb-2 is-size-5">${doc.data().price} USD</p>
     <div class="content has-text-left p-0">
       <p>${doc.data().description}</p>
-      <a href='${doc.data().url}'>More Information</a>
+      <button id = "favorite_btn" style="font-size:20px"> Favorite <i class="fa fa-heart"></i></button>
+      <a style = "font-size:20px" href='${doc.data().url}'>More Information</a>
     </div>
 
             </div>

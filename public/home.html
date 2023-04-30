@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
    html, body {
       height: 100%;
@@ -21,6 +22,30 @@
       font-weight: bold;
       font-family: 'Trirong serif';
     }
+
+    #page-container {
+      position: relative;
+      min-height: 100vh;
+    }
+
+    #content-wrap {
+      padding-bottom: 2.5rem;    /* Footer height */
+    }
+
+    #footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      max-height: 30%;            /* Footer height */
+    }
+
+    #submit_post{
+      align-items: right;
+      margin-top: 30%;
+      margin-left: 180%;
+      padding: 30%;
+    }
+
 
     * {
             box-sizing: border-box;
@@ -351,8 +376,8 @@
                       <label class="label p-2 has-text-centered">Clothing Gender:</label>
                       <!-- HAVE TO CHANGE STYLES HERE EVENTUALLY -->
   
-                      <div class="select ml-6 is-center">
-                        <select class="select mr-2" id="gender_sel">
+                      <div class="select ml-5 is-center">
+                        <select class="select mr-3" id="gender_sel">
                           <option value="null">Select a Clothing Gender: </option>
                           <option value="men">Men's</option>
                           <option value="women">Women's</option>
@@ -364,8 +389,8 @@
                     <div class="field_color">
                       <label class="label p-2 has-text-centered">Color:</label>
   
-                      <div class="select ml-6 is-center">
-                        <select class="select mr-2" id="color_sel">
+                      <div class="select ml-3 is-center">
+                        <select class="select" id="color_sel">
                           <option value="null">Select a Color: </option>
                           <option value="blue">Blue</option>
                           <option value="black">Black</option>
@@ -379,7 +404,7 @@
                       <label class="label p-2 has-text-centered">Style:</label>
       
   
-                      <div class="select ml-6 is-center">
+                      <div class="select ml-5 is-center">
                         <select class="select mr-2" id="style_sel">
                           <option value="null">Select a Style: </option>
                           <option value="casual">Business Casual</option>
@@ -408,7 +433,9 @@
                     </div>
                     <div class="field is-grouped">
                       <div class="control">
-                        <button class="button ml-6 mt-3 p-3 is-center is-light" id="submit_post">Submit</button>
+                        <div class = "center">
+                          <button class="button is-light" id="submit_post">Submit</button>
+                        </div>
                       </div>
                     </div>
                   </form>
@@ -490,7 +517,6 @@
             <div id="survey_results"></div>
           </div>
           
-     
           
         
   
@@ -499,14 +525,19 @@
 
 
   </div>
-  <footer class="footer p-2 " id="footer">
-    <div class="p-0 m-2 has-text-centered">
-      <a href="http://www.facebook.com"><i class="fa-brands fa-facebook-f fa-1x p-1" style="color: black"></i></a>
-      <a href="http://www.twitter.com"><i class="fa-brands fa-twitter fa-1x p-1" style="color: black"></i></a> <br>
-      <a href="mailto: OutfitPro@gmail.com" class="has-text-dark is-size-7">OutfitPro@gmail.com</a> <br>
-      <a class="has-text-dark is-size-7">Copyright &copy; 2023 OutfitPro</a>
+  
+  <div id="page-container">
+    <div id="content-wrapped">
+      <footer class="footer p-2 " id="footer">
+        <div class="p-0 m-2 has-text-centered">
+          <a href="http://www.facebook.com"><i class="fa-brands fa-facebook-f fa-1x p-1" style="color: black"></i></a>
+          <a href="http://www.twitter.com"><i class="fa-brands fa-twitter fa-1x p-1" style="color: black"></i></a> <br>
+          <a href="mailto: OutfitPro@gmail.com" class="has-text-dark is-size-7">OutfitPro@gmail.com</a> <br>
+          <a class="has-text-dark is-size-7">Copyright &copy; 2023 OutfitPro</a>
+        </div>
+      </footer>
     </div>
-  </footer>
+  </div>
 
 
 
