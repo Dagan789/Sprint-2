@@ -300,6 +300,8 @@ r_e("form_topost").addEventListener("submit", (e) => {
 
 // Survey button
 r_e("survey_button").addEventListener(`click`, () => {
+  
+  r_e("footer").classList.add("is-hidden");
   r_e("outfits").classList.add("is-hidden");
   r_e("users_page").classList.add("is-hidden");
   r_e("survey_page").classList.remove("is-hidden");
