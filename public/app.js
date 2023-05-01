@@ -43,47 +43,11 @@ function toggleFavorite(id) {
   } else {
     heartIcon.textContent = "♡";
   }
+
+  //grabbing signed in user email and uploading to posts collection favorited field
+
+  
 }
-
-//function to show user specific posts
-/*function user_posts() {
-  db.collection("posts")
-    .get()
-    .then((res) => {
-      let documents = res.docs;
-      documents.forEach((doc) => {
-        if (auth.currentUser.email == post.data().user_email) {
-          html += ` <div class="columns p-3">
-            <div class ="column is-3" >
-            <img
-    src='${doc.data().image}'
-    style="width: 100%; height: 100%; class="fixed-size-img";"
-    alt="Clothing Image">
-            </div>
-            <div class ="column is-9">
-            <p class="title is-4">${doc.data().brand}</p>
-    <p class="subtitle is-4">${doc.data().item}</p>
-    <p class="is-6 mb-2 is-size-5">${doc.data().price} USD</p>
-    <div class="content has-text-left p-0">
-      <p>${doc.data().description}</p>
-      <button id="favoriteBtn" onclick="toggleFavorite()">
-      <span id="heartIcon" class="icon-heart">♡</span> Favorite
-  </button>
-
-      <a style = "font-size:20px" href='${doc.data().url}'>More Information</a>
-    </div>
-
-            </div>
-          
-            </div> <hr>`;
-          
-        if (html.length > 0) {
-          r_e("survey_results").innerHTML = html;
-        }
-        }
-      })
-    }
-};*/
 
 
 //function to post outfit
