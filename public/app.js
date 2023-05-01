@@ -172,12 +172,13 @@ function del_post(coll, id) {
 // homepage image auto switch
 let images = document.getElementsByTagName("img");
 let currentIndex = 0;
+console.log(images.length);
 
 function prevImage() {
   images[currentIndex].style.display = "none";
   currentIndex--;
   if (currentIndex < 0) {
-    currentIndex = images.length - 1;
+    currentIndex = 4;
   }
   images[currentIndex].style.display = "block";
 }
@@ -185,7 +186,7 @@ function prevImage() {
 function nextImage() {
   images[currentIndex].style.display = "none";
   currentIndex++;
-  if (currentIndex > images.length - 1) {
+  if (currentIndex > 4) {
     currentIndex = 0;
   }
   images[currentIndex].style.display = "block";
@@ -353,10 +354,10 @@ r_e("form_topost").addEventListener("submit", (e) => {
         upload_post("posts");
       }, 1500);
     });
-  
+
   //r_e("form_topost").classList.add("is-hidden");
   r_e("posts").classList.remove("is-hidden");
-  
+
 });
 
 // Survey button
