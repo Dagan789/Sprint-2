@@ -353,7 +353,7 @@ r_e("survey_form").addEventListener("submit", (event) => {
           includes(doc.data().category, filter) &&
           parseFloat(doc.data().price) >= price
         ) {
-          html += ` <div class="columns">
+          html += ` <div class="columns p-3">
             <div class ="column is-3" >
             <img
     src='${doc.data().image}'
