@@ -194,6 +194,8 @@ auth.onAuthStateChanged((user) => {
     r_e("signUp").classList.add("is-hidden");
     r_e("login").classList.add("is-hidden");
     r_e("signout").classList.remove("is-hidden");
+    r_e("content_msg").classList.add("is-hidden");
+    r_e("survey_button").classList.remove("is-hidden");
   } else {
     // remove user email from nav bar
     r_e("user_email").innerHTML = "";
@@ -201,6 +203,7 @@ auth.onAuthStateChanged((user) => {
     r_e("signUp").classList.remove("is-hidden");
     r_e("login").classList.remove("is-hidden");
     r_e("user_button").classList.add("is-hidden");
+
   }
 });
 
@@ -298,7 +301,7 @@ r_e("form_topost").addEventListener("submit", (e) => {
 
 // Survey button
 r_e("survey_button").addEventListener(`click`, () => {
-  
+
   r_e("footer").classList.add("is-hidden");
   r_e("outfits").classList.add("is-hidden");
   r_e("users_page").classList.add("is-hidden");
@@ -371,6 +374,3 @@ r_e("survey_form").addEventListener("submit", (event) => {
       });
     });
 });
-
-
-

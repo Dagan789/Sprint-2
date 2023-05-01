@@ -9,7 +9,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
-   html, body {
+    html,
+    body {
       height: 100%;
       background: linear-gradient(90deg, #C4B3A9 40%, #97978F 60%);
     }
@@ -29,17 +30,19 @@
     }
 
     #content-wrap {
-      padding-bottom: 2.5rem;    /* Footer height */
+      padding-bottom: 2.5rem;
+      /* Footer height */
     }
 
     #footer {
       position: absolute;
       bottom: 0;
       width: 100%;
-      max-height: 30%;            /* Footer height */
+      max-height: 30%;
+      /* Footer height */
     }
 
-    #submit_post{
+    #submit_post {
       align-items: right;
       margin-top: 30%;
       margin-left: 180%;
@@ -48,83 +51,87 @@
 
 
     * {
-            box-sizing: border-box;
-        }
+      box-sizing: border-box;
+    }
 
 
 
-        .container {
-            display: flex;
-            height: 100vh;
-            max-width: 100%;
-        }
+    .container {
+      display: flex;
+      height: 100vh;
+      max-width: 100%;
+    }
 
-        .image-slider {
-            position: relative;
-            flex: 1;
-            overflow: hidden;
-        }
+    .image-slider {
+      position: relative;
+      flex: 1;
+      overflow: hidden;
+    }
 
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            /* position: absolute; */
-            transition: 0.5s;
-        }
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      /* position: absolute; */
+      transition: 0.5s;
+    }
 
-        .button-container {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            
-        }
+    .button-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-        button {
-            padding: 12px 24px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: white;
-            border: none;
-            border-radius: 5px;
-            color: black;
-            margin: 0 10px;
-        }
-        surveyBorder{
+    }
 
-  border: 2px solid black;
+    button {
+      padding: 12px 24px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: white;
+      border: none;
+      border-radius: 5px;
+      color: black;
+      margin: 0 10px;
+    }
 
-        }
-        button:hover {
-            background-color: #e8e8e8;
-            
-        }
+    surveyBorder {
 
-        .prev, .next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 2rem;
-            background: transparent;
-            border: none;
-            color: #fff;
-            cursor: pointer;
-        }
+      border: 2px solid black;
 
-        .prev {
-            left: 10px;
-        }
+    }
 
-        .next {
-            right: 10px;
-        }
-        .fixed-size-img {
-  width: 200px;
-  height: 200px;
-  object-fit: contain;
-  object-position: center;
-}
+    button:hover {
+      background-color: #e8e8e8;
+
+    }
+
+    .prev,
+    .next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2rem;
+      background: transparent;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .prev {
+      left: 10px;
+    }
+
+    .next {
+      right: 10px;
+    }
+
+    .fixed-size-img {
+      width: 200px;
+      height: 200px;
+      object-fit: contain;
+      object-position: center;
+    }
   </style>
   <script src="https://kit.fontawesome.com/8a80b728dc.js" crossorigin="anonymous"></script>
   <title>OutfitPro</title>
@@ -263,71 +270,44 @@
 
   <div class="section p-2" id="wrapper" style="height: 100%">
     <!-- #################### Home Page ############################# -->
-      
-        <div class="container p-1" id="outfits" >
-          <div class="image-slider">
-              <img src="https://assets.macysassets.com/dyn_img/creativepages/Q9080010_mensCasualHub_p1_02.webp" alt="Image 1">
-              <img src="https://pumpsandpushups.com/wp-content/uploads/2022/06/IMG_3430.jpg" alt="Image 2" style="display: none;">
-              <img src="https://flyingcdn-e81424e1.b-cdn.net/wp-content/uploads/2020/10/petal-and-pup-usa-bottoms-kieran-pants-tan-32414068211889_720x.jpeg" alt="Image 3" style="display: none;">
-              <img src="https://i.pinimg.com/474x/00/ed/04/00ed04382e2af63c8204693e7c98643a.jpg" alt="Image 4" style="display: none;">
-              <img src="https://lugako.com/wp-content/uploads/2019/03/00aa33170dd72985a6eed6d86093f7c4.jpg" alt="Image 5" style="display: none;">
-              <button class="prev" onclick="prevImage()">&lt;</button>
-              <button class="next" onclick="nextImage()">&gt;</button>
-          </div>
-          <div class="button-container">
-              <button class="button is-white is-size-6" id="survey_button">Take the Survey!</button>
-          </div>
-      
-      
-      
-      
-    
+
+    <div class="container p-1" id="outfits">
+      <div class="image-slider">
+        <img src="https://assets.macysassets.com/dyn_img/creativepages/Q9080010_mensCasualHub_p1_02.webp" alt="Image 1">
+        <img src="https://pumpsandpushups.com/wp-content/uploads/2022/06/IMG_3430.jpg" alt="Image 2"
+          style="display: none;">
+        <img
+          src="https://flyingcdn-e81424e1.b-cdn.net/wp-content/uploads/2020/10/petal-and-pup-usa-bottoms-kieran-pants-tan-32414068211889_720x.jpeg"
+          alt="Image 3" style="display: none;">
+        <img src="https://i.pinimg.com/474x/00/ed/04/00ed04382e2af63c8204693e7c98643a.jpg" alt="Image 4"
+          style="display: none;">
+        <img src="https://lugako.com/wp-content/uploads/2019/03/00aa33170dd72985a6eed6d86093f7c4.jpg" alt="Image 5"
+          style="display: none;">
+        <button class="prev" onclick="prevImage()">&lt;</button>
+        <button class="next" onclick="nextImage()">&gt;</button>
+      </div>
+      <div class="button-container">
+        <button class="is-hidden button is-white is-size-6" style="font-family: 'Trirong serif'" id="survey_button">Take
+          the Survey!</button>
+        <h1 id="content_msg" class="is-active has-text-centered has-text-white has-text-weight-bold is-size-4"
+          style="font-family: 'Trirong serif'">
+          Sign in or sign up today to get your Outfits, and share them with other users!</h1>
+      </div>
+
+
+
+
+
     </div>
-     <!-- #################### My Profile Page ############################# -->
-      <div class="columns is-hidden" id="users_page">
-          <!-- FAVORITES :: left column  -->
-          <div class="column has-text-centered is-one-third" id="favorites">
-            <h1 id="main_msg" class="has-text-centered has-text-grey-dark has-text-weight-bold ">My
-              Favorites</h1>
-            <div class="container" id="content">
-              <h1 id="content_msg" class="has-text-centered has-text-info has-text-weight-bold">
-                <div class="column is-full">
-                  <div class="card">
-                    <div class="card-image">
-                      <figure class="image is-3by3">
-                        <img
-                          src="https://static.zara.cn/photos///2023/V/0/2/p/4399/736/706/2/w/750/4399736706_6_1_1.jpg?ts=1674477396337"
-                          alt="Clothing Image">
-                      </figure>
-                    </div>
-                    <div class="card-content">
-                      <p class="title is-4">Clothing Item 1</p>
-                      <p class="subtitle is-6">$50</p>
-                      <div class="content has-background-white">
-                        <p>Description of the clothing item goes here.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-            </div>
-          </div>
-  
-          <!-- UPLOAD OUTFITS IN MIDDLE COLUMN HERE -->
-          <div class="column has-text-centered is-one-third" id="favorites">
-            <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-              <div class="column has-text-centered is-one-third" id="uploads">
-                <div class="button is-centered" id="outfit_button" style="font-family: 'Trirong serif';">Upload an Outfit
-                </div>
-              </div>
-            </div>
-          </div>
-  
-  
-          <!-- POSTS :: right column -->
-          <div class="column has-text-centered is-one-third" id="posts">
-            <h1 id="main_msg" class="has-text-centered has-text-grey-dark has-text-weight-bold ">My Posts</h1>
-  
-           
+    <!-- #################### My Profile Page ############################# -->
+    <div class="columns is-hidden" id="users_page">
+      <!-- FAVORITES :: left column  -->
+      <div class="column has-text-centered is-one-third" id="favorites">
+        <h1 id="main_msg" class="has-text-centered has-text-grey-dark has-text-weight-bold ">My
+          Favorites</h1>
+        <div class="container" id="content">
+          <h1 id="content_msg" class="has-text-centered has-text-info has-text-weight-bold">
+            <div class="column is-full">
               <div class="card">
                 <div class="card-image">
                   <figure class="image is-3by3">
@@ -337,195 +317,231 @@
                   </figure>
                 </div>
                 <div class="card-content">
-                  <p class="title is-4">Clothing Item 2</p>
+                  <p class="title is-4">Clothing Item 1</p>
                   <p class="subtitle is-6">$50</p>
                   <div class="content has-background-white">
                     <p>Description of the clothing item goes here.</p>
                   </div>
                 </div>
               </div>
-           
-          </div>
-  
-          <!--Upload Page-->
-          <div class="section is-hidden" id="upload_page">
-            <div class="container is-right">
-              <div class="columns is-multiline has-text-centered is-one-third" style="height: 100vh">
-                <section class="section">
-                  <h1 class="title" style="font-family: 'Trirong serif';">Share an outfit!</h1>
-                  <form id="form_topost" style="font-family: 'Trirong serif';">
-                    <div class="field_title">
-                      <label class="label has-text-centered">Clothing Item</label>
-                      <div class="control">
-                        <input class="input" type="text" id="clothing_name"> <!-- ID NAME PAY ATTENTION -->
-                      </div>
-                    </div>
-                    <div class="field_title">
-                      <label class="label has-text-centered">Brand</label>
-                      <div class="control">
-                        <input class="input" type="text" id="brand_name"> <!-- ID NAME PAY ATTENTION -->
-                      </div>
-                    </div>
-                    <div class="field_title">
-                      <label class="label has-text-centered mt-2">Price</label>
-                      <div class="control">
-                        <input class="input" type="text" id="price"> <!-- ID NAME PAY ATTENTION -->
-                      </div>
-                    </div>
-                    <div class="field_gender">
-                      <label class="label p-2 has-text-centered">Clothing Gender:</label>
-                      <!-- HAVE TO CHANGE STYLES HERE EVENTUALLY -->
-  
-                      <div class="select ml-5 is-center">
-                        <select class="select mr-3" id="gender_sel">
-                          <option value="null">Select a Clothing Gender: </option>
-                          <option value="men">Men's</option>
-                          <option value="women">Women's</option>
-                          <option value="netural">Netural</option>
-  
-                        </select>
-                      </div>
-                    </div>
-                    <div class="field_color">
-                      <label class="label p-2 has-text-centered">Color:</label>
-  
-                      <div class="select ml-3 is-center">
-                        <select class="select" id="color_sel">
-                          <option value="null">Select a Color: </option>
-                          <option value="blue">Blue</option>
-                          <option value="black">Black</option>
-                          <option value="grey">Grey</option>
-                          <option value="white">White</option>
-                          <option value="khaki">Khaki</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="field_genre">
-                      <label class="label p-2 has-text-centered">Style:</label>
-      
-  
-                      <div class="select ml-5 is-center">
-                        <select class="select mr-2" id="style_sel">
-                          <option value="null">Select a Style: </option>
-                          <option value="casual">Business Casual</option>
-                          <option value="formal">Formal</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="field_image">
-                      <label class="label p-2 has-text-centered">Image:</label>
-                      <div class="control">
-                        <input class="input" type="file" id="outfit_img" placeholder="Choose Image">
-                      </div>
-                    </div>
-                    <div class="field_url">
-                      <label class="label has-text-centered mt-2">URL</label>
-                      <div class="control">
-                        <input class="input" type="text" id="outfits_url"> <!-- ID NAME PAY ATTENTION -->
-                      </div>
-                    </div>
-                    <div class="field_caption">
-                      <div>
-                        <label class="label p-2 has-text-centered">Description</label>
-                        <textarea id="description" class="textarea mt-2" placeholder="Please explain what your outfit is!"
-                          lines="12"></textarea>
-                      </div>
-                    </div>
-                    <div class="field is-grouped">
-                      <div class="control">
-                        <div class = "center">
-                          <button class="button is-light" id="submit_post">Submit</button>
-                        </div>
-                      </div>
-                    </div>
-                  </form>
-                </section>
-              </div>
             </div>
-          </div>
-  
-       
+        </div>
       </div>
-     <!-- #################### Survey Page ############################# -->
-     <div class="columns is-hidden" id="survey_page" style="height: 100vh;  padding-left: 50px;">
-          <div class="columns is-multiline has-text-centered is-one-third" style = "padding-top: 100px;" >
-     
-            <form id='survey_form' style="font-family: 'Trirong serif';">
-              <div style = "padding : 20px; border: 3px solid black; border-radius: 10px; ">
-              <div class="field is-grouped">
-                <h1 class="title" style="font-family: 'Trirong serif';">Business Outfit Survey</h1>
-              </div>
-              <div class="field">
-                <label class="label p-2 ">Clothing Gender:</label>
-                <div class="select is-center">
-                  <select class="select" id="gender_survey">
-                    <option value='null'>Select a Gender: </option>
-                    <option value="men">Men's</option>
-                    <option value="women">Women's</option>
-                    <option value="netural">Neutral</option>
-  
-                  </select>
+
+      <!-- UPLOAD OUTFITS IN MIDDLE COLUMN HERE -->
+      <div class="column has-text-centered is-one-third" id="favorites">
+        <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+          <div class="column has-text-centered is-one-third" id="uploads">
+            <div class="button is-centered" id="outfit_button" style="font-family: 'Trirong serif';">Upload an Outfit
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- POSTS :: right column -->
+      <div class="column has-text-centered is-one-third" id="posts">
+        <h1 id="main_msg" class="has-text-centered has-text-grey-dark has-text-weight-bold ">My Posts</h1>
+
+
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-3by3">
+              <img
+                src="https://static.zara.cn/photos///2023/V/0/2/p/4399/736/706/2/w/750/4399736706_6_1_1.jpg?ts=1674477396337"
+                alt="Clothing Image">
+            </figure>
+          </div>
+          <div class="card-content">
+            <p class="title is-4">Clothing Item 2</p>
+            <p class="subtitle is-6">$50</p>
+            <div class="content has-background-white">
+              <p>Description of the clothing item goes here.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!--Upload Page-->
+      <div class="section is-hidden" id="upload_page">
+        <div class="container is-right">
+          <div class="columns is-multiline has-text-centered is-one-third" style="height: 100vh">
+            <section class="section">
+              <h1 class="title" style="font-family: 'Trirong serif';">Share an outfit!</h1>
+              <form id="form_topost" style="font-family: 'Trirong serif';">
+                <div class="field_title">
+                  <label class="label has-text-centered">Clothing Item</label>
+                  <div class="control">
+                    <input class="input" type="text" id="clothing_name"> <!-- ID NAME PAY ATTENTION -->
+                  </div>
                 </div>
-              </div>
-  
-              <div class="field">
-                <label class="label p-2 ">Color:</label>
-  
-                <div class="select is-center">
-                  <select class="select" id="color_survey">
-                    <option value='null'>Select a Color: </option>
-                    <option value="blue">Blue</option>
-                    <option value="black">Black</option>
-                    <option value="grey">Grey</option>
-                    <option value="white">White</option>
-                    <option value="khaki">Khaki</option>
-                  </select>
+                <div class="field_title">
+                  <label class="label has-text-centered">Brand</label>
+                  <div class="control">
+                    <input class="input" type="text" id="brand_name"> <!-- ID NAME PAY ATTENTION -->
+                  </div>
                 </div>
-              </div>
-  
-              <div class="field">
-                <label class="label ">Price Range</label>
-                <div class="control is-center">
-                  <input class="slider " step="50" min="0" max="1000" value="500" type="range"
-                  id="price_survey" oninput="updateBudgetLabel(this.value);">
-                  <span id="budget-label">$500</span>
+                <div class="field_title">
+                  <label class="label has-text-centered mt-2">Price</label>
+                  <div class="control">
+                    <input class="input" type="text" id="price"> <!-- ID NAME PAY ATTENTION -->
+                  </div>
                 </div>
-              </div>
-  
-              <div class="field">
-                <label class="label p-2">Style:</label>
-  
-  
-                <div class="select is-center">
-                  <select class="select" id="style_survey">
-                    <option value='null'>Select a Style: </option>
-                    <option value="casual">Business Casual</option>
-                    <option value="formal">Formal</option>
-                  </select>
+                <div class="field_gender">
+                  <label class="label p-2 has-text-centered">Clothing Gender:</label>
+                  <!-- HAVE TO CHANGE STYLES HERE EVENTUALLY -->
+
+                  <div class="select ml-5 is-center">
+                    <select class="select mr-3" id="gender_sel">
+                      <option value="null">Select a Clothing Gender: </option>
+                      <option value="men">Men's</option>
+                      <option value="women">Women's</option>
+                      <option value="netural">Netural</option>
+
+                    </select>
+                  </div>
                 </div>
-              </div>
-  
-              <div class="field">
-                <div class="control">
-                  <button class="button is-light" onclick="grabCheckbox" id="check_submit">Submit</button>
+                <div class="field_color">
+                  <label class="label p-2 has-text-centered">Color:</label>
+
+                  <div class="select ml-3 is-center">
+                    <select class="select" id="color_sel">
+                      <option value="null">Select a Color: </option>
+                      <option value="blue">Blue</option>
+                      <option value="black">Black</option>
+                      <option value="grey">Grey</option>
+                      <option value="white">White</option>
+                      <option value="khaki">Khaki</option>
+                    </select>
+                  </div>
                 </div>
+                <div class="field_genre">
+                  <label class="label p-2 has-text-centered">Style:</label>
+
+
+                  <div class="select ml-5 is-center">
+                    <select class="select mr-2" id="style_sel">
+                      <option value="null">Select a Style: </option>
+                      <option value="casual">Business Casual</option>
+                      <option value="formal">Formal</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="field_image">
+                  <label class="label p-2 has-text-centered">Image:</label>
+                  <div class="control">
+                    <input class="input" type="file" id="outfit_img" placeholder="Choose Image">
+                  </div>
+                </div>
+                <div class="field_url">
+                  <label class="label has-text-centered mt-2">URL</label>
+                  <div class="control">
+                    <input class="input" type="text" id="outfits_url"> <!-- ID NAME PAY ATTENTION -->
+                  </div>
+                </div>
+                <div class="field_caption">
+                  <div>
+                    <label class="label p-2 has-text-centered">Description</label>
+                    <textarea id="description" class="textarea mt-2" placeholder="Please explain what your outfit is!"
+                      lines="12"></textarea>
+                  </div>
+                </div>
+                <div class="field is-grouped">
+                  <div class="control">
+                    <div class="center">
+                      <button class="button is-light" id="submit_post">Submit</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </section>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <!-- #################### Survey Page ############################# -->
+    <div class="columns is-hidden" id="survey_page" style="height: 100vh;  padding-left: 50px;">
+      <div class="columns is-multiline has-text-centered is-one-third" style="padding-top: 100px;">
+
+        <form id='survey_form' style="font-family: 'Trirong serif';">
+          <div style="padding : 20px; border: 3px solid black; border-radius: 10px; ">
+            <div class="field is-grouped">
+              <h1 class="title" style="font-family: 'Trirong serif';">Business Outfit Survey</h1>
+            </div>
+            <div class="field">
+              <label class="label p-2 ">Clothing Gender:</label>
+              <div class="select is-center">
+                <select class="select" id="gender_survey">
+                  <option value='null'>Select a Gender: </option>
+                  <option value="men">Men's</option>
+                  <option value="women">Women's</option>
+                  <option value="netural">Neutral</option>
+
+                </select>
               </div>
             </div>
-            </form>
+
+            <div class="field">
+              <label class="label p-2 ">Color:</label>
+
+              <div class="select is-center">
+                <select class="select" id="color_survey">
+                  <option value='null'>Select a Color: </option>
+                  <option value="blue">Blue</option>
+                  <option value="black">Black</option>
+                  <option value="grey">Grey</option>
+                  <option value="white">White</option>
+                  <option value="khaki">Khaki</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label ">Price Range</label>
+              <div class="control is-center">
+                <input class="slider " step="50" min="0" max="1000" value="500" type="range" id="price_survey"
+                  oninput="updateBudgetLabel(this.value);">
+                <span id="budget-label">$500</span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label p-2">Style:</label>
+
+
+              <div class="select is-center">
+                <select class="select" id="style_survey">
+                  <option value='null'>Select a Style: </option>
+                  <option value="casual">Business Casual</option>
+                  <option value="formal">Formal</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="control">
+                <button class="button is-light" onclick="grabCheckbox" id="check_submit">Submit</button>
+              </div>
+            </div>
           </div>
-          <div class="column is-5" style="height: 100%; padding-left: 105px;">
-            <div id="survey_results"></div>
-          </div>
-          
-          
-        
-  
+        </form>
+      </div>
+      <div class="column is-5" style="height: 100%; padding-left: 105px;">
+        <div id="survey_results"></div>
+      </div>
+
+
+
+
 
     </div>
 
 
   </div>
-  
+
   <div id="page-container">
     <div id="content-wrapped">
       <footer class="footer p-2 " id="footer">
