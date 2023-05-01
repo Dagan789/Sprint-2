@@ -34,8 +34,8 @@ function grabCheckbox() {
 // favorate button
 let isFavorite = false;
 
-function toggleFavorite() {
-  const heartIcon = document.getElementById("heartIcon");
+function toggleFavorite(id) {
+  const heartIcon = document.getElementById(id);
   isFavorite = !isFavorite;
 
   if (isFavorite) {
@@ -415,8 +415,8 @@ r_e("survey_form").addEventListener("submit", (event) => {
     <p class="is-6 mb-2 is-size-5">${doc.data().price} USD</p>
     <div class="content has-text-left p-0">
       <p>${doc.data().description}</p>
-      <button id="favoriteBtn" onclick="toggleFavorite()">
-      <span id="heartIcon" class="icon-heart">♡</span> Favorite
+      <button id="${doc.id}" onclick="toggleFavorite('${doc.id}')">
+      <span id="heartIcon" class="icon-heart">♡</span> 
   </button>
 
       <a style = "font-size:20px" href='${doc.data().url}'>More Information</a>
