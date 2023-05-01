@@ -31,6 +31,19 @@ function grabCheckbox() {
   }
   return category_list;
 }
+// favorate button
+let isFavorite = false;
+
+function toggleFavorite() {
+  const heartIcon = document.getElementById("heartIcon");
+  isFavorite = !isFavorite;
+
+  if (isFavorite) {
+    heartIcon.textContent = "♥";
+  } else {
+    heartIcon.textContent = "♡";
+  }
+}
 
 //function to post outfit
 function upload_post(coll, field, val) {
@@ -203,7 +216,6 @@ auth.onAuthStateChanged((user) => {
     r_e("signUp").classList.remove("is-hidden");
     r_e("login").classList.remove("is-hidden");
     r_e("user_button").classList.add("is-hidden");
-
   }
 });
 
@@ -301,7 +313,6 @@ r_e("form_topost").addEventListener("submit", (e) => {
 
 // Survey button
 r_e("survey_button").addEventListener(`click`, () => {
-
   r_e("footer").classList.add("is-hidden");
   r_e("outfits").classList.add("is-hidden");
   r_e("users_page").classList.add("is-hidden");
@@ -355,7 +366,10 @@ r_e("survey_form").addEventListener("submit", (event) => {
     <p class="is-6 mb-2 is-size-5">${doc.data().price} USD</p>
     <div class="content has-text-left p-0">
       <p>${doc.data().description}</p>
-      <button id = "favorite_btn" style="font-size:20px"> Favorite <i class="fa fa-heart"></i></button>
+      <button id="favoriteBtn" onclick="toggleFavorite()">
+      <span id="heartIcon" class="icon-heart">♡</span> Favorite
+  </button>
+
       <a style = "font-size:20px" href='${doc.data().url}'>More Information</a>
     </div>
 
