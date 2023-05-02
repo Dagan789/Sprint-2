@@ -34,20 +34,139 @@ function grabCheckbox() {
 // favorate button
 let isFavorite = false;
 
+// function toggleFavorite(id) {
+//   const heartIcon = document.getElementById(id);
+//   isFavorite = !isFavorite;
+
+//   if (isFavorite) {
+//     heartIcon.textContent = "♥";
+//   } else {
+//     heartIcon.textContent = "♡";
+//   }
+
+//   //grabbing signed in user email and uploading to posts collection favorited field
+// }
+
+//////////////////////////////////////////////////////////// CHAT GPT VERSION 1 //////////////////////////////////////////////////////////// 
+//
+// function toggleFavorite(postId) {
+//   const heartIcon = document.getElementById(postId);
+//   isFavorite = !isFavorite;
+
+//   if (isFavorite) {
+//     heartIcon.textContent = "♥";
+//     // Add user email to the favorites list of the post
+//     db.collection("posts")
+//       .doc(postId)
+//       .update({
+//         favorites: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email),
+//       });
+//   } else {
+//     heartIcon.textContent = "♡";
+//     // Remove user email from the favorites list of the post
+//     db.collection("posts")
+//       .doc(postId)
+//       .update({
+//         favorites: firebase.firestore.FieldValue.arrayRemove(auth.currentUser.email),
+//       });
+//   }
+// }
+
+// function showFavoritePosts() {
+//   let html = "";
+
+//   db.collection("posts")
+//     .where("favorites", "array-contains", auth.currentUser.email)
+//     .get()
+//     .then((response) => {
+//       let posts = response.docs;
+//       if (posts.length == 0) {
+//         content.innerHTML = "No favorite posts currently available";
+//         return;
+//       }
+//       // loop through each favorite post and display them
+//       // (you can reuse the code from the 'upload_post' function)
+//       // ...
+//     });
+// }
+
+
+//////////////////////////////////////////////////////////// CHAT GPT VERSION 2 //////////////////////////////////////////////////////////// 
+// global variables
+let favoritePosts = [];
+
+// functions
+
+//To persist the favorite posts data across page navigation, you can use browser storage options like localStorage or sessionStorage. 
+// In this example, I'll use localStorage which stores data with no expiration time.
+// First, you'll need to save the favoritePosts array to the localStorage whenever it gets updated. 
+// Then, on the initial page load, you should retrieve the saved data from localStorage and update the favoritePosts array.
+// Here's how you can modify the updateFavoriteList function and add a function to load the favorites from localStorage:
+function saveFavoritesToLocalStorage() {
+  localStorage.setItem("favoritePosts", JSON.stringify(favoritePosts));
+}
+
+function loadFavoritesFromLocalStorage() {
+  const storedFavorites = localStorage.getItem("favoritePosts");
+
+  if (storedFavorites) {
+    favoritePosts = JSON.parse(storedFavorites);
+    let html = "";
+    favoritePosts.forEach((post) => {
+      html += `
+        <div class="favorite-post">
+          <img src="${post.image}" alt="Post Image" />
+          <p>${post.item}</p>
+        </div>
+      `;
+    });
+    document.querySelector("#favorite_posts").innerHTML = html;
+  }
+}
+
+function updateFavoriteList(postID, add) {
+  const postRef = db.collection("posts").doc(postID);
+  postRef.get().then((doc) => {
+    if (doc.exists) {
+      const postData = doc.data();
+      if (add) {
+        favoritePosts.push(postData);
+      } else {
+        favoritePosts = favoritePosts.filter(
+          (post) => post.item !== postData.item
+        );
+      }
+      let html = "";
+      favoritePosts.forEach((post) => {
+        html += `
+          <div class="favorite-post">
+            <img src="${post.image}" alt="Post Image" />
+            <p>${post.item}</p>
+          </div>
+        `;
+      });
+      document.querySelector("#favorite_posts").innerHTML = html;
+    } else {
+      console.log("No such document!");
+    }
+    saveFavoritesToLocalStorage();
+  });
+}
+
 function toggleFavorite(id) {
   const heartIcon = document.getElementById(id);
   isFavorite = !isFavorite;
 
   if (isFavorite) {
     heartIcon.textContent = "♥";
+    updateFavoriteList(id, true);
   } else {
     heartIcon.textContent = "♡";
+    updateFavoriteList(id, false);
   }
+  loadFavoritesFromLocalStorage();
 
-  //grabbing signed in user email and uploading to posts collection favorited field
-
-  
-}
+};
 
 
 //function to post outfit
