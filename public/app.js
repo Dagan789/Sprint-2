@@ -4,7 +4,7 @@ let signUp = document.querySelector(`#signUp`);
 let cancel_signUp = document.querySelector(`#cancel_signUp`);
 let login = document.querySelector(`#login`);
 
-// functions
+//////////////////////////////////////////////////////////// FUNCTIONS  //////////////////////////////////////////////////////////// 
 function r_e(id) {
   return document.querySelector(`#${id}`);
 }
@@ -47,8 +47,8 @@ let isFavorite = false;
 //   //grabbing signed in user email and uploading to posts collection favorited field
 // }
 
-//////////////////////////////////////////////////////////// CHAT GPT VERSION 1 //////////////////////////////////////////////////////////// 
-//
+/////// VERSION 1 ///////
+///////////////////////////
 // function toggleFavorite(postId) {
 //   const heartIcon = document.getElementById(postId);
 //   isFavorite = !isFavorite;
@@ -91,7 +91,8 @@ let isFavorite = false;
 // }
 
 
-//////////////////////////////////////////////////////////// CHAT GPT VERSION 2 //////////////////////////////////////////////////////////// 
+/////// VERSION 1 ///////
+/////////////////////////
 // global variables
 let favoritePosts = [];
 
@@ -102,6 +103,7 @@ let favoritePosts = [];
 // First, you'll need to save the favoritePosts array to the localStorage whenever it gets updated. 
 // Then, on the initial page load, you should retrieve the saved data from localStorage and update the favoritePosts array.
 // Here's how you can modify the updateFavoriteList function and add a function to load the favorites from localStorage:
+
 function saveFavoritesToLocalStorage() {
   localStorage.setItem("favoritePosts", JSON.stringify(favoritePosts));
 }
@@ -275,7 +277,7 @@ function nextImage() {
   images[currentIndex].style.display = "block";
 }
 
-// sign up user
+//////////////////////////////////////////////////////////// USER SIGN-UP //////////////////////////////////////////////////////////// 
 r_e("signup_form").addEventListener("submit", (e) => {
   e.preventDefault();
   // grab the email and password combination from the form
@@ -315,7 +317,7 @@ r_e("login_form").addEventListener("submit", (e) => {
     });
 });
 
-// track user authentication status with onauthstatechanged
+//////////////////////////////////////////////////////////// USER AUTHENTIFICATION  //////////////////////////////////////////////////////////// 
 
 auth.onAuthStateChanged((user) => {
   // check if user signed in or out
@@ -344,7 +346,8 @@ auth.onAuthStateChanged((user) => {
   }
 });
 
-// sign out
+//////////////////////////////////////////////////////////// USER SIGN-OUT  //////////////////////////////////////////////////////////// 
+
 document.querySelector(`#signout`).addEventListener(`click`, () => {
   auth.signOut().then((user) => {
     location.reload();
@@ -398,7 +401,8 @@ function save_data(coll_name, obj) {
     });
 }
 
-//Share an outfit
+//////////////////////////////////////////////////////////// SHARE OUTFIT //////////////////////////////////////////////////////////// 
+
 r_e("form_topost").addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -464,7 +468,8 @@ function includes(arr1, arr2) {
   r_e("favorite_btn").innerHTML = "<button id = " + "favorite_btn" + "style='font-size:20px color: red'> Favorited <i class="+ 'fa fa-heart'+ "> + </i></button>";
 });*/
 
-// Survey Submit and Show Results:
+//////////////////////////////////////////////////////////// SURVEY + RESULTS  //////////////////////////////////////////////////////////// 
+
 r_e("survey_form").addEventListener("submit", (event) => {
   event.preventDefault();
   let html = [];
