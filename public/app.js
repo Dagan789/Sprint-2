@@ -166,7 +166,7 @@ function updateFavoriteList(postID, user_email, add_del) {
           db.collection("posts").doc(postID).set({favorites: user_email}, {merge: true});
         }
         else{
-          db.collection("posts").doc(doc.id).updateData({'favorites': FieldValue.arrayUnion([user_email])})
+          db.collection("posts").doc(doc.id).updateData({'favorites': ([user_email])})
         };
       };
       else {
@@ -174,6 +174,34 @@ function updateFavoriteList(postID, user_email, add_del) {
       }
     }});
   };*/
+
+
+//function updateFavoriteList(postID, user_email, add_del) {
+  
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! FAVORITE BUTTON WIP ~~~~~~~~~~~~~!!!!!!!!!!!!!!!!!!
+
+ /* auth.onAuthStateChanged((user)=>{
+    if (user) {
+        let docRef = db.collection("posts").doc("KAd5Cbpc3AEiXS9t7oUf")
+        docRef.get().then((doc) => {
+          if(doc.exists){
+            const docdata = doc.data();
+            if (docdata.hasOwnProperty("favorite")){
+              docRef.update({"favorite": db.FieldValue.arrayUnion(user_email)});
+            }
+            }
+            else {
+              let favorite = {'favorite': [auth.currentUser.email]}
+              docRef.update(favorite);
+            }
+          })
+          }
+        });*/
+        
+        //docRef.update(favorite);
+        
+    
+//};
 
 function toggleFavorite(id) {
   const heartIcon = document.getElementById(id);
