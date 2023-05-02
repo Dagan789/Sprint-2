@@ -26,7 +26,9 @@
 
     #page-container {
       position: relative;
-      min-height: 100vh;
+      padding-top: 2%;
+
+      /* min-height: 100%; */
     }
 
     #content-wrap {
@@ -35,17 +37,18 @@
     }
 
     #footer {
-      position: absolute;
+      position: relative;
       bottom: 0;
       width: 100%;
       max-height: 30%;
+      padding-top: 2%;
       /* Footer height */
     }
 
     #submit_post {
       align-items: right;
       margin-top: 30%;
-      margin-left: 140%;
+      margin-left: 180%;
       padding: 30%;
     }
 
@@ -371,7 +374,7 @@
       <div class="section is-hidden" id="upload_page">
         <div class="container is-right">
           <div class="columns is-multiline has-text-centered is-one-third"
-          style="width: 100%; max-height: 90%; border: 3px solid black; border-radius: 10px; overflow: auto;">
+            style="width: 100%; max-height: 90%; border: 3px solid black; border-radius: 10px; overflow: auto;">
             <section class="section">
               <h1 class="title" style="font-family: 'Trirong serif';">Share an outfit!</h1>
               <form id="form_topost" style="font-family: 'Trirong serif';">
@@ -390,7 +393,8 @@
                 <div class="field_title">
                   <label class="label has-text-centered mt-2">Price</label>
                   <div class="control">
-                    <input class="input" type="text" id="price" placeholder=">$0 and <$1000"> <!-- ID NAME PAY ATTENTION -->
+                    <input class="input" type="text" id="price" placeholder=">$0 and <$1000">
+                    <!-- ID NAME PAY ATTENTION -->
                   </div>
                 </div>
                 <div class="field_gender">
@@ -454,7 +458,7 @@
                 </div>
                 <div class="field is-grouped">
                   <div class="control">
-                      <button class="button is-light" id="submit_post">Submit</button>
+                    <button class="button is-light" id="submit_post">Submit</button>
                   </div>
                 </div>
               </form>
