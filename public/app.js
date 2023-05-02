@@ -4,7 +4,7 @@ let signUp = document.querySelector(`#signUp`);
 let cancel_signUp = document.querySelector(`#cancel_signUp`);
 let login = document.querySelector(`#login`);
 
-//////////////////////////////////////////////////////////// FUNCTIONS  //////////////////////////////////////////////////////////// 
+//////////////////////////////////////////////////////////// FUNCTIONS  ////////////////////////////////////////////////////////////
 function r_e(id) {
   return document.querySelector(`#${id}`);
 }
@@ -90,7 +90,6 @@ let isFavorite = false;
 //     });
 // }
 
-
 /////// VERSION 1 ///////
 /////////////////////////
 // global variables
@@ -98,9 +97,9 @@ let favoritePosts = [];
 
 // functions
 
-//To persist the favorite posts data across page navigation, you can use browser storage options like localStorage or sessionStorage. 
+//To persist the favorite posts data across page navigation, you can use browser storage options like localStorage or sessionStorage.
 // In this example, I'll use localStorage which stores data with no expiration time.
-// First, you'll need to save the favoritePosts array to the localStorage whenever it gets updated. 
+// First, you'll need to save the favoritePosts array to the localStorage whenever it gets updated.
 // Then, on the initial page load, you should retrieve the saved data from localStorage and update the favoritePosts array.
 // Here's how you can modify the updateFavoriteList function and add a function to load the favorites from localStorage:
 
@@ -167,81 +166,79 @@ function toggleFavorite(id) {
     updateFavoriteList(id, false);
   }
   loadFavoritesFromLocalStorage();
-
-};
-
+}
 
 //function to post outfit
-function upload_post(coll, field, val) {
-  //html code for each post
-  let html = "";
+// function upload_post(coll, field, val) {
+//   //html code for each post
+//   let html = "";
 
-  let certain_posts = "";
+//   let certain_posts = "";
 
-  //uploads only posts specified by given fields
-  if (field && val) {
-    certain_posts = db.collection(coll).where(field, "==", val);
-  } else {
-    certain_posts = db.collection(coll);
-  }
+//   //uploads only posts specified by given fields
+//   if (field && val) {
+//     certain_posts = db.collection(coll).where(field, "==", val);
+//   } else {
+//     certain_posts = db.collection(coll);
+//   }
 
-  certain_posts.get().then((response) => {
-    let posts = response.docs;
-    if (posts.length == 0) {
-      content.innerHTML = "No posts currently available";
-      return;
-    }
-    // loop through each post
-    posts.forEach((post) => {
-      if (auth.currentUser.email == post.data().user_email) {
-        html += `
-              <div class="box">
-                                  <h1 class="has-background-info-light p-1 title">${
-                                    post.data().item
-                                  } <button class="delete is-medium is-pulled-right is-danger" onclick="del_post('posts', '${
-          post.id
-        }')">X</button> </h1>
-                                  <span class="is-size-5">Style: ${
-                                    post.data().style
-                                  }</span>
-                                  <p class="m-3"> <img height="70" src="${
-                                    post.data().image
-                                  }" /> </p>
-                                  <p class="is-size-7">Price: ${
-                                    post.data().price
-                                  }</p>
-                                  <h2 class = "is-size-4 p-3">${
-                                    post.data().description
-                                  }</h2>
-              </div> `;
-      } else {
-        html += `
-              <div class="box">
-                                  <h1 class="has-background-info-light p-1 title">${
-                                    post.data().item
-                                  }</h1>
-                                  <span class="is-size-5">Style: ${
-                                    post.data().style
-                                  }</span>
-                                  <p class="m-3"> <img height="70" src="${
-                                    post.data().image
-                                  }" /> </p>
-                                  <p class="is-size-7">Price: ${
-                                    post.data().price
-                                  }</p>
-                                  <h2 class = "is-size-4 p-3">${
-                                    post.data().description
-                                  }</h2>
-              </div> `;
-      }
-    });
+// certain_posts.get().then((response) => {
+//   let posts = response.docs;
+//   if (posts.length == 0) {
+//     content.innerHTML = "No posts currently available";
+//     return;
+//   }
+// loop through each post
+//     posts.forEach((post) => {
+//       if (auth.currentUser.email == post.data().user_email) {
+//         html += `
+//               <div class="box">
+//                                   <h1 class="has-background-info-light p-1 title">${
+//                                     post.data().item
+//                                   } <button class="delete is-medium is-pulled-right is-danger" onclick="del_post('posts', '${
+//           post.id
+//         }')">X</button> </h1>
+//                                   <span class="is-size-5">Style: ${
+//                                     post.data().style
+//                                   }</span>
+//                                   <p class="m-3"> <img height="70" src="${
+//                                     post.data().image
+//                                   }" /> </p>
+//                                   <p class="is-size-7">Price: ${
+//                                     post.data().price
+//                                   }</p>
+//                                   <h2 class = "is-size-4 p-3">${
+//                                     post.data().description
+//                                   }</h2>
+//               </div> `;
+//       } else {
+//         html += `
+//               <div class="box">
+//                                   <h1 class="has-background-info-light p-1 title">${
+//                                     post.data().item
+//                                   }</h1>
+//                                   <span class="is-size-5">Style: ${
+//                                     post.data().style
+//                                   }</span>
+//                                   <p class="m-3"> <img height="70" src="${
+//                                     post.data().image
+//                                   }" /> </p>
+//                                   <p class="is-size-7">Price: ${
+//                                     post.data().price
+//                                   }</p>
+//                                   <h2 class = "is-size-4 p-3">${
+//                                     post.data().description
+//                                   }</h2>
+//               </div> `;
+//       }
+//     });
 
-    //element('posts').classList.remove('is-hidden');
+//     //element('posts').classList.remove('is-hidden');
 
-    // show on the content div
-    r_e("posts").innerHTML = html;
-  });
-}
+//     // show on the content div
+//     r_e("posts").innerHTML = html;
+//   });
+// }
 
 //function to delete posts
 function del_post(coll, id) {
@@ -252,12 +249,12 @@ function del_post(coll, id) {
       // load all posts
       upload_post("posts");
     });
+  r_e(id).classList.add("is-hidden");
 }
 
 // homepage image auto switch
 let images = document.getElementsByTagName("img");
 let currentIndex = 0;
-console.log(images.length);
 
 function prevImage() {
   images[currentIndex].style.display = "none";
@@ -277,7 +274,7 @@ function nextImage() {
   images[currentIndex].style.display = "block";
 }
 
-//////////////////////////////////////////////////////////// USER SIGN-UP //////////////////////////////////////////////////////////// 
+//////////////////////////////////////////////////////////// USER SIGN-UP ////////////////////////////////////////////////////////////
 r_e("signup_form").addEventListener("submit", (e) => {
   e.preventDefault();
   // grab the email and password combination from the form
@@ -317,7 +314,7 @@ r_e("login_form").addEventListener("submit", (e) => {
     });
 });
 
-//////////////////////////////////////////////////////////// USER AUTHENTIFICATION  //////////////////////////////////////////////////////////// 
+//////////////////////////////////////////////////////////// USER AUTHENTIFICATION  ////////////////////////////////////////////////////////////
 
 auth.onAuthStateChanged((user) => {
   // check if user signed in or out
@@ -346,7 +343,7 @@ auth.onAuthStateChanged((user) => {
   }
 });
 
-//////////////////////////////////////////////////////////// USER SIGN-OUT  //////////////////////////////////////////////////////////// 
+//////////////////////////////////////////////////////////// USER SIGN-OUT  ////////////////////////////////////////////////////////////
 
 document.querySelector(`#signout`).addEventListener(`click`, () => {
   auth.signOut().then((user) => {
@@ -372,6 +369,42 @@ login.addEventListener(`click`, () => {
 
 // User button
 r_e("user_button").addEventListener(`click`, () => {
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      db.collection("posts")
+        .get()
+        .then((res) => {
+          let documents = res.docs;
+          let html = "";
+          documents.forEach((doc) => {
+            if (auth.currentUser.email == doc.data().user_email) {
+              html += `
+                            <div class="box" id = "${doc.id}">
+                                                <h1 class="has-background-info-light p-1 title">${
+                                                  doc.data().item
+                                                } <button class="delete is-medium is-pulled-right is-danger" onclick="del_post('posts', '${
+                doc.id
+              }')">X</button> </h1>
+                                                <span class="is-size-5">Style: ${
+                                                  doc.data().style
+                                                }</span>
+                                                <p class="m-3"> <img height="70" src="${
+                                                  doc.data().image
+                                                }" /> </p>
+                                                <p class="is-size-7">Price: ${
+                                                  doc.data().price
+                                                }</p>
+                                                <h2 class = "is-size-4 p-3">${
+                                                  doc.data().description
+                                                }</h2>
+                            </div> `;
+            }
+          });
+          r_e("posts").innerHTML = html;
+        });
+    }
+  });
+
   r_e("outfits").classList.add("is-hidden");
   r_e("footer").classList.add("is-hidden");
   r_e("page-container").classList.add("is-hidden");
@@ -401,7 +434,7 @@ function save_data(coll_name, obj) {
     });
 }
 
-//////////////////////////////////////////////////////////// SHARE OUTFIT //////////////////////////////////////////////////////////// 
+//////////////////////////////////////////////////////////// SHARE OUTFIT ////////////////////////////////////////////////////////////
 
 r_e("form_topost").addEventListener("submit", (e) => {
   e.preventDefault();
@@ -444,7 +477,6 @@ r_e("form_topost").addEventListener("submit", (e) => {
 
   //r_e("form_topost").classList.add("is-hidden");
   r_e("posts").classList.remove("is-hidden");
-
 });
 
 // Survey button
@@ -468,7 +500,7 @@ function includes(arr1, arr2) {
   r_e("favorite_btn").innerHTML = "<button id = " + "favorite_btn" + "style='font-size:20px color: red'> Favorited <i class="+ 'fa fa-heart'+ "> + </i></button>";
 });*/
 
-//////////////////////////////////////////////////////////// SURVEY + RESULTS  //////////////////////////////////////////////////////////// 
+//////////////////////////////////////////////////////////// SURVEY + RESULTS  ////////////////////////////////////////////////////////////
 
 r_e("survey_form").addEventListener("submit", (event) => {
   event.preventDefault();
