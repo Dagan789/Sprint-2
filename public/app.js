@@ -103,7 +103,7 @@ let favoritePosts = [];
 // Then, on the initial page load, you should retrieve the saved data from localStorage and update the favoritePosts array.
 // Here's how you can modify the updateFavoriteList function and add a function to load the favorites from localStorage:
 
-function saveFavoritesToLocalStorage() {
+/*  function saveFavoritesToLocalStorage() {
   localStorage.setItem("favoritePosts", JSON.stringify(favoritePosts));
 }
 
@@ -153,6 +153,28 @@ function updateFavoriteList(postID, add) {
     saveFavoritesToLocalStorage();
   });
 }
+let favoriteFieldExists = false;
+
+function updateFavoriteList(postID, user_email, add_del) {
+  console.log(user_email)
+  const postRef = db.collection("posts").doc(postID);
+  console.log(doc.id, " => ", doc.data());
+  postRef.get().then((doc) => {
+    if (doc.exists) {
+      if(add_del){
+        if (!favoriteFieldExists) {
+          db.collection("posts").doc(postID).set({favorites: user_email}, {merge: true});
+        }
+        else{
+          db.collection("posts").doc(doc.id).updateData({'favorites': FieldValue.arrayUnion([user_email])})
+        };
+      };
+      else {
+
+      }
+    }});
+  };*/
+
 
 function toggleFavorite(id) {
   const heartIcon = document.getElementById(id);
@@ -160,10 +182,10 @@ function toggleFavorite(id) {
 
   if (isFavorite) {
     heartIcon.textContent = "♥";
-    updateFavoriteList(id, true);
+    //updateFavoriteList(id, r_e("user_email").value, add);
   } else {
     heartIcon.textContent = "♡";
-    updateFavoriteList(id, false);
+    //updateFavoriteList(id, r_e("user_email").value, delete);
   }
   loadFavoritesFromLocalStorage();
 }
@@ -406,8 +428,8 @@ r_e("user_button").addEventListener(`click`, () => {
   });
 
   r_e("outfits").classList.add("is-hidden");
-  r_e("footer").classList.add("is-hidden");
-  r_e("page-container").classList.add("is-hidden");
+  // r_e("footer").classList.add("is-hidden");
+  // r_e("page-container").classList.add("is-hidden");
   r_e("survey_page").classList.add("is-hidden");
   r_e("users_page").classList.remove("is-hidden");
   r_e("outfit_button").classList.remove("is-hidden");
@@ -481,7 +503,7 @@ r_e("form_topost").addEventListener("submit", (e) => {
 
 // Survey button
 r_e("survey_button").addEventListener(`click`, () => {
-  r_e("footer").classList.add("is-hidden");
+  // r_e("footer").classList.add("is-hidden");
   r_e("outfits").classList.add("is-hidden");
   r_e("users_page").classList.add("is-hidden");
   r_e("survey_page").classList.remove("is-hidden");
@@ -511,49 +533,104 @@ r_e("survey_form").addEventListener("submit", (event) => {
     r_e("style_survey").value,
   ];
   let price = r_e("price_survey").value;
+  auth.onAuthStateChanged((user)=>{
+    if (user){
+      if (auth.currentUser.email == "admin@admin.com"){
+        db.collection("posts")
+        .get()
+        .then((res) => {
+          let documents = res.docs;
+          documents.forEach((doc) => {
+            //console.log(includes(doc.data().category, filter));
+            if (
+              includes(doc.data().category, filter) &&
+              parseFloat(doc.data().price) <= price
+            ) {
+              html += ` <div class="columns p-3">
+                <div class ="column is-3" id = "${doc.data().item}" >
+                <img
+        src='${doc.data().image}'
+        style="width: 100%; height: 100%; class="fixed-size-img";"
+        alt="Clothing Image">
+                </div>
+                <div class ="column is-9">
+                <p class="title is-4">${doc.data().brand}  <button class="delete is-medium is-pulled-right is-danger" onclick="del_post('posts', '${
+                  doc.data().item
+                }')">X</button></p>
+        <p class="subtitle is-4">${doc.data().item} </p>
+        <p class="is-6 mb-2 is-size-5">${doc.data().price} USD</p>
+        <div class="content has-text-left p-0">
+          <p>${doc.data().description}</p>
+          <button id="${doc.id}" onclick="toggleFavorite('${doc.id}')">
+          <span id="heartIcon" class="icon-heart">♡</span> 
+      </button>
+    
+          <a style = "font-size:20px" href='${doc.data().url}'>More Information</a>
+        </div>
+    
+                </div>
+              
+                </div> <hr>`;
+            }
+    
+            if (html.length > 0) {
+              r_e("survey_results").innerHTML = html;
+            } else {
+              r_e(
+                "survey_results"
+              ).innerHTML = `<p>Unfortunately, we do not have any recommended outfits at this time.</p>`;
+            }
+          });
+        });
+      } else {
+        db.collection("posts")
+        .get()
+        .then((res) => {
+          let documents = res.docs;
+          documents.forEach((doc) => {
+            //console.log(includes(doc.data().category, filter));
+            if (
+              includes(doc.data().category, filter) &&
+              parseFloat(doc.data().price) <= price
+            ) {
+              html += ` <div class="columns p-3">
+                <div class ="column is-3" >
+                <img
+        src='${doc.data().image}'
+        style="width: 100%; height: 100%; class="fixed-size-img";"
+        alt="Clothing Image">
+                </div>
+                <div class ="column is-9">
+                <p class="title is-4">${doc.data().brand}</p>
+        <p class="subtitle is-4">${doc.data().item}</p>
+        <p class="is-6 mb-2 is-size-5">${doc.data().price} USD</p>
+        <div class="content has-text-left p-0">
+          <p>${doc.data().description}</p>
+          <button id="${doc.id}" onclick="toggleFavorite('${doc.id}')">
+          <span id="heartIcon" class="icon-heart">♡</span> 
+      </button>
+    
+          <a style = "font-size:20px" href='${doc.data().url}'>More Information</a>
+        </div>
+    
+                </div>
+              
+                </div> <hr>`;
+            }
+    
+            if (html.length > 0) {
+              r_e("survey_results").innerHTML = html;
+            } else {
+              r_e(
+                "survey_results"
+              ).innerHTML = `<p>Unfortunately, we do not have any recommended outfits at this time.</p>`;
+            }
+          });
+        });
+      }
+    }
+  })
 
-  db.collection("posts")
-    .get()
-    .then((res) => {
-      let documents = res.docs;
-      documents.forEach((doc) => {
-        //console.log(includes(doc.data().category, filter));
-        if (
-          includes(doc.data().category, filter) &&
-          parseFloat(doc.data().price) <= price
-        ) {
-          html += ` <div class="columns p-3">
-            <div class ="column is-3" >
-            <img
-    src='${doc.data().image}'
-    style="width: 100%; height: 100%; class="fixed-size-img";"
-    alt="Clothing Image">
-            </div>
-            <div class ="column is-9">
-            <p class="title is-4">${doc.data().brand}</p>
-    <p class="subtitle is-4">${doc.data().item}</p>
-    <p class="is-6 mb-2 is-size-5">${doc.data().price} USD</p>
-    <div class="content has-text-left p-0">
-      <p>${doc.data().description}</p>
-      <button id="${doc.id}" onclick="toggleFavorite('${doc.id}')">
-      <span id="heartIcon" class="icon-heart">♡</span> 
-  </button>
-
-      <a style = "font-size:20px" href='${doc.data().url}'>More Information</a>
-    </div>
-
-            </div>
-          
-            </div> <hr>`;
-        }
-
-        if (html.length > 0) {
-          r_e("survey_results").innerHTML = html;
-        } else {
-          r_e(
-            "survey_results"
-          ).innerHTML = `<p>Unfortunately, we do not have any recommended outfits at this time.</p>`;
-        }
-      });
-    });
 });
+
+
