@@ -375,7 +375,7 @@ r_e("user_button").addEventListener(`click`, () => {
         .get()
         .then((res) => {
           let documents = res.docs;
-          let html = "";
+          let html = `<h1 class="has-text-centered has-text-grey-dark has-text-weight-bold is-size-2">My Posts</h1>`;
           documents.forEach((doc) => {
             if (auth.currentUser.email == doc.data().user_email) {
               html += `
