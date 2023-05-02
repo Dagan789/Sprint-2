@@ -106,6 +106,10 @@
 
     }
 
+    .homeclick:hover {
+      text-decoration: underline;
+    }
+
     .prev,
     .next {
       position: absolute;
@@ -132,7 +136,6 @@
       object-fit: contain;
       object-position: center;
     }
-
   </style>
   <script src="https://kit.fontawesome.com/8a80b728dc.js" crossorigin="anonymous"></script>
   <title>OutfitPro</title>
@@ -233,8 +236,8 @@
   <nav class="content mb-0 ">
     <div class="navbar-menu is-active">
       <div class="navbar-start has-text-centered ">
-        <a class="navbar-item ml-3 is-size-3 has-text-black" href="home.html" id="home"
-          style="font-family: 'Trirong serif';font-size: 30px; ">
+        <a class="homeclick navbar-item ml-3 is-size-3 has-text-black" href="home.html" id="home"
+          style="font-family: 'Trirong serif';font-size: 30px; background: transparent;">
           OutfitPro
         </a>
       </div>
@@ -308,7 +311,7 @@
           Favorites</h1>
         <div class="container" id="content">
           <h1 id="content_msg" class="has-text-centered has-text-info has-text-weight-bold">
-           <!-- <div class="column is-full">
+            <!-- <div class="column is-full">
               <div class="card">
                 <div class="card-image">
                   <figure class="image is-3by3">
@@ -367,7 +370,8 @@
       <!--Upload Page-->
       <div class="section is-hidden" id="upload_page">
         <div class="container is-right">
-          <div class="columns is-multiline has-text-centered is-one-third" style="height: 125vh; padding : 15px; border: 3px solid black; border-radius: 10px;">
+          <div class="columns is-multiline has-text-centered is-one-third"
+            style="height: 125vh; padding : 15px; border: 3px solid black; border-radius: 10px;">
             <section class="section">
               <h1 class="title" style="font-family: 'Trirong serif';">Share an outfit!</h1>
               <form id="form_topost" style="font-family: 'Trirong serif';">
