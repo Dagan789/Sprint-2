@@ -520,7 +520,7 @@ r_e("survey_form").addEventListener("submit", (event) => {
         //console.log(includes(doc.data().category, filter));
         if (
           includes(doc.data().category, filter) &&
-          parseFloat(doc.data().price) >= price
+          parseFloat(doc.data().price) <= price
         ) {
           html += ` <div class="columns p-3">
             <div class ="column is-3" >
