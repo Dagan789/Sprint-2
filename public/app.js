@@ -175,7 +175,6 @@ function updateFavoriteList(postID, user_email, add_del) {
     }});
   };*/
 
-
 function toggleFavorite(id) {
   const heartIcon = document.getElementById(id);
   isFavorite = !isFavorite;
@@ -190,82 +189,44 @@ function toggleFavorite(id) {
   loadFavoritesFromLocalStorage();
 }
 
-//function to post outfit
-// function upload_post(coll, field, val) {
-//   //html code for each post
-//   let html = "";
+// function to post outfit
+function upload_post(coll, field, val) {
+  //html code for each post
+  let html = "";
 
-//   let certain_posts = "";
+  let certain_posts = "";
 
-//   //uploads only posts specified by given fields
-//   if (field && val) {
-//     certain_posts = db.collection(coll).where(field, "==", val);
-//   } else {
-//     certain_posts = db.collection(coll);
-//   }
+  //uploads only posts specified by given fields
+  if (field && val) {
+    certain_posts = db.collection(coll).where(field, "==", val);
+  } else {
+    certain_posts = db.collection(coll);
+  }
 
-// certain_posts.get().then((response) => {
-//   let posts = response.docs;
-//   if (posts.length == 0) {
-//     content.innerHTML = "No posts currently available";
-//     return;
-//   }
-// loop through each post
-//     posts.forEach((post) => {
-//       if (auth.currentUser.email == post.data().user_email) {
-//         html += `
-//               <div class="box">
-//                                   <h1 class="has-background-info-light p-1 title">${
-//                                     post.data().item
-//                                   } <button class="delete is-medium is-pulled-right is-danger" onclick="del_post('posts', '${
-//           post.id
-//         }')">X</button> </h1>
-//                                   <span class="is-size-5">Style: ${
-//                                     post.data().style
-//                                   }</span>
-//                                   <p class="m-3"> <img height="70" src="${
-//                                     post.data().image
-//                                   }" /> </p>
-//                                   <p class="is-size-7">Price: ${
-//                                     post.data().price
-//                                   }</p>
-//                                   <h2 class = "is-size-4 p-3">${
-//                                     post.data().description
-//                                   }</h2>
-//               </div> `;
-//       } else {
-//         html += `
-//               <div class="box">
-//                                   <h1 class="has-background-info-light p-1 title">${
-//                                     post.data().item
-//                                   }</h1>
-//                                   <span class="is-size-5">Style: ${
-//                                     post.data().style
-//                                   }</span>
-//                                   <p class="m-3"> <img height="70" src="${
-//                                     post.data().image
-//                                   }" /> </p>
-//                                   <p class="is-size-7">Price: ${
-//                                     post.data().price
-//                                   }</p>
-//                                   <h2 class = "is-size-4 p-3">${
-//                                     post.data().description
-//                                   }</h2>
-//               </div> `;
-//       }
-//     });
-
-//     //element('posts').classList.remove('is-hidden');
-
-//     // show on the content div
-//     r_e("posts").innerHTML = html;
-//   });
-// }
+  certain_posts.get().then((response) => {
+    let posts = response.docs;
+    if (posts.length == 0) {
+      content.innerHTML = "No posts currently available";
+      return;
+    }
+  });
+}
 
 //function to delete posts
 function del_post(coll, id) {
   db.collection(coll)
     .doc(id)
+    .delete()
+    .then(() => {
+      // load all posts
+      upload_post("posts");
+    });
+  r_e(id).classList.add("is-hidden");
+}
+function del_post_admin(coll, id) {
+  let real_id = id.slice(0, -1);
+  db.collection(coll)
+    .doc(real_id)
     .delete()
     .then(() => {
       // load all posts
@@ -526,6 +487,7 @@ function includes(arr1, arr2) {
 
 r_e("survey_form").addEventListener("submit", (event) => {
   event.preventDefault();
+  r_e("page-container").classList.add("is-hidden");
   let html = [];
   let filter = [
     r_e("gender_survey").value,
@@ -533,30 +495,32 @@ r_e("survey_form").addEventListener("submit", (event) => {
     r_e("style_survey").value,
   ];
   let price = r_e("price_survey").value;
-  auth.onAuthStateChanged((user)=>{
-    if (user){
-      if (auth.currentUser.email == "admin@admin.com"){
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      if (auth.currentUser.email == "admin@admin.com") {
         db.collection("posts")
-        .get()
-        .then((res) => {
-          let documents = res.docs;
-          documents.forEach((doc) => {
-            //console.log(includes(doc.data().category, filter));
-            if (
-              includes(doc.data().category, filter) &&
-              parseFloat(doc.data().price) <= price
-            ) {
-              html += ` <div class="columns p-3">
-                <div class ="column is-3" id = "${doc.data().item}" >
+          .get()
+          .then((res) => {
+            let documents = res.docs;
+            documents.forEach((doc) => {
+              //console.log(includes(doc.data().category, filter));
+              if (
+                includes(doc.data().category, filter) &&
+                parseFloat(doc.data().price) <= price
+              ) {
+                html += ` <div class="columns p-3" id = "${doc.id}1">
+                <div class ="column is-3"  >
                 <img
         src='${doc.data().image}'
         style="width: 100%; height: 100%; class="fixed-size-img";"
         alt="Clothing Image">
                 </div>
                 <div class ="column is-9">
-                <p class="title is-4">${doc.data().brand}  <button class="delete is-medium is-pulled-right is-danger" onclick="del_post('posts', '${
-                  doc.data().item
-                }')">X</button></p>
+                <p class="title is-4">${
+                  doc.data().brand
+                }  <button class="delete is-medium is-pulled-right is-danger" onclick="del_post_admin('posts', '${
+                  doc.id
+                }1')">X</button></p>
         <p class="subtitle is-4">${doc.data().item} </p>
         <p class="is-6 mb-2 is-size-5">${doc.data().price} USD</p>
         <div class="content has-text-left p-0">
@@ -565,35 +529,39 @@ r_e("survey_form").addEventListener("submit", (event) => {
           <span id="heartIcon" class="icon-heart">♡</span> 
       </button>
     
-          <a style = "font-size:20px" href='${doc.data().url}'>More Information</a>
+          <a style = "font-size:20px" href='${
+            doc.data().url
+          }'>More Information</a>
+
         </div>
+        <hr>
     
                 </div>
-              
-                </div> <hr>`;
-            }
-    
-            if (html.length > 0) {
-              r_e("survey_results").innerHTML = html;
-            } else {
-              r_e(
-                "survey_results"
-              ).innerHTML = `<p>Unfortunately, we do not have any recommended outfits at this time.</p>`;
-            }
+             
+                 </div> `;
+              }
+
+              if (html.length > 0) {
+                r_e("survey_results").innerHTML = html;
+              } else {
+                r_e(
+                  "survey_results"
+                ).innerHTML = `<p>Unfortunately, we do not have any recommended outfits at this time.</p>`;
+              }
+            });
           });
-        });
       } else {
         db.collection("posts")
-        .get()
-        .then((res) => {
-          let documents = res.docs;
-          documents.forEach((doc) => {
-            //console.log(includes(doc.data().category, filter));
-            if (
-              includes(doc.data().category, filter) &&
-              parseFloat(doc.data().price) <= price
-            ) {
-              html += ` <div class="columns p-3">
+          .get()
+          .then((res) => {
+            let documents = res.docs;
+            documents.forEach((doc) => {
+              //console.log(includes(doc.data().category, filter));
+              if (
+                includes(doc.data().category, filter) &&
+                parseFloat(doc.data().price) <= price
+              ) {
+                html += ` <div class="columns p-3">
                 <div class ="column is-3" >
                 <img
         src='${doc.data().image}'
@@ -610,27 +578,26 @@ r_e("survey_form").addEventListener("submit", (event) => {
           <span id="heartIcon" class="icon-heart">♡</span> 
       </button>
     
-          <a style = "font-size:20px" href='${doc.data().url}'>More Information</a>
+          <a style = "font-size:20px" href='${
+            doc.data().url
+          }'>More Information</a>
         </div>
     
                 </div>
               
-                </div> <hr>`;
-            }
-    
-            if (html.length > 0) {
-              r_e("survey_results").innerHTML = html;
-            } else {
-              r_e(
-                "survey_results"
-              ).innerHTML = `<p>Unfortunately, we do not have any recommended outfits at this time.</p>`;
-            }
+                <hr> </div> `;
+              }
+
+              if (html.length > 0) {
+                r_e("survey_results").innerHTML = html;
+              } else {
+                r_e(
+                  "survey_results"
+                ).innerHTML = `<p>Unfortunately, we do not have any recommended outfits at this time.</p>`;
+              }
+            });
           });
-        });
       }
     }
-  })
-
+  });
 });
-
-
