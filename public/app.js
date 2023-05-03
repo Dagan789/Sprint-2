@@ -41,14 +41,16 @@ function del_favorite(coll, id) {
         if (doc.exists) {
           const docdata = doc.data();
           if (docdata.hasOwnProperty("favorite")) {
-            docRef.update({favorite: firebase.firestore.FieldValue.arrayRemove(auth.currentUser.email)});
-            }
-          } 
-        })
-      };
-    });
+            docRef.update({
+              favorite: firebase.firestore.FieldValue.arrayRemove(auth.currentUser.email)
+            });
+          }
+        }
+      })
+    };
+  });
 
-  let id2 = id + "2";  
+  let id2 = id + "2";
   r_e(id2).classList.add("is-hidden");
 }
 
@@ -77,7 +79,9 @@ function updateFavoriteList(postID, add_del) {
               });
             }
           } else {
-            let favorite = { favorite: [auth.currentUser.email] };
+            let favorite = {
+              favorite: [auth.currentUser.email]
+            };
             docRef.update(favorite);
           }
         }
@@ -137,6 +141,7 @@ function del_post(coll, id) {
     });
   r_e(id).classList.add("is-hidden");
 }
+
 function del_post_admin(coll, id) {
   let real_id = id.slice(0, -1);
   db.collection(coll)
@@ -200,8 +205,6 @@ r_e("login_form").addEventListener("submit", (e) => {
   auth
     .signInWithEmailAndPassword(email, password)
     .then((user) => {
-      // console.log(`${user.user.email} is created!`)
-
       r_e("login_form").reset();
       r_e("mymodal_login").classList.remove("is-active");
       location.reload();
@@ -303,7 +306,6 @@ r_e("user_button").addEventListener(`click`, () => {
             if (doc.data().hasOwnProperty("favorite")) {
               doc.data().favorite.forEach((email) => {
                 if (auth.currentUser.email == email) {
-                  //console.log(doc.data())
                   html2 += `
                                 <div class="box" id = "${doc.id}2">
                                                     <h1 class="has-background-info-light p-1 title">${
@@ -408,6 +410,7 @@ r_e("submit_post").addEventListener("click", (e) => {
   r_e("posts").classList.remove("is-hidden");
   r_e("outfit_button").classList.remove("is-hidden");
 });
+
 function save_data(collection, data) {
   return new Promise((resolve, reject) => {
     db.collection(collection)
@@ -555,7 +558,6 @@ r_e("survey_form").addEventListener("submit", (event) => {
           .then((res) => {
             let documents = res.docs;
             documents.forEach((doc) => {
-              //console.log(includes(doc.data().category, filter));
               if (
                 includes(doc.data().category, filter) &&
                 parseFloat(doc.data().price) <= price
