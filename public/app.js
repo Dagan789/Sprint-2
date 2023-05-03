@@ -431,9 +431,10 @@ function displayNewPost(docId, post) {
           <i class="fa-solid fa-x has-text-black"></i>
         </button>
       </h1>
-      <span class="is-size-5">Style: ${post.style}</span>
+      
       <p class="m-3"><img height="70" src="${post.image}" /></p>
-      <p class="is-size-7">Price: ${post.price}</p>
+      <span class="is-size-5">Style: ${post.style}</span>
+      <p class="is-size-5">Price: ${post.price}</p>
       <h2 class="is-size-4 p-3">${post.description}</h2>
     </div>`;
 
