@@ -31,186 +31,50 @@ function grabCheckbox() {
   }
   return category_list;
 }
-// favorate button
-let isFavorite = false;
 
-// function toggleFavorite(id) {
-//   const heartIcon = document.getElementById(id);
-//   isFavorite = !isFavorite;
-
-//   if (isFavorite) {
-//     heartIcon.textContent = "♥";
-//   } else {
-//     heartIcon.textContent = "♡";
-//   }
-
-//   //grabbing signed in user email and uploading to posts collection favorited field
-// }
-
-/////// VERSION 1 ///////
-///////////////////////////
-// function toggleFavorite(postId) {
-//   const heartIcon = document.getElementById(postId);
-//   isFavorite = !isFavorite;
-
-//   if (isFavorite) {
-//     heartIcon.textContent = "♥";
-//     // Add user email to the favorites list of the post
-//     db.collection("posts")
-//       .doc(postId)
-//       .update({
-//         favorites: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email),
-//       });
-//   } else {
-//     heartIcon.textContent = "♡";
-//     // Remove user email from the favorites list of the post
-//     db.collection("posts")
-//       .doc(postId)
-//       .update({
-//         favorites: firebase.firestore.FieldValue.arrayRemove(auth.currentUser.email),
-//       });
-//   }
-// }
-
-// function showFavoritePosts() {
-//   let html = "";
-
-//   db.collection("posts")
-//     .where("favorites", "array-contains", auth.currentUser.email)
-//     .get()
-//     .then((response) => {
-//       let posts = response.docs;
-//       if (posts.length == 0) {
-//         content.innerHTML = "No favorite posts currently available";
-//         return;
-//       }
-//       // loop through each favorite post and display them
-//       // (you can reuse the code from the 'upload_post' function)
-//       // ...
-//     });
-// }
-
-/////// VERSION 1 ///////
-/////////////////////////
-// global variables
-//let favoritePosts = [];
-
-// functions
-
-//To persist the favorite posts data across page navigation, you can use browser storage options like localStorage or sessionStorage.
-// In this example, I'll use localStorage which stores data with no expiration time.
-// First, you'll need to save the favoritePosts array to the localStorage whenever it gets updated.
-// Then, on the initial page load, you should retrieve the saved data from localStorage and update the favoritePosts array.
-// Here's how you can modify the updateFavoriteList function and add a function to load the favorites from localStorage:
-
-/*  function saveFavoritesToLocalStorage() {
-  localStorage.setItem("favoritePosts", JSON.stringify(favoritePosts));
-}
-
-function loadFavoritesFromLocalStorage() {
-  const storedFavorites = localStorage.getItem("favoritePosts");
-
-  if (storedFavorites) {
-    favoritePosts = JSON.parse(storedFavorites);
-    let html = "";
-    favoritePosts.forEach((post) => {
-      html += `
-        <div class="favorite-post">
-          <img src="${post.image}" alt="Post Image" />
-          <p>${post.item}</p>
-        </div>
-      `;
-    });
-    document.querySelector("#favorite_posts").innerHTML = html;
-  }
-}
-
-function updateFavoriteList(postID, add) {
-  const postRef = db.collection("posts").doc(postID);
-  postRef.get().then((doc) => {
-    if (doc.exists) {
-      const postData = doc.data();
-      if (add) {
-        favoritePosts.push(postData);
-      } else {
-        favoritePosts = favoritePosts.filter(
-          (post) => post.item !== postData.item
-        );
-      }
-      let html = "";
-      favoritePosts.forEach((post) => {
-        html += `
-          <div class="favorite-post">
-            <img src="${post.image}" alt="Post Image" />
-            <p>${post.item}</p>
-          </div>
-        `;
-      });
-      document.querySelector("#favorite_posts").innerHTML = html;
-    } else {
-      console.log("No such document!");
-    }
-    saveFavoritesToLocalStorage();
-  });
-}
-let favoriteFieldExists = false;
-
-function updateFavoriteList(postID, user_email, add_del) {
-  console.log(user_email)
-  const postRef = db.collection("posts").doc(postID);
-  console.log(doc.id, " => ", doc.data());
-  postRef.get().then((doc) => {
-    if (doc.exists) {
-      if(add_del){
-        if (!favoriteFieldExists) {
-          db.collection("posts").doc(postID).set({favorites: user_email}, {merge: true});
-        }
-        else{
-          db.collection("posts").doc(doc.id).updateData({'favorites': ([user_email])})
-        };
-      };
-      else {
-
-      }
-    }});
-  };*/
-
-
-//function updateFavoriteList(postID, user_email, add_del) {
   
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! FAVORITE BUTTON WIP ~~~~~~~~~~~~~!!!!!!!!!!!!!!!!!!
 
+function updateFavoriteList(postID, add_del) {
   auth.onAuthStateChanged((user)=>{
     if (user) {
-        let docRef = db.collection("posts").doc("pLehWlSCh20U52skfE1K")
+        let docRef = db.collection("posts").doc(postID)
+         
         docRef.get().then((doc) => {
           if(doc.exists){
             const docdata = doc.data();
             if (docdata.hasOwnProperty("favorite")){
-              docRef.update({"favorite": firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email)});
+              if (add_del){
+                docRef.update({"favorite": firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email)});
+              }
+              else{
+                docRef.update({"favorite": firebase.firestore.FieldValue.delete(auth.currentUser.email)});
+              }
             }
             else {
               let favorite = {'favorite': [auth.currentUser.email]}
               docRef.update(favorite);
             }
-        }
-      })
           }
-        });
+        })}
+})};
+
+let isFavorite = false;
 
 function toggleFavorite(id) {
   const heartIcon = document.getElementById(id);
+
   isFavorite = !isFavorite;
 
   if (isFavorite) {
     heartIcon.textContent = "♥";
-    //updateFavoriteList(id, r_e("user_email").value, add);
+    updateFavoriteList(id, true);
   } else {
     heartIcon.textContent = "♡";
-    //updateFavoriteList(id, r_e("user_email").value, delete);
+    updateFavoriteList(id, false);
   }
-  loadFavoritesFromLocalStorage();
-}
+  //loadFavoritesFromLocalStorage();
+};
 
 // function to post outfit
 function upload_post(coll, field, val) {
@@ -382,6 +246,7 @@ r_e("user_button").addEventListener(`click`, () => {
         .then((res) => {
           let documents = res.docs;
           let html = `<h1 class="has-text-centered has-text-grey-dark has-text-weight-bold is-size-2">My Posts</h1>`;
+          let html2 = '<h1 id="main_msg" class="has-text-centered has-text-grey-dark has-text-weight-bold is-size-2">My Favorites</h1>';
           documents.forEach((doc) => {
             if (auth.currentUser.email == doc.data().user_email) {
               html += `
@@ -405,8 +270,35 @@ r_e("user_button").addEventListener(`click`, () => {
                                                 }</h2>
                             </div> `;
             }
+            if (doc.data().hasOwnProperty("favorite")){
+              doc.data().favorite.forEach((email) => {
+                if (auth.currentUser.email == email){
+                  //console.log(doc.data())
+                  html2 += `
+                                <div class="box" id = "${doc.id}">
+                                                    <h1 class="has-background-info-light p-1 title">${
+                                                      doc.data().item
+                                                    } <button class="delete is-medium is-pulled-right is-danger" onclick="del_post('posts', '${
+                    doc.id
+                  }')">X</button> </h1>
+                                                    <span class="is-size-5">Style: ${
+                                                      doc.data().category[1]
+                                                    }</span>
+                                                    <p class="m-3"> <img height="70" src="${
+                                                      doc.data().image
+                                                    }" /> </p>
+                                                    <p class="is-size-5">Price: ${
+                                                      doc.data().price
+                                                    }</p>
+                                                    <h2 class = "is-size-4 p-3">${
+                                                      doc.data().description
+                                                    }</h2>
+                                </div> `;
+                }})
+            }
           });
           r_e("posts").innerHTML = html;
+          r_e("favorite_posts").innerHTML = html2;
         });
     }
   });
@@ -485,7 +377,7 @@ r_e("form_topost").addEventListener("submit", (e) => {
   //r_e("form_topost").classList.add("is-hidden");
   r_e("users_page").classList.remove("is-hidden");
   r_e("outfit_button").classList.remove("is-hidden");
-  r_e("posts").classList.remove("is-hidden");
+  //r_e("posts").classList.remove("is-hidden");
 });
 
 // Survey button
