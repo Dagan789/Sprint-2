@@ -286,9 +286,10 @@ r_e("user_button").addEventListener(`click`, () => {
                                 <div class="box" id = "${doc.id}">
                                                     <h1 class="has-background-info-light p-1 title">${
                                                       doc.data().item
-                                                    } <button class="delete is-medium is-pulled-right is-danger" onclick="del_post('posts', '${
+                                                    } <button class=" is-medium is-pulled-right has-background-danger" onclick="del_post('posts', '${
                     doc.id
-                  }')">X</button> </h1>
+                  }')"><i
+                  class="fa-solid fa-x has-text-white"></i></button> </h1>
                                                     <span class="is-size-5">Style: ${
                                                       doc.data().category[1]
                                                     }</span>
@@ -397,9 +398,10 @@ r_e("submit_post").addEventListener("click", (e) => {
                             <div class="box" id = "${doc.id}">
                                                 <h1 class="has-background-info-light p-1 title">${
                                                   doc.data().item
-                                                } <button class="delete is-medium is-pulled-right is-danger" onclick="del_post('posts', '${
+                                                } <button class=" is-medium is-pulled-right has-background-danger" onclick="del_post('posts', '${
                 doc.id
-              }')">X</button> </h1>
+              }')"><i
+              class="fa-solid fa-x has-text-white"></i></button> </h1>
                                                 <span class="is-size-5">Style: ${
                                                   doc.data().style
                                                 }</span>
@@ -477,9 +479,10 @@ r_e("survey_form").addEventListener("submit", (event) => {
                 <div class ="column is-9">
                 <p class="title is-4">${
                   doc.data().brand
-                }  <button class="delete is-medium is-pulled-right is-danger" onclick="del_post_admin('posts', '${
+                }  <button class=" is-medium is-pulled-right has-background-danger" onclick="del_post_admin('posts', '${
                   doc.id
-                }1')">X</button></p>
+                }1')"><i
+                class="fa-solid fa-x has-text-white"></i></button></p>
         <p class="subtitle is-4">${doc.data().item} </p>
         <p class="is-6 mb-2 is-size-5">${doc.data().price} USD</p>
         <div class="content has-text-left p-0">
