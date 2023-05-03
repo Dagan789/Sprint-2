@@ -117,27 +117,6 @@ function del_post(coll, id) {
     });
   r_e(id).classList.add("is-hidden");
 }
-
-function del_favorite(coll, id) {
-  auth.onAuthStateChanged((user) => {
-    if (user) {
-      let docRef = db.collection(coll).doc(id);
-      docRef.get().then((doc) => {
-        if (doc.exists) {
-          const docdata = doc.data();
-          if (docdata.hasOwnProperty("favorite")) {
-            docRef.update({favorite: firebase.firestore.FieldValue.arrayRemove(auth.currentUser.email)});
-            }
-          } 
-        })
-      };
-    });
-
-  let id2 = id + "2";  
-  r_e(id2).classList.add("is-hidden");
-}
-
-
 function del_post_admin(coll, id) {
   let real_id = id.slice(0, -1);
   db.collection(coll)
@@ -282,10 +261,10 @@ r_e("user_button").addEventListener(`click`, () => {
                             <div class="box" id = "${doc.id}">
                                                 <h1 class="has-background-info-light p-1 title">${
                                                   doc.data().item
-                                                } <button class="is-small is-pulled-right has-background-danger" onclick="del_post('posts', '${
+                                                } <button class="is-small is-pulled-right" onclick="del_post('posts', '${
                 doc.id
               }')"><i
-              class="fa-solid fa-x has-text-white"></i></button> </h1>
+              class="fa-solid fa-x has-text-black"></i></button> </h1>
                                                 <span class="is-size-5">Style: ${
                                                   doc.data().category[1]
                                                 }</span>
@@ -305,13 +284,13 @@ r_e("user_button").addEventListener(`click`, () => {
                 if (auth.currentUser.email == email) {
                   //console.log(doc.data())
                   html2 += `
-                                <div class="box" id = "${doc.id}2">
+                                <div class="box" id = "${doc.id}">
                                                     <h1 class="has-background-info-light p-1 title">${
                                                       doc.data().item
-                                                    } <button class=" is-small is-pulled-right has-background-danger" onclick="del_favorite('posts', '${
+                                                    } <button class=" is-small is-pulled-right " onclick="del_post('posts', '${
                     doc.id
                   }')"><i
-                  class="fa-solid fa-x has-text-white"></i></button> </h1>
+                  class="fa-solid fa-x has-text-black"></i></button> </h1>
                                                     <span class="is-size-5">Style: ${
                                                       doc.data().category[1]
                                                     }</span>
@@ -348,8 +327,6 @@ r_e("user_button").addEventListener(`click`, () => {
 
 //Upload outfit button
 r_e("outfit_button").addEventListener("click", () => {
-  //console.log("the outfit button works!")
-  //r_e("favorites").classList.add("is-hidden");
   r_e("outfit_button").classList.add("is-hidden");
   r_e("posts").classList.add("is-hidden");
   r_e("upload_page").classList.remove("is-hidden");
@@ -371,7 +348,6 @@ r_e("submit_post").addEventListener("click", (e) => {
 
   let file = r_e("outfit_img").files[0];
 
-  //setting distinct name for each image using the date
   let image = formatDate(new Date()) + "_" + file.name;
 
   const task = ref.child(image).put(file);
@@ -379,8 +355,6 @@ r_e("submit_post").addEventListener("click", (e) => {
   task
     .then((snapshot) => snapshot.ref.getDownloadURL())
     .then((file) => {
-      //url of the image is ready now
-      //wrapping objecting before sending to Firebase
       let userPost = {
         item: r_e("clothing_name").value,
         price: r_e("price").value,
@@ -396,62 +370,86 @@ r_e("submit_post").addEventListener("click", (e) => {
         url: r_e("outfits_url").value,
       };
 
-      //send new object to firebase
-
-      save_data("posts", userPost);
+      save_data("posts", userPost)
+        .then((docRef) => {
+          displayNewPost(docRef.id, userPost);
+        })
+        .catch((error) => {
+          console.error("Error adding document: ", error);
+        });
 
       setTimeout(() => {
         upload_post("posts");
       }, 1500);
     });
 
-  //r_e("form_topost").classList.add("is-hidden");
   r_e("posts").classList.remove("is-hidden");
-  auth.onAuthStateChanged((user) => {
-    if (user) {
-      db.collection("posts")
-        .get()
-        .then((res) => {
-          let documents = res.docs;
-          let html = `<h1 class="has-text-centered has-text-grey-dark has-text-weight-bold is-size-2">My Posts</h1>`;
-          documents.forEach((doc) => {
-            if (auth.currentUser.email == doc.data().user_email) {
-              html += `
-                            <div class="box" id = "${doc.id}">
-                                                <h1 class="has-background-info-light p-1 title">${
-                                                  doc.data().item
-                                                } <button class="is-small is-pulled-right has-background-danger" onclick="del_post('posts', '${
-                doc.id
-              }')"><i
-              class="fa-solid fa-x has-text-white"></i></button> </h1>
-                                                <span class="is-size-5">Style: ${
-                                                  doc.data().style
-                                                }</span>
-                                                <p class="m-3"> <img height="70" src="${
-                                                  doc.data().image
-                                                }" /> </p>
-                                                <p class="is-size-7">Price: ${
-                                                  doc.data().price
-                                                }</p>
-                                                <h2 class = "is-size-4 p-3">${
-                                                  doc.data().description
-                                                }</h2>
-                            </div> `;
-            }
-          });
-          r_e("posts").innerHTML = html;
-        });
-    }
+  r_e("outfit_button").classList.remove("is-hidden");
+});
+function save_data(collection, data) {
+  return new Promise((resolve, reject) => {
+    db.collection(collection)
+      .add(data)
+      .then((docRef) => {
+        console.log("Document written with ID: ", docRef.id);
+        resolve(docRef);
+      })
+      .catch((error) => {
+        console.error("Error adding document: ", error);
+        reject(error);
+      });
   });
+}
+
+function displayNewPost(docId, post) {
+  const html = `
+    <div class="box" id="${docId}">
+      <h1 class="has-background-info-light p-1 title">${post.item}
+        <button class="is-small is-pulled-right " onclick="del_post('posts', '${docId}')">
+          <i class="fa-solid fa-x has-text-black"></i>
+        </button>
+      </h1>
+      <span class="is-size-5">Style: ${post.style}</span>
+      <p class="m-3"><img height="70" src="${post.image}" /></p>
+      <p class="is-size-7">Price: ${post.price}</p>
+      <h2 class="is-size-4 p-3">${post.description}</h2>
+    </div>`;
+
+  r_e("posts").insertAdjacentHTML("beforeend", html);
+}
+
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    db.collection("posts")
+      .where("user_email", "==", user.email)
+      .orderBy("timestamp", "desc")
+      .onSnapshot((querySnapshot) => {
+        let html = `<h1 class="has-text-centered has-text-grey-dark has-text-weight-bold is-size-2">My Posts</h1>`;
+        querySnapshot.forEach((doc) => {
+          const post = doc.data();
+          html += `
+            <div class="box" id="${doc.id}">
+              <h1 class="has-background-info-light p-1 title">${post.item}
+                <button class="is-small is-pulled-right " onclick="del_post('posts', '${doc.id}')">
+                  <i class="fa-solid fa-x has-text-black"></i>
+                </button>
+              </h1>
+              <span class="is-size-5">Style: ${post.style}</span>
+              <p class="m-3"><img height="70" src="${post.image}" /></p>
+              <p class="is-size-7">Price: ${post.price}</p>
+              <h2 class="is-size-4 p-3">${post.description}</h2>
+            </div>`;
+        });
+        r_e("posts").innerHTML = html;
+      });
+  }
 });
 
 // Survey button
 r_e("survey_button").addEventListener(`click`, () => {
-  // r_e("footer").classList.add("is-hidden");
   r_e("outfits").classList.add("is-hidden");
   r_e("users_page").classList.add("is-hidden");
   r_e("survey_page").classList.remove("is-hidden");
-  // r_e("outfits_title").classList.add("is-hidden");
 });
 
 function updateBudgetLabel(value) {
@@ -461,10 +459,6 @@ function updateBudgetLabel(value) {
 function includes(arr1, arr2) {
   return arr2.every((val) => val === "null" || arr1.includes(val));
 }
-
-/*r_e("favorite_btn").addEventListener("click", () => {
-  r_e("favorite_btn").innerHTML = "<button id = " + "favorite_btn" + "style='font-size:20px color: red'> Favorited <i class="+ 'fa fa-heart'+ "> + </i></button>";
-});*/
 
 //////////////////////////////////////////////////////////// SURVEY + RESULTS  ////////////////////////////////////////////////////////////
 
@@ -486,7 +480,6 @@ r_e("survey_form").addEventListener("submit", (event) => {
           .then((res) => {
             let documents = res.docs;
             documents.forEach((doc) => {
-              //console.log(includes(doc.data().category, filter));
               if (
                 includes(doc.data().category, filter) &&
                 parseFloat(doc.data().price) <= price
@@ -501,10 +494,9 @@ r_e("survey_form").addEventListener("submit", (event) => {
                 <div class ="column is-9">
                 <p class="title is-4">${
                   doc.data().brand
-                }  <button class=" is-small is-pulled-right has-background-danger" onclick="del_post_admin('posts', '${
-                  doc.id
-                }1')"><i
-                class="fa-solid fa-x has-text-white"></i></button></p>
+                }  <button class=" is-small is-pulled-right 
+                " onclick="del_post_admin('posts', '${doc.id}1')"><i
+                class="fa-solid fa-x has-text-black"></i></button></p>
         <p class="subtitle is-4">${doc.data().item} </p>
         <p class="is-6 mb-2 is-size-5">${doc.data().price} USD</p>
         <div class="content has-text-left p-0">
