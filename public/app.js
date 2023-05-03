@@ -265,15 +265,17 @@ r_e("user_button").addEventListener(`click`, () => {
                 doc.id
               }')"><i
               class="fa-solid fa-x has-text-black"></i></button> </h1>
-                                                <span class="is-size-5">Style: ${
-                                                  doc.data().category[1]
-                                                }</span>
+                                                
                                                 <p class="m-3"> <img height="70" src="${
                                                   doc.data().image
                                                 }" /> </p>
+                                                <span class="is-size-5">Style: ${
+                                                  doc.data().category[1]
+                                                }</span>
                                                 <p class="is-size-5">Price: $${
                                                   doc.data().price
                                                 }</p>
+                                                
                                                 <h2 class = "is-size-4 p-3">${
                                                   doc.data().description
                                                 }</h2>
@@ -291,15 +293,17 @@ r_e("user_button").addEventListener(`click`, () => {
                     doc.id
                   }')"><i
                   class="fa-solid fa-x has-text-black"></i></button> </h1>
-                                                    <span class="is-size-5">Style: ${
-                                                      doc.data().category[1]
-                                                    }</span>
+                                                   
                                                     <p class="m-3"> <img height="70" src="${
                                                       doc.data().image
                                                     }" /> </p>
+                                                    <span class="is-size-5">Style: ${
+                                                      doc.data().category[1]
+                                                    }</span>
                                                     <p class="is-size-5">Price: $${
                                                       doc.data().price
                                                     }</p>
+                                                    
                                                     <h2 class = "is-size-4 p-3">${
                                                       doc.data().description
                                                     }</h2>
