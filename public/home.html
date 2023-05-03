@@ -151,6 +151,23 @@
       object-fit: contain;
       object-position: center;
     }
+
+    .typing-message {
+      position: relative;
+      padding: 10px;
+      border-radius: 5px;
+      z-index: 9999;
+      display: none;
+    }
+
+    .message-text {
+      font-family: 'Trirong serif';
+      font-weight: bold;
+      font-size: 5vh;
+      color: #000;
+      margin: 0;
+      padding: 0;
+    }
   </style>
   <script src="https://kit.fontawesome.com/8a80b728dc.js" crossorigin="anonymous"></script>
   <title>OutfitPro</title>
@@ -306,11 +323,16 @@
         <button class="next" onclick="nextImage()">&gt;</button>
       </div>
       <div class="button-container">
+
+        <div class="typing-message">
+          <h1 class="message-text has-text-dark"></h1>
+        </div>
+
         <button class="is-hidden button is-rounded is-large is-responsive" id="survey_button">Take
           the Survey!</button>
-        <h1 id="content_msg" class="is-active has-text-centered has-text-dark has-text-weight-bold is-size-4"
+        <h1 id="content_msg" class="is-hidden has-text-centered has-text-dark has-text-weight-bold is-size-4"
           style="font-family: 'Trirong serif'">
-          Sign in or sign up today to get your Outfits, and share them with other users!</h1>
+          Sign in or sign up to find your fit today!</h1>
       </div>
 
 
@@ -326,17 +348,17 @@
           Favorites</h1>
         <div class="container" id="content">
           <h1 id="content_msg" class="has-text-centered has-text-info has-text-weight-bold">
-   
+
         </div>
       </div>
 
       <!-- UPLOAD OUTFITS IN MIDDLE COLUMN HERE -->
       <div class="column has-text-centered is-one-third" id="uploads">
         <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-          
-            <div class="button is-centered is-rounded is-large is-responsive" id="outfit_button">Upload an
-              Outfit
-            
+
+          <div class="button is-centered is-rounded is-large is-responsive" id="outfit_button">Upload an
+            Outfit
+
           </div>
         </div>
       </div>
@@ -344,10 +366,10 @@
 
       <!-- POSTS :: right column -->
       <div class="column has-text-centered is-one-third" id="posts">
-       
 
 
-       
+
+
 
       </div>
 

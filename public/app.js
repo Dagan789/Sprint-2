@@ -176,6 +176,32 @@ function nextImage() {
   images[currentIndex].style.display = "block";
 }
 
+function showTypingMessage(message) {
+  var typingMessage = document.querySelector(".typing-message");
+  var messageText = typingMessage.querySelector(".message-text");
+
+  messageText.innerHTML = "";
+
+  typingMessage.style.display = "block";
+
+  var i = 0;
+  var typingInterval = setInterval(function () {
+    messageText.innerHTML += message.charAt(i);
+    i++;
+    if (i > message.length) {
+      clearInterval(typingInterval);
+      setTimeout(function () {
+        typingMessage.style.display = "none";
+      }, 500);
+    }
+  }, 100);
+
+  setTimeout(() => {
+    r_e("content_msg").classList.remove("is-hidden");
+  }, 3500);
+}
+
+
 //////////////////////////////////////////////////////////// USER SIGN-UP ////////////////////////////////////////////////////////////
 r_e("signup_form").addEventListener("submit", (e) => {
   e.preventDefault();
@@ -234,6 +260,9 @@ auth.onAuthStateChanged((user) => {
     r_e("content_msg").classList.add("is-hidden");
     r_e("survey_button").classList.remove("is-hidden");
   } else {
+
+    showTypingMessage("Welcome to OutfitPro!");
+
     // remove user email from nav bar
     r_e("user_email").innerHTML = "";
     r_e("signout").classList.add("is-hidden");
