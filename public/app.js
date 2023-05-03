@@ -261,9 +261,10 @@ r_e("user_button").addEventListener(`click`, () => {
                             <div class="box" id = "${doc.id}">
                                                 <h1 class="has-background-info-light p-1 title">${
                                                   doc.data().item
-                                                } <button class="delete is-medium is-pulled-right is-danger" onclick="del_post('posts', '${
+                                                } <button class="is-small is-pulled-right has-background-danger" onclick="del_post('posts', '${
                 doc.id
-              }')">X</button> </h1>
+              }')"><i
+              class="fa-solid fa-x has-text-white"></i></button> </h1>
                                                 <span class="is-size-5">Style: ${
                                                   doc.data().category[1]
                                                 }</span>
@@ -286,7 +287,7 @@ r_e("user_button").addEventListener(`click`, () => {
                                 <div class="box" id = "${doc.id}">
                                                     <h1 class="has-background-info-light p-1 title">${
                                                       doc.data().item
-                                                    } <button class=" is-medium is-pulled-right has-background-danger" onclick="del_post('posts', '${
+                                                    } <button class=" is-small is-pulled-right has-background-danger" onclick="del_post('posts', '${
                     doc.id
                   }')"><i
                   class="fa-solid fa-x has-text-white"></i></button> </h1>
@@ -398,7 +399,7 @@ r_e("submit_post").addEventListener("click", (e) => {
                             <div class="box" id = "${doc.id}">
                                                 <h1 class="has-background-info-light p-1 title">${
                                                   doc.data().item
-                                                } <button class=" is-medium is-pulled-right has-background-danger" onclick="del_post('posts', '${
+                                                } <button class="is-small is-pulled-right has-background-danger" onclick="del_post('posts', '${
                 doc.id
               }')"><i
               class="fa-solid fa-x has-text-white"></i></button> </h1>
@@ -479,7 +480,7 @@ r_e("survey_form").addEventListener("submit", (event) => {
                 <div class ="column is-9">
                 <p class="title is-4">${
                   doc.data().brand
-                }  <button class=" is-medium is-pulled-right has-background-danger" onclick="del_post_admin('posts', '${
+                }  <button class=" is-small is-pulled-right has-background-danger" onclick="del_post_admin('posts', '${
                   doc.id
                 }1')"><i
                 class="fa-solid fa-x has-text-white"></i></button></p>
