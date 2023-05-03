@@ -43,6 +43,7 @@
       max-height: 30%;
       padding-top: 5%;
       background: transparent;
+      font-family: 'Trirong serif';
       /* Footer height */
     }
 
@@ -103,6 +104,11 @@
 
       border: 2px solid black;
 
+    }
+
+    #survey_button {
+      background: linear-gradient(90deg, #97978F 40%, #C4B3A9 60%);
+      font-family: 'Trirong serif';
     }
 
     button:hover {
@@ -295,7 +301,7 @@
         <button class="next" onclick="nextImage()">&gt;</button>
       </div>
       <div class="button-container">
-        <button class="is-hidden button is-white is-size-6" style="font-family: 'Trirong serif'" id="survey_button">Take
+        <button class="is-hidden button is-large is-responsive" id="survey_button">Take
           the Survey!</button>
         <h1 id="content_msg" class="is-active has-text-centered has-text-white has-text-weight-bold is-size-4"
           style="font-family: 'Trirong serif'">
@@ -407,7 +413,7 @@
                       <option value="null">Select a Clothing Gender: </option>
                       <option value="men">Men's</option>
                       <option value="women">Women's</option>
-                      <option value="neutral">Netural</option>
+                      <option value="neutral">Neutral</option>
 
                     </select>
                   </div>
