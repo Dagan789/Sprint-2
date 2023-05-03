@@ -32,6 +32,26 @@ function grabCheckbox() {
   return category_list;
 }
 
+
+function del_favorite(coll, id) {
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      let docRef = db.collection(coll).doc(id);
+      docRef.get().then((doc) => {
+        if (doc.exists) {
+          const docdata = doc.data();
+          if (docdata.hasOwnProperty("favorite")) {
+            docRef.update({favorite: firebase.firestore.FieldValue.arrayRemove(auth.currentUser.email)});
+            }
+          } 
+        })
+      };
+    });
+
+  let id2 = id + "2";  
+  r_e(id2).classList.add("is-hidden");
+}
+
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! FAVORITE BUTTON WIP ~~~~~~~~~~~~~!!!!!!!!!!!!!!!!!!
 
 function updateFavoriteList(postID, add_del) {
@@ -269,13 +289,12 @@ r_e("user_button").addEventListener(`click`, () => {
                                                 <p class="m-3"> <img height="70" src="${
                                                   doc.data().image
                                                 }" /> </p>
-                                                <span class="is-size-5">Style: ${
-                                                  doc.data().category[1]
-                                                }</span>
                                                 <p class="is-size-5">Price: $${
                                                   doc.data().price
                                                 }</p>
-                                                
+                                                <p class="is-size-5">Style: ${
+                                                  doc.data().category[1]
+                                                }</p>
                                                 <h2 class = "is-size-4 p-3">${
                                                   doc.data().description
                                                 }</h2>
@@ -286,24 +305,23 @@ r_e("user_button").addEventListener(`click`, () => {
                 if (auth.currentUser.email == email) {
                   //console.log(doc.data())
                   html2 += `
-                                <div class="box" id = "${doc.id}">
+                                <div class="box" id = "${doc.id}2">
                                                     <h1 class="has-background-info-light p-1 title">${
                                                       doc.data().item
-                                                    } <button class=" is-small is-pulled-right " onclick="del_post('posts', '${
-                    doc.id
-                  }')"><i
+                                                    } <button class=" is-small is-pulled-right" onclick="del_favorite('posts', '${
+                                                      doc.id
+                                                    }')"><i
                   class="fa-solid fa-x has-text-black"></i></button> </h1>
                                                    
                                                     <p class="m-3"> <img height="70" src="${
                                                       doc.data().image
                                                     }" /> </p>
-                                                    <span class="is-size-5">Style: ${
-                                                      doc.data().category[1]
-                                                    }</span>
                                                     <p class="is-size-5">Price: $${
                                                       doc.data().price
                                                     }</p>
-                                                    
+                                                    <p class="is-size-5">Style: ${
+                                                      doc.data().category[1]
+                                                    }</p>
                                                     <h2 class = "is-size-4 p-3">${
                                                       doc.data().description
                                                     }</h2>
