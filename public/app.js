@@ -270,7 +270,7 @@ r_e("user_button").addEventListener(`click`, () => {
                                                 <p class="m-3"> <img height="70" src="${
                                                   doc.data().image
                                                 }" /> </p>
-                                                <p class="is-size-5">Price: ${
+                                                <p class="is-size-5">Price: $${
                                                   doc.data().price
                                                 }</p>
                                                 <h2 class = "is-size-4 p-3">${
@@ -295,7 +295,7 @@ r_e("user_button").addEventListener(`click`, () => {
                                                     <p class="m-3"> <img height="70" src="${
                                                       doc.data().image
                                                     }" /> </p>
-                                                    <p class="is-size-5">Price: ${
+                                                    <p class="is-size-5">Price: $${
                                                       doc.data().price
                                                     }</p>
                                                     <h2 class = "is-size-4 p-3">${
