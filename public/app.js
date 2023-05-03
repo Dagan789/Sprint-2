@@ -93,7 +93,7 @@ let isFavorite = false;
 /////// VERSION 1 ///////
 /////////////////////////
 // global variables
-let favoritePosts = [];
+//let favoritePosts = [];
 
 // functions
 
@@ -180,28 +180,23 @@ function updateFavoriteList(postID, user_email, add_del) {
   
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! FAVORITE BUTTON WIP ~~~~~~~~~~~~~!!!!!!!!!!!!!!!!!!
 
- /* auth.onAuthStateChanged((user)=>{
+  auth.onAuthStateChanged((user)=>{
     if (user) {
-        let docRef = db.collection("posts").doc("KAd5Cbpc3AEiXS9t7oUf")
+        let docRef = db.collection("posts").doc("pLehWlSCh20U52skfE1K")
         docRef.get().then((doc) => {
           if(doc.exists){
             const docdata = doc.data();
             if (docdata.hasOwnProperty("favorite")){
-              docRef.update({"favorite": db.FieldValue.arrayUnion(user_email)});
-            }
+              docRef.update({"favorite": firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email)});
             }
             else {
               let favorite = {'favorite': [auth.currentUser.email]}
               docRef.update(favorite);
             }
-          })
+        }
+      })
           }
-        });*/
-        
-        //docRef.update(favorite);
-        
-    
-//};
+        });
 
 function toggleFavorite(id) {
   const heartIcon = document.getElementById(id);
@@ -397,12 +392,12 @@ r_e("user_button").addEventListener(`click`, () => {
                 doc.id
               }')">X</button> </h1>
                                                 <span class="is-size-5">Style: ${
-                                                  doc.data().style
+                                                  doc.data().category[1]
                                                 }</span>
                                                 <p class="m-3"> <img height="70" src="${
                                                   doc.data().image
                                                 }" /> </p>
-                                                <p class="is-size-7">Price: ${
+                                                <p class="is-size-5">Price: ${
                                                   doc.data().price
                                                 }</p>
                                                 <h2 class = "is-size-4 p-3">${
@@ -417,8 +412,8 @@ r_e("user_button").addEventListener(`click`, () => {
   });
 
   r_e("outfits").classList.add("is-hidden");
-  // r_e("footer").classList.add("is-hidden");
-  // r_e("page-container").classList.add("is-hidden");
+  r_e("footer").classList.add("is-hidden");
+  r_e("page-container").classList.add("is-hidden");
   r_e("survey_page").classList.add("is-hidden");
   r_e("users_page").classList.remove("is-hidden");
   r_e("outfit_button").classList.remove("is-hidden");
@@ -484,9 +479,12 @@ r_e("form_topost").addEventListener("submit", (e) => {
       setTimeout(() => {
         upload_post("posts");
       }, 1500);
+      r_e("posts").classList.remove("is-hidden");
     });
 
   //r_e("form_topost").classList.add("is-hidden");
+  r_e("users_page").classList.remove("is-hidden");
+  r_e("outfit_button").classList.remove("is-hidden");
   r_e("posts").classList.remove("is-hidden");
 });
 
