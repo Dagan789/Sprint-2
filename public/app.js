@@ -32,32 +32,39 @@ function grabCheckbox() {
   return category_list;
 }
 
-  
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! FAVORITE BUTTON WIP ~~~~~~~~~~~~~!!!!!!!!!!!!!!!!!!
 
 function updateFavoriteList(postID, add_del) {
-  auth.onAuthStateChanged((user)=>{
+  auth.onAuthStateChanged((user) => {
     if (user) {
-        let docRef = db.collection("posts").doc(postID)
-         
-        docRef.get().then((doc) => {
-          if(doc.exists){
-            const docdata = doc.data();
-            if (docdata.hasOwnProperty("favorite")){
-              if (add_del){
-                docRef.update({"favorite": firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email)});
-              }
-              else{
-                docRef.update({"favorite": firebase.firestore.FieldValue.delete(auth.currentUser.email)});
-              }
+      let docRef = db.collection("posts").doc(postID);
+
+      docRef.get().then((doc) => {
+        if (doc.exists) {
+          const docdata = doc.data();
+          if (docdata.hasOwnProperty("favorite")) {
+            if (add_del) {
+              docRef.update({
+                favorite: firebase.firestore.FieldValue.arrayUnion(
+                  auth.currentUser.email
+                ),
+              });
+            } else {
+              docRef.update({
+                favorite: firebase.firestore.FieldValue.delete(
+                  auth.currentUser.email
+                ),
+              });
             }
-            else {
-              let favorite = {'favorite': [auth.currentUser.email]}
-              docRef.update(favorite);
-            }
+          } else {
+            let favorite = { favorite: [auth.currentUser.email] };
+            docRef.update(favorite);
           }
-        })}
-})};
+        }
+      });
+    }
+  });
+}
 
 let isFavorite = false;
 
@@ -74,7 +81,7 @@ function toggleFavorite(id) {
     updateFavoriteList(id, false);
   }
   //loadFavoritesFromLocalStorage();
-};
+}
 
 // function to post outfit
 function upload_post(coll, field, val) {
@@ -246,7 +253,8 @@ r_e("user_button").addEventListener(`click`, () => {
         .then((res) => {
           let documents = res.docs;
           let html = `<h1 class="has-text-centered has-text-grey-dark has-text-weight-bold is-size-2">My Posts</h1>`;
-          let html2 = '<h1 id="main_msg" class="has-text-centered has-text-grey-dark has-text-weight-bold is-size-2">My Favorites</h1>';
+          let html2 =
+            '<h1 id="main_msg" class="has-text-centered has-text-grey-dark has-text-weight-bold is-size-2">My Favorites</h1>';
           documents.forEach((doc) => {
             if (auth.currentUser.email == doc.data().user_email) {
               html += `
@@ -270,9 +278,9 @@ r_e("user_button").addEventListener(`click`, () => {
                                                 }</h2>
                             </div> `;
             }
-            if (doc.data().hasOwnProperty("favorite")){
+            if (doc.data().hasOwnProperty("favorite")) {
               doc.data().favorite.forEach((email) => {
-                if (auth.currentUser.email == email){
+                if (auth.currentUser.email == email) {
                   //console.log(doc.data())
                   html2 += `
                                 <div class="box" id = "${doc.id}">
@@ -294,7 +302,8 @@ r_e("user_button").addEventListener(`click`, () => {
                                                       doc.data().description
                                                     }</h2>
                                 </div> `;
-                }})
+                }
+              });
             }
           });
           r_e("posts").innerHTML = html;
@@ -334,7 +343,7 @@ function save_data(coll_name, obj) {
 
 //////////////////////////////////////////////////////////// SHARE OUTFIT ////////////////////////////////////////////////////////////
 
-r_e("form_topost").addEventListener("submit", (e) => {
+r_e("submit_post").addEventListener("click", (e) => {
   e.preventDefault();
 
   let file = r_e("outfit_img").files[0];
@@ -371,13 +380,45 @@ r_e("form_topost").addEventListener("submit", (e) => {
       setTimeout(() => {
         upload_post("posts");
       }, 1500);
-      r_e("posts").classList.remove("is-hidden");
     });
 
   //r_e("form_topost").classList.add("is-hidden");
-  r_e("users_page").classList.remove("is-hidden");
-  r_e("outfit_button").classList.remove("is-hidden");
-  //r_e("posts").classList.remove("is-hidden");
+  r_e("posts").classList.remove("is-hidden");
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      db.collection("posts")
+        .get()
+        .then((res) => {
+          let documents = res.docs;
+          let html = `<h1 class="has-text-centered has-text-grey-dark has-text-weight-bold is-size-2">My Posts</h1>`;
+          documents.forEach((doc) => {
+            if (auth.currentUser.email == doc.data().user_email) {
+              html += `
+                            <div class="box" id = "${doc.id}">
+                                                <h1 class="has-background-info-light p-1 title">${
+                                                  doc.data().item
+                                                } <button class="delete is-medium is-pulled-right is-danger" onclick="del_post('posts', '${
+                doc.id
+              }')">X</button> </h1>
+                                                <span class="is-size-5">Style: ${
+                                                  doc.data().style
+                                                }</span>
+                                                <p class="m-3"> <img height="70" src="${
+                                                  doc.data().image
+                                                }" /> </p>
+                                                <p class="is-size-7">Price: ${
+                                                  doc.data().price
+                                                }</p>
+                                                <h2 class = "is-size-4 p-3">${
+                                                  doc.data().description
+                                                }</h2>
+                            </div> `;
+            }
+          });
+          r_e("posts").innerHTML = html;
+        });
+    }
+  });
 });
 
 // Survey button
