@@ -117,6 +117,27 @@ function del_post(coll, id) {
     });
   r_e(id).classList.add("is-hidden");
 }
+
+function del_favorite(coll, id) {
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      let docRef = db.collection(coll).doc(id);
+      docRef.get().then((doc) => {
+        if (doc.exists) {
+          const docdata = doc.data();
+          if (docdata.hasOwnProperty("favorite")) {
+            docRef.update({favorite: firebase.firestore.FieldValue.arrayRemove(auth.currentUser.email)});
+            }
+          } 
+        })
+      };
+    });
+
+  let id2 = id + "2";  
+  r_e(id2).classList.add("is-hidden");
+}
+
+
 function del_post_admin(coll, id) {
   let real_id = id.slice(0, -1);
   db.collection(coll)
@@ -284,10 +305,10 @@ r_e("user_button").addEventListener(`click`, () => {
                 if (auth.currentUser.email == email) {
                   //console.log(doc.data())
                   html2 += `
-                                <div class="box" id = "${doc.id}">
+                                <div class="box" id = "${doc.id}2">
                                                     <h1 class="has-background-info-light p-1 title">${
                                                       doc.data().item
-                                                    } <button class=" is-small is-pulled-right has-background-danger" onclick="del_post('posts', '${
+                                                    } <button class=" is-small is-pulled-right has-background-danger" onclick="del_favorite('posts', '${
                     doc.id
                   }')"><i
                   class="fa-solid fa-x has-text-white"></i></button> </h1>
