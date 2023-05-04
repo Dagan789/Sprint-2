@@ -4,7 +4,9 @@ let signUp = document.querySelector(`#signUp`);
 let cancel_signUp = document.querySelector(`#cancel_signUp`);
 let login = document.querySelector(`#login`);
 
-//////////////////////////////////////////////////////////// FUNCTIONS  ////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////// FUNCTIONS  ////////////////////////////////////////////////////////
+
+// grab document by id
 function r_e(id) {
   return document.querySelector(`#${id}`);
 }
@@ -32,7 +34,7 @@ function grabCheckbox() {
   return category_list;
 }
 
-
+// delete favorite
 function del_favorite(coll, id) {
   auth.onAuthStateChanged((user) => {
     if (user) {
@@ -54,8 +56,7 @@ function del_favorite(coll, id) {
   r_e(id2).classList.add("is-hidden");
 }
 
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! FAVORITE BUTTON WIP ~~~~~~~~~~~~~!!!!!!!!!!!!!!!!!!
-
+// update favorite
 function updateFavoriteList(postID, add_del) {
   auth.onAuthStateChanged((user) => {
     if (user) {
@@ -90,6 +91,7 @@ function updateFavoriteList(postID, add_del) {
   });
 }
 
+// favorite outfit
 let isFavorite = false;
 
 function toggleFavorite(id) {
@@ -104,7 +106,6 @@ function toggleFavorite(id) {
     heartIcon.textContent = "♡";
     updateFavoriteList(id, false);
   }
-  //loadFavoritesFromLocalStorage();
 }
 
 // function to post outfit
@@ -158,6 +159,7 @@ function del_post_admin(coll, id) {
 let images = document.getElementsByTagName("img");
 let currentIndex = 0;
 
+// sets previous image 
 function prevImage() {
   images[currentIndex].style.display = "none";
   currentIndex--;
@@ -167,6 +169,7 @@ function prevImage() {
   images[currentIndex].style.display = "block";
 }
 
+// sets next image 
 function nextImage() {
   images[currentIndex].style.display = "none";
   currentIndex++;
@@ -176,6 +179,7 @@ function nextImage() {
   images[currentIndex].style.display = "block";
 }
 
+// welcome message on home page
 function showTypingMessage(message) {
   var typingMessage = document.querySelector(".typing-message");
   var messageText = typingMessage.querySelector(".message-text");
@@ -203,6 +207,7 @@ function showTypingMessage(message) {
 
 
 //////////////////////////////////////////////////////////// USER SIGN-UP ////////////////////////////////////////////////////////////
+
 r_e("signup_form").addEventListener("submit", (e) => {
   e.preventDefault();
   // grab the email and password combination from the form
